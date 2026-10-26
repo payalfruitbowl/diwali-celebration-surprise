@@ -45,13 +45,30 @@
   <canvas id="sparkler-canvas"></canvas>
   <div id="petals-container" aria-hidden="true"></div>
 
-  <!-- Audio Controls Bar -->
+  <!-- Audio Controls & Template Switcher Bar -->
   <header class="top-nav">
     <div class="brand-badge">
       <span class="diya-icon">🪔</span>
       <span class="brand-text">Shubh Deepawali</span>
     </div>
+
+    <!-- 3 Interactive Video Templates Switcher -->
+    <div class="template-selector-bar" role="tablist" aria-label="Select Video Template">
+      <button class="tpl-tab active" data-template="1" role="tab" aria-selected="true" title="Template 1: Emotional Family Prank & Surprise Reveal">
+        <span class="tpl-icon">🌟</span> <span class="tpl-name">1. Family Surprise</span>
+      </button>
+      <button class="tpl-tab" data-template="2" role="tab" aria-selected="false" title="Template 2: Royal Maha Aarti & 1001 Glowing Diyas">
+        <span class="tpl-icon">🪔</span> <span class="tpl-name">2. Royal Maha Aarti</span>
+      </button>
+      <button class="tpl-tab" data-template="3" role="tab" aria-selected="false" title="Template 3: Midnight Neon Patakha & Laser Sparkler Show">
+        <span class="tpl-icon">🎆</span> <span class="tpl-name">3. Neon Patakha Show</span>
+      </button>
+    </div>
+
     <div class="nav-actions">
+      <button id="video-mode-btn" class="nav-btn video-record-btn" title="Open Video Maker / Reel Mode">
+        <span class="icon">🎬</span> <span class="label">Reel / Video Mode</span>
+      </button>
       <button id="sparkler-mode-btn" class="nav-btn" title="Toggle Sparkler Wand Mode">
         <span class="icon">✨</span> <span class="label">Phuljhadi Wand</span>
       </button>
@@ -107,8 +124,26 @@
   <!-- ==================== 2. MAIN GRAND CELEBRATION HUB ==================== -->
   <main id="main-content" class="main-content hidden">
 
-    <!-- Hero Grand Welcome -->
-    <section class="hero-section">
+    <!-- Video Recording Reel Frame Container -->
+    <div id="reel-recording-overlay" class="reel-recording-overlay hidden">
+      <div class="reel-safe-header">
+        <div class="rec-badge"><span class="rec-dot"></span> <span id="rec-status-text">REC 00:00</span></div>
+        <div class="reel-aspect-tag">9:16 Reel Mode</div>
+        <button id="exit-reel-btn" class="close-reel-btn" title="Exit Reel Framing">&times;</button>
+      </div>
+      <div class="reel-progress-track">
+        <div id="reel-progress-bar" class="reel-progress-fill"></div>
+      </div>
+      <div id="reel-countdown-overlay" class="reel-countdown-overlay hidden">
+        <span id="reel-countdown-num">3</span>
+        <p>Get your screen recorder ready!</p>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         TEMPLATE 1: THE INNOCENT FAMILY PRANK & SURPRISE CELEBRATION
+         ====================================================================== -->
+    <div id="template-1-view" class="template-view active">
       <div class="hero-decorative-arch"></div>
       <div class="hero-badge">
         <span class="rangoli-bullet">✦</span> 
@@ -480,6 +515,148 @@
 
       </div>
     </section>
+    </div><!-- End of Template 1 -->
+
+    <!-- ======================================================================
+         TEMPLATE 2: ROYAL MAHA AARTI & 1001 SACRED DIYAS
+         ====================================================================== -->
+    <div id="template-2-view" class="template-view hidden">
+      <section class="aarti-hero-section">
+        <div class="temple-bells-row">
+          <span class="temple-bell-interactive" data-bell="1">🔔</span>
+          <span class="temple-bell-interactive" data-bell="2">🔔</span>
+          <span class="temple-bell-interactive central-bell" data-bell="3">🪔</span>
+          <span class="temple-bell-interactive" data-bell="4">🔔</span>
+          <span class="temple-bell-interactive" data-bell="5">🔔</span>
+        </div>
+
+        <div class="sanskrit-mantra-box">
+          <div class="sanskrit-text glow">
+            ॐ असतो मा सद्गमय । तमसो मा ज्योतिर्गमय । मृत्योर्मा अमृतं गमय ॥
+          </div>
+          <div class="mantra-translation">
+            "Lead us from falsehood to truth, from darkness to light, from mortality to eternal bliss."
+          </div>
+        </div>
+
+        <h1 class="aarti-title">
+          <span class="gold-shimmer-text">DIVINE MAHA AARTI</span>
+          <span class="aarti-subtitle">The Sacred Illumination Ceremony</span>
+        </h1>
+
+        <!-- Sacred Panch Aarti Rotating Thali -->
+        <div class="sacred-panch-aarti-container">
+          <div class="aarti-aura-glow"></div>
+          <div id="interactive-aarti-thali" class="panch-aarti-thali">
+            <div class="thali-engraving"></div>
+            <!-- 5 Sacred Camphor & Ghee Flames -->
+            <div class="aarti-flame flame-center"><div class="wick-fire"></div></div>
+            <div class="aarti-flame flame-top"><div class="wick-fire"></div></div>
+            <div class="aarti-flame flame-right"><div class="wick-fire"></div></div>
+            <div class="aarti-flame flame-bottom"><div class="wick-fire"></div></div>
+            <div class="aarti-flame flame-left"><div class="wick-fire"></div></div>
+            <div class="thali-center-flower">🌸</div>
+          </div>
+          <p class="aarti-hint">👆 Touch & swirl your finger / mouse to perform the sacred clockwise Aarti!</p>
+        </div>
+
+        <!-- 108 Sacred Diyas Illumination Field -->
+        <div class="diya-field-section">
+          <div class="diya-field-heading">
+            <h3>108 Sacred Earthen Lamps Field</h3>
+            <span id="diyas-lit-badge" class="sacred-badge">12 / 108 Lit</span>
+          </div>
+          <div id="diya-mandala-grid" class="diya-mandala-grid">
+            <!-- Dynamically populated 108 glowing diyas -->
+          </div>
+          <div class="aarti-actions-bar">
+            <button id="ignite-all-diyas-btn" class="primary-festive-btn">
+              <span>🔥</span> Ignite All 108 Sacred Diyas
+            </button>
+            <button id="shower-lotus-btn" class="secondary-btn">
+              <span>🌸</span> Shower Sacred Lotus Petals
+            </button>
+            <button id="ring-temple-chimes-btn" class="secondary-btn">
+              <span>🔔</span> Ring All Temple Bells
+            </button>
+          </div>
+        </div>
+      </section>
+    </div><!-- End of Template 2 -->
+
+    <!-- ======================================================================
+         TEMPLATE 3: MIDNIGHT NEON PATAKHA & LASER SPARKLER SHOW
+         ====================================================================== -->
+    <div id="template-3-view" class="template-view hidden">
+      <section class="neon-patakha-section">
+        <div class="neon-badge-banner">
+          <span class="neon-pulse-dot"></span> MIDNIGHT SKY LAUNCHPAD • HIGH VOLTAGE FESTIVAL
+        </div>
+
+        <h1 class="neon-hero-title">
+          <span class="cyber-neon-orange">MIDNIGHT</span>
+          <span class="cyber-neon-gold">FIREWORKS</span>
+          <span class="cyber-neon-pink">SHOWDOWN</span>
+        </h1>
+
+        <p class="neon-subtext">
+          Sync your screen with the loudest, brightest pyrotechnic sky-show! Tap launchpad triggers to fire multi-tube barrages.
+        </p>
+
+        <!-- Live Pyrotechnic Launchpad Console -->
+        <div class="launchpad-console">
+          <div class="console-screen">
+            <div class="radar-scan"></div>
+            <div class="console-metrics">
+              <div class="metric-box">
+                <span class="metric-label">BARRAGE READY</span>
+                <span class="metric-val" id="barrage-status">ARMED 🚀</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-label">VOLTAGE</span>
+                <span class="metric-val">100% ⚡</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-label">EXPLOSIONS</span>
+                <span class="metric-val" id="neon-burst-count">0 💥</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="launchpad-controls-grid">
+            <button id="btn-rapid-barrage" class="launch-card barrage-card">
+              <span class="launch-icon">🚀🚀🚀</span>
+              <span class="launch-title">10x Sky Rocket Barrage</span>
+              <span class="launch-desc">Fires rapid-sequence high altitude burst</span>
+            </button>
+
+            <button id="btn-twin-anar" class="launch-card anar-card">
+              <span class="launch-icon">🌋🌋</span>
+              <span class="launch-title">Twin Mega Anars</span>
+              <span class="launch-desc">15ft golden volcanic sparkle eruption</span>
+            </button>
+
+            <button id="btn-hyper-chakri" class="launch-card chakri-card">
+              <span class="launch-icon">🌀⚡</span>
+              <span class="launch-title">Hyper Chakri Vortex</span>
+              <span class="launch-desc">High-speed color-shifting ground spiral</span>
+            </button>
+
+            <button id="btn-light-paint-auto" class="launch-card sparkler-card">
+              <span class="launch-icon">✨✍️</span>
+              <span class="launch-title">Laser Sparkler Light-Writing</span>
+              <span class="launch-desc">Draws "SHUBH DIWALI" in real burning fire!</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sparkler Neon Light Canvas Demonstration -->
+        <div class="neon-light-board">
+          <canvas id="light-writing-canvas" width="800" height="280"></canvas>
+          <div class="light-board-hint">💡 Click "Laser Sparkler Light-Writing" or drag with mouse to draw fire trails</div>
+        </div>
+      </section>
+    </div><!-- End of Template 3 -->
 
     <!-- Footer -->
     <footer class="festive-footer">
@@ -531,6 +708,188 @@
             <span>💾</span> Download High-Res 1200x630 OG Meta Image
           </button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 8. VIDEO REEL MAKER & STORYBOARDS MODAL ==================== -->
+  <div id="video-studio-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal-dialog video-studio-dialog">
+      <div class="modal-header">
+        <div class="video-modal-title">
+          <span class="cam-icon">🎬</span>
+          <div>
+            <h3>Diwali Video Creator Studio</h3>
+            <p class="subtitle">Record Reels, YouTube Shorts, & WhatsApp Status videos in 3 stunning styles!</p>
+          </div>
+        </div>
+        <button id="close-video-modal-btn" class="modal-close">&times;</button>
+      </div>
+
+      <div class="modal-tabs">
+        <button class="modal-tab active" data-tab="director">🎥 Auto-Play Director</button>
+        <button class="modal-tab" data-tab="scripts">📜 3 Ready Video Scripts</button>
+      </div>
+
+      <div class="modal-body">
+        
+        <!-- Tab 1: Auto-Play Director -->
+        <div id="tab-director" class="tab-content active">
+          <div class="director-settings-card">
+            <h4>Select Your Video Setup:</h4>
+            
+            <div class="setting-row">
+              <label>Choose Template:</label>
+              <div class="choice-pills" id="video-tpl-choices">
+                <button class="pill-btn active" data-tpl="1">🌟 1. Family Surprise</button>
+                <button class="pill-btn" data-tpl="2">🪔 2. Royal Maha Aarti</button>
+                <button class="pill-btn" data-tpl="3">🎆 3. Neon Patakha Show</button>
+              </div>
+            </div>
+
+            <div class="setting-row">
+              <label>Framing Ratio:</label>
+              <div class="choice-pills" id="video-ratio-choices">
+                <button class="pill-btn active" data-ratio="9-16">📱 9:16 Vertical Reel (Instagram / Shorts)</button>
+                <button class="pill-btn" data-ratio="full">🖥️ Full-Screen Cinematic</button>
+              </div>
+            </div>
+
+            <div class="setting-row">
+              <label>Pacing Duration:</label>
+              <div class="choice-pills" id="video-duration-choices">
+                <button class="pill-btn active" data-duration="15">⚡ 15 Seconds (Fast Hook)</button>
+                <button class="pill-btn" data-duration="25">✨ 25 Seconds (Complete Story)</button>
+              </div>
+            </div>
+
+            <div class="recording-tip-box">
+              <span class="tip-icon">💡</span>
+              <p>
+                <strong>How to Record:</strong> Clicking "Start Cinematic Take" triggers a 3-second countdown and automatically plays camera moves, sound effects, and firework explosions. Start your screen recorder (Windows: <kbd>Win + Alt + R</kbd>, Mac: <kbd>Cmd + Shift + 5</kbd>, iPhone/Android: Swipe Screen Recorder tile) and enjoy!
+              </p>
+            </div>
+
+            <div class="director-actions">
+              <button id="start-cinematic-take-btn" class="primary-festive-btn large pulse-anim">
+                <span>🔴</span> Start Auto-Play Cinematic Take
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: 3 Ready Video Scripts & Storyboards -->
+        <div id="tab-scripts" class="tab-content">
+          <div class="scripts-accordion">
+
+            <!-- Script 1 -->
+            <div class="script-card">
+              <div class="script-header">
+                <span class="script-badge tpl1-badge">Template 1 Video Script</span>
+                <h4>"The Innocent WhatsApp Surprise" (Emotional / Nostalgic)</h4>
+                <span class="timing-badge">15 - 20s</span>
+              </div>
+              <div class="script-body">
+                <p class="audio-pick">🎵 <strong>Suggested Trending Audio:</strong> <em>Kabhi Khushi Kabhie Gham (Diwali Violin Theme)</em> or <em>Aasman Ko Chhukar</em></p>
+                <div class="storyboard-steps">
+                  <div class="step-item">
+                    <span class="step-time">0:00 - 0:03</span>
+                    <div class="step-desc">
+                      <strong>The Hook:</strong> Show WhatsApp chat preview card of the family photo.
+                      <em>Text on screen: "Mom said don't click this link... wait for it 😭🪔"</em>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <span class="step-time">0:03 - 0:07</span>
+                    <div class="step-desc">
+                      <strong>The Action:</strong> Touch the unlit Diya. Instant flame ignite sound followed by a golden white radial flash!
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <span class="step-time">0:07 - 0:15</span>
+                    <div class="step-desc">
+                      <strong>The Climax:</strong> Golden sky rockets burst with temple bells ringing. Camera pans over the "How We Celebrated" Dhanteras gold and mithai thali!
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <span class="step-time">0:15 - 0:20</span>
+                    <div class="step-desc">
+                      <strong>The CTA:</strong> Shubh Deepawali personalized greeting.
+                      <em>Caption: "Send this to your family WhatsApp group! Link in bio ✨"</em>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Script 2 -->
+            <div class="script-card">
+              <div class="script-header">
+                <span class="script-badge tpl2-badge">Template 2 Video Script</span>
+                <h4>"Royal Maha Aarti & 1001 Sacred Diyas" (Devotional / Aesthetic)</h4>
+                <span class="timing-badge">15 - 25s</span>
+              </div>
+              <div class="script-body">
+                <p class="audio-pick">🎵 <strong>Suggested Trending Audio:</strong> <em>Deva Shree Ganesha Flute</em> or <em>Om Asato Ma Sadgamaya chant</em></p>
+                <div class="storyboard-steps">
+                  <div class="step-item">
+                    <span class="step-time">0:00 - 0:04</span>
+                    <div class="step-desc">
+                      <strong>The Hook:</strong> Dark serene temple courtyard with hanging brass bells chiming.
+                      <em>Text on screen: "May your darkness turn into eternal light 🪔✨"</em>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <span class="step-time">0:04 - 0:12</span>
+                    <div class="step-desc">
+                      <strong>The Action:</strong> Sacred rotating Panch-Aarti thali swirls with 5 golden flames; 108 earthen diyas illuminate sequentially in a lotus mandala.
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <span class="step-time">0:12 - 0:20</span>
+                    <div class="step-desc">
+                      <strong>The Climax:</strong> Shower of pink lotus and marigold petals fills the screen with radiant golden bloom lighting.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Script 3 -->
+            <div class="script-card">
+              <div class="script-header">
+                <span class="script-badge tpl3-badge">Template 3 Video Script</span>
+                <h4>"Midnight Neon Patakha & Laser Sparkler Show" (High Energy / Viral)</h4>
+                <span class="timing-badge">12 - 18s</span>
+              </div>
+              <div class="script-body">
+                <p class="audio-pick">🎵 <strong>Suggested Trending Audio:</strong> Trending Diwali EDM / Bass Drop track</p>
+                <div class="storyboard-steps">
+                  <div class="step-item">
+                    <span class="step-time">0:00 - 0:03</span>
+                    <div class="step-desc">
+                      <strong>The Hook:</strong> High-voltage countdown on radar console: <em>"3... 2... 1... DROP THE BARRAGE 💥"</em>
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <span class="step-time">0:03 - 0:09</span>
+                    <div class="step-desc">
+                      <strong>The Beat Drop:</strong> 10 rapid-fire neon sky rockets detonate simultaneously; twin giant volcanic Anars erupt with electric sparks!
+                    </div>
+                  </div>
+                  <div class="step-item">
+                    <span class="step-time">0:09 - 0:15</span>
+                    <div class="step-desc">
+                      <strong>The Sparkler Light-Writing:</strong> Laser sparkler wand writes "SHUBH DIWALI 2026" in burning trails across the screen!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

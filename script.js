@@ -1121,4 +1121,482 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('mithai-hub').scrollIntoView({ behavior: 'smooth' });
     });
   }
+
+  // ==================== 10. TEMPLATE SWITCHER & MANAGERS ====================
+  class TemplateSwitcher {
+    constructor() {
+      this.currentTemplate = 1;
+      this.tabs = document.querySelectorAll('.tpl-tab');
+      this.views = {
+        1: document.getElementById('template-1-view'),
+        2: document.getElementById('template-2-view'),
+        3: document.getElementById('template-3-view')
+      };
+      this.bindEvents();
+    }
+
+    bindEvents() {
+      this.tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tplId = parseInt(tab.dataset.template, 10);
+          this.switchTemplate(tplId);
+        });
+      });
+    }
+
+    switchTemplate(tplId) {
+      this.currentTemplate = tplId;
+      this.tabs.forEach(tab => {
+        const isMatch = parseInt(tab.dataset.template, 10) === tplId;
+        tab.classList.toggle('active', isMatch);
+        tab.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+      });
+
+      Object.entries(this.views).forEach(([id, view]) => {
+        if (!view) return;
+        if (parseInt(id, 10) === tplId) {
+          view.classList.remove('hidden');
+          view.classList.add('active');
+        } else {
+          view.classList.add('hidden');
+          view.classList.remove('active');
+        }
+      });
+
+      // If intro screen is still visible, dissolve it so user can see the template immediately
+      if (document.body.classList.contains('is-intro')) {
+        document.getElementById('intro-screen').classList.add('dissolve');
+        document.getElementById('main-content').classList.remove('hidden');
+        document.body.classList.remove('is-intro');
+      }
+
+      sounds.playTempleBell();
+    }
+  }
+
+  const templateSwitcher = new TemplateSwitcher();
+
+  // ==================== 11. TEMPLATE 2: ROYAL MAHA AARTI MANAGER ====================
+  class MahaAartiManager {
+    constructor() {
+      this.bells = document.querySelectorAll('.temple-bell-interactive');
+      this.thali = document.getElementById('interactive-aarti-thali');
+      this.grid = document.getElementById('diya-mandala-grid');
+      this.litBadge = document.getElementById('diyas-lit-badge');
+      this.igniteAllBtn = document.getElementById('ignite-all-diyas-btn');
+      this.lotusBtn = document.getElementById('shower-lotus-btn');
+      this.chimesBtn = document.getElementById('ring-temple-chimes-btn');
+      this.diyasCount = 108;
+      this.litCount = 12;
+      this.init();
+    }
+
+    init() {
+      this.renderDiyasGrid();
+      this.bindEvents();
+    }
+
+    bindEvents() {
+      // Bells
+      this.bells.forEach(bell => {
+        bell.addEventListener('click', () => {
+          bell.classList.remove('ringing');
+          void bell.offsetWidth; // force reflow
+          bell.classList.add('ringing');
+          sounds.playTempleBell();
+        });
+      });
+
+      // Thali swirling
+      if (this.thali) {
+        this.thali.addEventListener('click', () => {
+          this.thali.classList.toggle('swirling');
+          sounds.playDiyaChime();
+        });
+      }
+
+      // Ignite All 108
+      if (this.igniteAllBtn) {
+        this.igniteAllBtn.addEventListener('click', () => this.igniteAll());
+      }
+
+      // Lotus Shower
+      if (this.lotusBtn) {
+        this.lotusBtn.addEventListener('click', () => this.showerLotusPetals());
+      }
+
+      // Ring all chimes
+      if (this.chimesBtn) {
+        this.chimesBtn.addEventListener('click', () => {
+          this.bells.forEach((b, i) => {
+            setTimeout(() => {
+              b.classList.remove('ringing');
+              void b.offsetWidth;
+              b.classList.add('ringing');
+              sounds.playTempleBell();
+            }, i * 150);
+          });
+        });
+      }
+    }
+
+    renderDiyasGrid() {
+      if (!this.grid) return;
+      this.grid.innerHTML = '';
+      for (let i = 1; i <= this.diyasCount; i++) {
+        const diya = document.createElement('div');
+        diya.className = 'micro-diya';
+        diya.innerHTML = '🪔';
+        diya.dataset.id = i;
+        if (i <= this.litCount) diya.classList.add('lit');
+
+        diya.addEventListener('click', () => {
+          diya.classList.toggle('lit');
+          sounds.playDiyaChime();
+          this.updateCount();
+        });
+
+        this.grid.appendChild(diya);
+      }
+    }
+
+    igniteAll() {
+      const diyas = this.grid.querySelectorAll('.micro-diya');
+      sounds.playDiyaChime();
+      sounds.playTempleBell();
+      diyas.forEach((d, idx) => {
+        setTimeout(() => {
+          d.classList.add('lit');
+          if (idx % 12 === 0) sounds.playTempleBell();
+          if (idx === diyas.length - 1) this.updateCount();
+        }, idx * 18);
+      });
+    }
+
+    updateCount() {
+      const lit = this.grid.querySelectorAll('.micro-diya.lit').length;
+      if (this.litBadge) this.litBadge.textContent = `${lit} / 108 Lit`;
+    }
+
+    showerLotusPetals() {
+      const container = document.getElementById('petals-container');
+      if (!container) return;
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+          const petal = document.createElement('div');
+          petal.className = 'falling-petal';
+          petal.style.background = 'radial-gradient(circle, #f472b6 20%, #db2777 90%)';
+          petal.style.width = '20px';
+          petal.style.height = '24px';
+          petal.style.left = `${Math.random() * 100}vw`;
+          petal.style.animationDuration = `${5 + Math.random() * 5}s`;
+          container.appendChild(petal);
+          setTimeout(() => petal.remove(), 10000);
+        }, i * 60);
+      }
+      sounds.playDiyaChime();
+    }
+  }
+
+  const aartiManager = new MahaAartiManager();
+
+  // ==================== 12. TEMPLATE 3: MIDNIGHT NEON PATAKHA ====================
+  class NeonPatakhaManager {
+    constructor() {
+      this.rapidBtn = document.getElementById('btn-rapid-barrage');
+      this.anarBtn = document.getElementById('btn-twin-anar');
+      this.chakriBtn = document.getElementById('btn-hyper-chakri');
+      this.lightPaintBtn = document.getElementById('btn-light-paint-auto');
+      this.canvas = document.getElementById('light-writing-canvas');
+      this.ctx = this.canvas ? this.canvas.getContext('2d') : null;
+      this.neonBurstCount = 0;
+      this.bindEvents();
+    }
+
+    bindEvents() {
+      if (this.rapidBtn) {
+        this.rapidBtn.addEventListener('click', () => this.fireRapidBarrage());
+      }
+      if (this.anarBtn) {
+        this.anarBtn.addEventListener('click', () => this.fireTwinAnars());
+      }
+      if (this.chakriBtn) {
+        this.chakriBtn.addEventListener('click', () => this.fireHyperChakris());
+      }
+      if (this.lightPaintBtn) {
+        this.lightPaintBtn.addEventListener('click', () => this.animateSparklerWriting());
+      }
+
+      // Interactive drag on light writing canvas
+      if (this.canvas) {
+        let isDrawing = false;
+        const draw = (e) => {
+          if (!isDrawing) return;
+          const rect = this.canvas.getBoundingClientRect();
+          const x = (e.clientX - rect.left) * (this.canvas.width / rect.width);
+          const y = (e.clientY - rect.top) * (this.canvas.height / rect.height);
+          this.ctx.beginPath();
+          this.ctx.arc(x, y, 4, 0, Math.PI * 2);
+          this.ctx.fillStyle = '#fbbf24';
+          this.ctx.shadowBlur = 15;
+          this.ctx.shadowColor = '#f59e0b';
+          this.ctx.fill();
+          if (Math.random() > 0.7) sounds.playSparklerCrackle();
+        };
+
+        this.canvas.addEventListener('mousedown', () => { isDrawing = true; });
+        this.canvas.addEventListener('mousemove', draw);
+        window.addEventListener('mouseup', () => { isDrawing = false; });
+      }
+    }
+
+    fireRapidBarrage() {
+      const colors = ['#ec4899', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ef4444'];
+      for (let i = 0; i < 10; i++) {
+        setTimeout(() => {
+          const col = colors[i % colors.length];
+          const x = window.innerWidth * (0.15 + (i / 10) * 0.7);
+          const y = window.innerHeight * (0.15 + Math.random() * 0.3);
+          fireworks.launchRocket(x, y, col);
+          this.neonBurstCount++;
+          const countEl = document.getElementById('neon-burst-count');
+          if (countEl) countEl.textContent = `${this.neonBurstCount} 💥`;
+        }, i * 200);
+      }
+    }
+
+    fireTwinAnars() {
+      fireworks.sparkAnar(100, window.innerHeight - 30);
+      fireworks.sparkAnar(window.innerWidth - 100, window.innerHeight - 30);
+      for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+          fireworks.sparkAnar(100, window.innerHeight - 30);
+          fireworks.sparkAnar(window.innerWidth - 100, window.innerHeight - 30);
+        }, i * 350);
+      }
+    }
+
+    fireHyperChakris() {
+      fireworks.spinChakri(window.innerWidth * 0.35, window.innerHeight * 0.6);
+      fireworks.spinChakri(window.innerWidth * 0.65, window.innerHeight * 0.6);
+    }
+
+    animateSparklerWriting() {
+      if (!this.ctx) return;
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+      const text = "✨ SHUBH DIWALI 2026 ✨";
+      this.ctx.font = 'bold 38px Georgia, serif';
+      this.ctx.fillStyle = '#fbbf24';
+      this.ctx.shadowBlur = 20;
+      this.ctx.shadowColor = '#f59e0b';
+      this.ctx.textAlign = 'center';
+      
+      let step = 0;
+      const interval = setInterval(() => {
+        step++;
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.fillText(text.slice(0, step), this.canvas.width / 2, this.canvas.height / 2 + 12);
+        sounds.playSparklerCrackle();
+        if (step >= text.length) {
+          clearInterval(interval);
+          this.fireRapidBarrage();
+        }
+      }, 90);
+    }
+  }
+
+  const neonManager = new NeonPatakhaManager();
+
+  // ==================== 13. VIDEO REEL CREATOR STUDIO & AUTO-PLAY DIRECTOR ====================
+  class VideoReelDirector {
+    constructor() {
+      this.modal = document.getElementById('video-studio-modal');
+      this.openBtn = document.getElementById('video-mode-btn');
+      this.closeBtn = document.getElementById('close-video-modal-btn');
+      this.tabBtns = document.querySelectorAll('.modal-tab');
+      this.startBtn = document.getElementById('start-cinematic-take-btn');
+
+      this.overlay = document.getElementById('reel-recording-overlay');
+      this.exitReelBtn = document.getElementById('exit-reel-btn');
+      this.progressBar = document.getElementById('reel-progress-bar');
+      this.statusText = document.getElementById('rec-status-text');
+      this.countdownOverlay = document.getElementById('reel-countdown-overlay');
+      this.countdownNum = document.getElementById('reel-countdown-num');
+
+      this.selectedTpl = 1;
+      this.selectedRatio = '9-16';
+      this.selectedDuration = 15;
+      this.isRunning = false;
+
+      this.bindEvents();
+    }
+
+    bindEvents() {
+      if (this.openBtn) this.openBtn.addEventListener('click', () => this.openModal());
+      if (this.closeBtn) this.closeBtn.addEventListener('click', () => this.closeModal());
+
+      // Tabs
+      this.tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          this.tabBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const tabId = btn.dataset.tab;
+          document.getElementById('tab-director').classList.toggle('active', tabId === 'director');
+          document.getElementById('tab-scripts').classList.toggle('active', tabId === 'scripts');
+        });
+      });
+
+      // Template Choice Pills
+      const tplPills = document.querySelectorAll('#video-tpl-choices .pill-btn');
+      tplPills.forEach(p => {
+        p.addEventListener('click', () => {
+          tplPills.forEach(x => x.classList.remove('active'));
+          p.classList.add('active');
+          this.selectedTpl = parseInt(p.dataset.tpl, 10);
+        });
+      });
+
+      // Ratio Choice Pills
+      const ratioPills = document.querySelectorAll('#video-ratio-choices .pill-btn');
+      ratioPills.forEach(p => {
+        p.addEventListener('click', () => {
+          ratioPills.forEach(x => x.classList.remove('active'));
+          p.classList.add('active');
+          this.selectedRatio = p.dataset.ratio;
+        });
+      });
+
+      // Duration Choice Pills
+      const durPills = document.querySelectorAll('#video-duration-choices .pill-btn');
+      durPills.forEach(p => {
+        p.addEventListener('click', () => {
+          durPills.forEach(x => x.classList.remove('active'));
+          p.classList.add('active');
+          this.selectedDuration = parseInt(p.dataset.duration, 10);
+        });
+      });
+
+      // Start Cinematic Take
+      if (this.startBtn) {
+        this.startBtn.addEventListener('click', () => this.startTake());
+      }
+
+      // Exit Reel Framing
+      if (this.exitReelBtn) {
+        this.exitReelBtn.addEventListener('click', () => this.stopTake());
+      }
+    }
+
+    openModal() {
+      if (this.modal) this.modal.classList.remove('hidden');
+    }
+
+    closeModal() {
+      if (this.modal) this.modal.classList.add('hidden');
+    }
+
+    startTake() {
+      this.closeModal();
+      templateSwitcher.switchTemplate(this.selectedTpl);
+
+      // Framing
+      if (this.selectedRatio === '9-16') {
+        document.body.classList.add('reel-mode-active');
+      } else {
+        document.body.classList.remove('reel-mode-active');
+      }
+
+      // 3-2-1 Countdown
+      this.countdownOverlay.classList.remove('hidden');
+      let count = 3;
+      this.countdownNum.textContent = count;
+      sounds.playTempleBell();
+
+      const countInterval = setInterval(() => {
+        count--;
+        if (count > 0) {
+          this.countdownNum.textContent = count;
+          sounds.playTempleBell();
+        } else {
+          clearInterval(countInterval);
+          this.countdownOverlay.classList.add('hidden');
+          this.runTakeOrchestration();
+        }
+      }, 1000);
+    }
+
+    runTakeOrchestration() {
+      this.isRunning = true;
+      this.overlay.classList.remove('hidden');
+      const totalSeconds = this.selectedDuration;
+      let elapsed = 0;
+
+      // Orchestrate actions based on chosen template
+      if (this.selectedTpl === 1) {
+        // Template 1 Orchestration
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+            fireworks.launchRocket();
+          }, i * 600);
+        }
+        setTimeout(() => {
+          const storySection = document.querySelector('.story-section');
+          if (storySection) storySection.scrollIntoView({ behavior: 'smooth' });
+        }, 3500);
+        setTimeout(() => {
+          const customizerSection = document.getElementById('customizer-hub');
+          if (customizerSection) customizerSection.scrollIntoView({ behavior: 'smooth' });
+          sounds.playDiyaChime();
+        }, 9000);
+      } else if (this.selectedTpl === 2) {
+        // Template 2 Orchestration
+        sounds.playTempleBell();
+        setTimeout(() => {
+          aartiManager.thali.classList.add('swirling');
+          sounds.playDiyaChime();
+        }, 1500);
+        setTimeout(() => {
+          aartiManager.igniteAll();
+        }, 4000);
+        setTimeout(() => {
+          aartiManager.showerLotusPetals();
+        }, 8000);
+      } else if (this.selectedTpl === 3) {
+        // Template 3 Orchestration
+        neonManager.fireRapidBarrage();
+        setTimeout(() => {
+          neonManager.fireTwinAnars();
+        }, 3000);
+        setTimeout(() => {
+          neonManager.animateSparklerWriting();
+        }, 6000);
+      }
+
+      // Progress bar & timer ticker
+      const timerInterval = setInterval(() => {
+        elapsed += 0.2;
+        const progressPct = Math.min(100, (elapsed / totalSeconds) * 100);
+        this.progressBar.style.width = `${progressPct}%`;
+        const secs = Math.floor(elapsed);
+        const frac = Math.floor((elapsed % 1) * 10);
+        this.statusText.textContent = `REC 00:${secs < 10 ? '0' + secs : secs}.${frac}`;
+
+        if (elapsed >= totalSeconds || !this.isRunning) {
+          clearInterval(timerInterval);
+          this.stopTake();
+        }
+      }, 200);
+    }
+
+    stopTake() {
+      this.isRunning = false;
+      this.overlay.classList.add('hidden');
+      document.body.classList.remove('reel-mode-active');
+      sounds.playTempleBell();
+    }
+  }
+
+  const videoDirector = new VideoReelDirector();
 });
+
