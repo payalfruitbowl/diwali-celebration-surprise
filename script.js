@@ -173,6 +173,7 @@ class FireworksEngine {
     this.ctx = canvas.getContext('2d');
     this.rockets = [];
     this.particles = [];
+    this.textParticles = [];
     this.anars = [];
     this.chakris = [];
     this.width = window.innerWidth;
@@ -282,6 +283,89 @@ class FireworksEngine {
     if (counterEl) counterEl.textContent = this.burstCount;
   }
 
+  explodeText(text, targetY = null) {
+    if (!text || !text.trim()) return;
+    const cleanText = text.trim().toUpperCase().slice(0, 18);
+    const offCanvas = document.createElement('canvas');
+    offCanvas.width = 1100;
+    offCanvas.height = 240;
+    const offCtx = offCanvas.getContext('2d');
+    
+    const fontSize = cleanText.length > 10 ? 52 : 72;
+    offCtx.font = `900 ${fontSize}px "Outfit", sans-serif`;
+    offCtx.textAlign = 'center';
+    offCtx.textBaseline = 'middle';
+    offCtx.fillStyle = '#ffffff';
+    offCtx.fillText(cleanText, 550, 120);
+
+    const imgData = offCtx.getImageData(0, 0, 1100, 240).data;
+    const targets = [];
+    const step = cleanText.length > 10 ? 8 : 6;
+    const centerY = targetY !== null ? targetY : (this.height * 0.36);
+    const centerX = this.width / 2;
+    
+    const maxTextWidth = Math.min(this.width * 0.9, 900);
+    const scale = maxTextWidth / 1100;
+
+    for (let y = 0; y < 240; y += step) {
+      for (let x = 0; x < 1100; x += step) {
+        const idx = (y * 1100 + x) * 4;
+        if (imgData[idx + 3] > 160) {
+          targets.push({
+            tx: (x - 550) * scale + centerX,
+            ty: (y - 120) * scale + centerY
+          });
+        }
+      }
+    }
+
+    if (targets.length === 0) return;
+
+    sounds.playRocketLaunch();
+    this.rockets.push({
+      x: centerX,
+      y: this.height,
+      startX: centerX,
+      startY: this.height,
+      destX: centerX,
+      destY: centerY,
+      color: '#f59e0b',
+      progress: 0,
+      speed: 0.038,
+      trail: [],
+      onExplode: () => {
+        sounds.playFireworkBurst();
+        sounds.playTempleBell();
+        
+        const flash = document.getElementById('flash-overlay');
+        if (flash) {
+          flash.classList.add('active');
+          setTimeout(() => flash.classList.remove('active'), 140);
+        }
+
+        const colors = ['#fde047', '#fbbf24', '#f59e0b', '#ec4899', '#38bdf8', '#a855f7', '#4ade80'];
+        targets.forEach((tgt, idx) => {
+          const col = colors[idx % colors.length];
+          this.textParticles.push({
+            x: centerX + (Math.random() - 0.5) * 40,
+            y: centerY + (Math.random() - 0.5) * 40,
+            tx: tgt.tx,
+            ty: tgt.ty,
+            vx: (Math.random() - 0.5) * 10,
+            vy: (Math.random() - 0.5) * 10,
+            color: col,
+            alpha: 1,
+            size: 2.5 + Math.random() * 2,
+            stage: 'forming',
+            holdTime: 200 + Math.random() * 50,
+            life: 0
+          });
+        });
+        this.incrementCounter();
+      }
+    });
+  }
+
   updateAndDraw() {
     this.ctx.clearRect(0, 0, this.width, this.height);
 
@@ -295,8 +379,10 @@ class FireworksEngine {
 
       // Rocket trail
       this.ctx.beginPath();
-      this.ctx.arc(r.x, r.y, 3, 0, Math.PI * 2);
+      this.ctx.arc(r.x, r.y, 3.5, 0, Math.PI * 2);
       this.ctx.fillStyle = '#fff';
+      this.ctx.shadowBlur = 10;
+      this.ctx.shadowColor = '#fbbf24';
       this.ctx.fill();
 
       // Spark trail
@@ -313,9 +399,55 @@ class FireworksEngine {
       });
 
       if (r.progress >= 1) {
-        this.createBurst(r.destX, r.destY, r.color);
+        if (r.onExplode) {
+          r.onExplode();
+        } else {
+          this.createBurst(r.destX, r.destY, r.color);
+        }
         this.rockets.splice(i, 1);
       }
+    }
+
+    // Update and draw sky text particles
+    for (let i = this.textParticles.length - 1; i >= 0; i--) {
+      const tp = this.textParticles[i];
+      if (tp.stage === 'forming') {
+        tp.x += (tp.tx - tp.x) * 0.14;
+        tp.y += (tp.ty - tp.y) * 0.14;
+        if (Math.abs(tp.x - tp.tx) < 2 && Math.abs(tp.y - tp.ty) < 2) {
+          tp.stage = 'holding';
+        }
+      } else if (tp.stage === 'holding') {
+        tp.life++;
+        // Subtle sparkler shimmer vibration
+        tp.x = tp.tx + (Math.random() - 0.5) * 2;
+        tp.y = tp.ty + (Math.random() - 0.5) * 2;
+        if (tp.life > tp.holdTime) {
+          tp.stage = 'falling';
+          tp.vx = (Math.random() - 0.5) * 3;
+          tp.vy = 1 + Math.random() * 3;
+        }
+      } else if (tp.stage === 'falling') {
+        tp.x += tp.vx;
+        tp.y += tp.vy;
+        tp.vy += 0.06;
+        tp.alpha -= 0.015;
+      }
+
+      if (tp.alpha <= 0) {
+        this.textParticles.splice(i, 1);
+        continue;
+      }
+
+      this.ctx.save();
+      this.ctx.globalAlpha = Math.max(0, tp.alpha);
+      this.ctx.beginPath();
+      this.ctx.arc(tp.x, tp.y, tp.size, 0, Math.PI * 2);
+      this.ctx.fillStyle = tp.color;
+      this.ctx.shadowBlur = 12;
+      this.ctx.shadowColor = tp.color;
+      this.ctx.fill();
+      this.ctx.restore();
     }
 
     // Update and draw particles
@@ -1486,30 +1618,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const neonManager = new NeonPatakhaManager();
 
-  // ==================== 13. WISH ONLY CELEBRATION MANAGER (wish.html) ====================
+  // ==================== 13. COOL PYROTECHNIC & SKY WRITING SUITE (wish.html) ====================
   class WishPageManager {
     constructor() {
-      this.fiveDiyas = document.querySelectorAll('.wish-diya-btn');
-      this.diyaStatusPill = document.getElementById('diya-status-pill');
-      this.wishChips = document.querySelectorAll('.wish-chip');
-      this.releaseLanternBtn = document.getElementById('release-lantern-btn');
-      this.lanternFeedback = document.getElementById('lantern-feedback');
-      this.senderInput = document.getElementById('sender-input');
-      this.generateWishBtn = document.getElementById('generate-wish-btn');
-      this.copyResultRow = document.getElementById('copy-result-row');
-      this.generatedUrlDisplay = document.getElementById('generated-url-display');
-      this.copyLinkBtn = document.getElementById('copy-link-btn');
-      this.copyToast = document.getElementById('copy-toast');
+      this.fuseIntro = document.getElementById('fuse-intro-screen');
+      this.igniteFuseBtn = document.getElementById('ignite-fuse-btn');
+      this.coolMatrix = document.getElementById('cool-main-matrix');
+      this.skyNameInput = document.getElementById('sky-name-input');
+      this.launchSkyNameBtn = document.getElementById('launch-sky-name-btn');
+      this.quickTagBtns = document.querySelectorAll('.quick-tag-btn');
+      this.statusHudText = document.getElementById('hud-status-text');
       
-      this.selectedWish = 'Flourishing Prosperity & Success';
+      // Arsenal buttons
+      this.btnBarrage = document.getElementById('arsenal-sky-barrage');
+      this.btnAnar = document.getElementById('arsenal-mega-anar');
+      this.btnChakri = document.getElementById('arsenal-hyper-chakri');
+      this.btnLadi = document.getElementById('arsenal-ladi-chain');
+      this.btnSparkler = document.getElementById('arsenal-sparkler-ribbon');
+      this.btnPersonalize = document.getElementById('arsenal-personalize-btn');
+
+      // Personalize drawer
+      this.drawer = document.getElementById('personalize-drawer');
+      this.drawerOverlay = document.getElementById('drawer-overlay');
+      this.closeDrawerBtn = document.getElementById('close-drawer-btn');
+      this.drawerInput = document.getElementById('drawer-sender-input');
+      this.drawerGenerateBtn = document.getElementById('drawer-generate-btn');
+      this.drawerShareResult = document.getElementById('drawer-share-result');
+      this.drawerUrlBox = document.getElementById('drawer-url-copy-input');
+      this.drawerCopyBtn = document.getElementById('drawer-copy-btn');
+      this.drawerCopyToast = document.getElementById('drawer-copy-toast');
+
+      this.senderName = '';
+      this.isSparklerActive = false;
       this.init();
     }
 
     init() {
       this.parseUrlParameters();
-      this.bindDiyas();
-      this.bindLantern();
-      this.bindPersonalizer();
+      this.bindFuseIgnition();
+      this.bindSkyWriting();
+      this.bindArsenal();
+      this.bindDrawer();
     }
 
     parseUrlParameters() {
@@ -1517,168 +1666,234 @@ document.addEventListener('DOMContentLoaded', () => {
         const urlParams = new URLSearchParams(window.location.search);
         const sender = urlParams.get('sender') || urlParams.get('name') || urlParams.get('from');
         if (sender && sender.trim()) {
-          const cleanSender = sender.trim();
+          this.senderName = sender.trim().toUpperCase();
           
-          const introTag = document.getElementById('intro-sender-tag');
-          if (introTag) introTag.textContent = `✨ From: ${cleanSender} ✨`;
+          const introChip = document.getElementById('intro-sender-chip');
+          if (introChip) introChip.textContent = `FROM ${this.senderName}: TAP TO DETONATE`;
 
-          const introDesc = document.getElementById('intro-desc-text');
-          if (introDesc) introDesc.textContent = `${cleanSender} has sent you an auspicious Deepawali blessing. Light the sacred golden diya to receive your personal message.`;
+          const capsuleText = document.getElementById('capsule-wish-text');
+          if (capsuleText) capsuleText.textContent = `✨ ${this.senderName} WISHES YOU AN ELECTRIC DIWALI 💥`;
 
-          const wishTitle = document.getElementById('main-wish-title');
-          if (wishTitle) wishTitle.textContent = `Deepawali Blessings from ${cleanSender}`;
-
-          const wishSubtitle = document.getElementById('main-wish-subtitle');
-          if (wishSubtitle) wishSubtitle.textContent = `${cleanSender} wishes you & your family an abundance of light, joy, health & golden prosperity!`;
-
-          const sigName = document.getElementById('letter-sender-name');
-          if (sigName) sigName.textContent = cleanSender;
-
-          if (this.senderInput) this.senderInput.value = cleanSender;
+          if (this.skyNameInput) this.skyNameInput.value = this.senderName;
+          if (this.drawerInput) this.drawerInput.value = this.senderName;
         }
       } catch (e) {
         // Fallback gracefully
       }
     }
 
-    bindDiyas() {
-      const diyaBlessings = {
-        '1': '✨ Hope Ignited: May optimism and bright new horizons guide your steps!',
-        '2': '🌿 Health Ignited: May robust wellness, vitality and peace bless your home!',
-        '3': '🪙 Wealth Ignited: May Goddess Lakshmi shower golden abundance and prosperity!',
-        '4': '🕊️ Peace Ignited: May serene tranquility, understanding and love surround you!',
-        '5': '🪔 Joy Ignited: May celebration, laughter and sweetness never cease!'
-      };
+    bindFuseIgnition() {
+      if (!this.igniteFuseBtn) return;
+      this.igniteFuseBtn.addEventListener('click', () => {
+        sounds.init();
+        sounds.playRocketLaunch();
+        sounds.playTempleBell();
 
-      this.fiveDiyas.forEach(btn => {
-        btn.addEventListener('click', () => {
-          btn.classList.toggle('lit');
-          sounds.playDiyaChime();
+        // Flash and dissolve
+        const flash = document.getElementById('flash-overlay');
+        if (flash) {
+          flash.classList.add('active');
+          setTimeout(() => flash.classList.remove('active'), 200);
+        }
 
-          const id = btn.dataset.diya;
-          const isLit = btn.classList.contains('lit');
+        if (this.fuseIntro) this.fuseIntro.classList.add('dissolve');
+        if (this.coolMatrix) this.coolMatrix.classList.remove('hidden');
 
-          if (isLit && diyaBlessings[id] && this.diyaStatusPill) {
-            this.diyaStatusPill.textContent = diyaBlessings[id];
+        // Auto explode initial greeting in the sky!
+        setTimeout(() => {
+          const initialText = this.senderName || 'HAPPY DIWALI';
+          fireworks.explodeText(initialText);
+          if (this.statusHudText) {
+            this.statusHudText.textContent = `💥 SKY DETONATION: ${initialText} 💥`;
           }
+        }, 500);
+      });
+    }
 
-          const litCount = document.querySelectorAll('.wish-diya-btn.lit').length;
-          if (litCount === this.fiveDiyas.length) {
-            if (this.diyaStatusPill) {
-              this.diyaStatusPill.textContent = '⚜️ All 5 Sacred Diyas Illuminated! May the Divine Light protect your family 🪔';
-            }
-            sounds.playTempleBell();
-            fireworks.sparkAnar(window.innerWidth / 2, window.innerHeight - 30);
-            for (let i = 0; i < 5; i++) {
-              setTimeout(() => {
-                fireworks.launchRocket(window.innerWidth * (0.2 + i * 0.15), window.innerHeight * 0.2);
-              }, i * 250);
-            }
+    bindSkyWriting() {
+      if (this.launchSkyNameBtn && this.skyNameInput) {
+        this.launchSkyNameBtn.addEventListener('click', () => {
+          const text = this.skyNameInput.value.trim() || 'HAPPY DIWALI';
+          fireworks.explodeText(text);
+          if (this.statusHudText) {
+            this.statusHudText.textContent = `💥 SKY DETONATING: "${text.toUpperCase()}" 💥`;
+          }
+        });
+
+        this.skyNameInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            this.launchSkyNameBtn.click();
+          }
+        });
+      }
+
+      this.quickTagBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const text = btn.dataset.name || btn.textContent.trim();
+          if (this.skyNameInput) this.skyNameInput.value = text;
+          fireworks.explodeText(text);
+          if (this.statusHudText) {
+            this.statusHudText.textContent = `💥 SKY DETONATING: "${text}" 💥`;
           }
         });
       });
     }
 
-    bindLantern() {
-      this.wishChips.forEach(chip => {
-        chip.addEventListener('click', () => {
-          this.wishChips.forEach(c => c.classList.remove('active'));
-          chip.classList.add('active');
-          this.selectedWish = chip.dataset.wish || chip.textContent;
-        });
-      });
-
-      if (this.releaseLanternBtn) {
-        this.releaseLanternBtn.addEventListener('click', () => {
+    bindArsenal() {
+      // 1. Sky Barrage: 50 rapid multishot rockets
+      if (this.btnBarrage) {
+        this.btnBarrage.addEventListener('click', () => {
           sounds.playRocketLaunch();
-          sounds.playDiyaChime();
-
-          // Spawn floating lantern
-          const lantern = document.createElement('div');
-          lantern.className = 'floating-sky-lantern';
-          lantern.innerHTML = '🏮';
-          lantern.style.left = `${30 + Math.random() * 40}vw`;
-          document.body.appendChild(lantern);
-
-          if (this.lanternFeedback) {
-            this.lanternFeedback.textContent = `🏮 Your wish for "${this.selectedWish}" has ascended to the heavens! ✨`;
-            this.lanternFeedback.style.color = '#fde68a';
+          if (this.statusHudText) this.statusHudText.textContent = '🚀 50-SHOT SKY BARRAGE DETONATING!';
+          const colors = ['#f59e0b', '#fbbf24', '#ec4899', '#3b82f6', '#10b981', '#a855f7', '#ef4444'];
+          for (let i = 0; i < 40; i++) {
+            setTimeout(() => {
+              const x = window.innerWidth * (0.1 + Math.random() * 0.8);
+              const y = window.innerHeight * (0.12 + Math.random() * 0.35);
+              fireworks.launchRocket(x, y, colors[i % colors.length]);
+            }, i * 110);
           }
+        });
+      }
 
-          setTimeout(() => {
-            sounds.playFireworkBurst();
-            fireworks.launchRocket(window.innerWidth * 0.5, window.innerHeight * 0.25, '#f59e0b');
-          }, 3200);
+      // 2. Mega Anar: Massive volcanic golden fountain
+      if (this.btnAnar) {
+        this.btnAnar.addEventListener('click', () => {
+          sounds.playDiyaChime();
+          if (this.statusHudText) this.statusHudText.textContent = '🌋 MEGA VOLCANO ANAR ERUPTING!';
+          const centerX = window.innerWidth / 2;
+          const baseY = window.innerHeight - 30;
+          for (let i = 0; i < 18; i++) {
+            setTimeout(() => {
+              fireworks.sparkAnar(centerX, baseY);
+              fireworks.sparkAnar(centerX - 80, baseY);
+              fireworks.sparkAnar(centerX + 80, baseY);
+            }, i * 200);
+          }
+        });
+      }
 
-          setTimeout(() => lantern.remove(), 7500);
+      // 3. Hyper Chakri: Twin blazing ground vortexes
+      if (this.btnChakri) {
+        this.btnChakri.addEventListener('click', () => {
+          sounds.playFireworkBurst();
+          if (this.statusHudText) this.statusHudText.textContent = '🌀 HYPER CHAKRI GROUND VORTEX ACTIVATED!';
+          fireworks.spinChakri(window.innerWidth * 0.3, window.innerHeight * 0.65);
+          fireworks.spinChakri(window.innerWidth * 0.7, window.innerHeight * 0.65);
+        });
+      }
+
+      // 4. 1000-Wala Ladi Chain: 40 sequential rapid popping crackles
+      if (this.btnLadi) {
+        this.btnLadi.addEventListener('click', () => {
+          if (this.statusHudText) this.statusHudText.textContent = '🧨 1000-WALA LADI CHAIN CRACKLING!';
+          const baseX = window.innerWidth * 0.5;
+          const baseY = window.innerHeight * 0.7;
+          for (let i = 0; i < 35; i++) {
+            setTimeout(() => {
+              const rx = baseX + (Math.random() - 0.5) * 160;
+              const ry = baseY + (Math.random() - 0.5) * 100;
+              sounds.playSparklerCrackle();
+              // Spawn mini spark pop on fireworks
+              for (let j = 0; j < 12; j++) {
+                const angle = Math.random() * Math.PI * 2;
+                fireworks.particles.push({
+                  x: rx,
+                  y: ry,
+                  vx: Math.cos(angle) * (2 + Math.random() * 4),
+                  vy: Math.sin(angle) * (2 + Math.random() * 4),
+                  color: j % 2 === 0 ? '#ef4444' : '#fbbf24',
+                  alpha: 1,
+                  decay: 0.04,
+                  size: 2,
+                  gravity: 0.1
+                });
+              }
+              if (i === 34) {
+                sounds.playFireworkBurst();
+                fireworks.createBurst(baseX, baseY - 50, '#ef4444');
+              }
+            }, i * 65);
+          }
+        });
+      }
+
+      // 5. Laser Sparkler Ribbon
+      if (this.btnSparkler) {
+        this.btnSparkler.addEventListener('click', () => {
+          this.isSparklerActive = sparkler.toggle();
+          this.btnSparkler.classList.toggle('active', this.isSparklerActive);
+          sounds.playSparklerCrackle();
+          if (this.statusHudText) {
+            this.statusHudText.textContent = this.isSparklerActive 
+              ? '✨ LASER SPARKLER ACTIVE: DRAG FINGER ACROSS SCREEN TO DRAW IN FIRE!' 
+              : '✨ LASER SPARKLER PAUSED';
+          }
+        });
+      }
+
+      // 6. Personalize Drawer
+      if (this.btnPersonalize) {
+        this.btnPersonalize.addEventListener('click', () => {
+          if (this.drawer) this.drawer.classList.remove('hidden');
         });
       }
     }
 
-    bindPersonalizer() {
-      if (this.generateWishBtn && this.senderInput) {
-        this.generateWishBtn.addEventListener('click', () => {
-          const name = this.senderInput.value.trim();
-          if (!name) {
-            alert('Please enter your name or family name to personalize the wish!');
+    bindDrawer() {
+      const close = () => {
+        if (this.drawer) this.drawer.classList.add('hidden');
+      };
+
+      if (this.closeDrawerBtn) this.closeDrawerBtn.addEventListener('click', close);
+      if (this.drawerOverlay) this.drawerOverlay.addEventListener('click', close);
+
+      if (this.drawerGenerateBtn && this.drawerInput) {
+        this.drawerGenerateBtn.addEventListener('click', () => {
+          const val = this.drawerInput.value.trim();
+          if (!val) {
+            alert('Please enter your name!');
             return;
           }
 
-          // Update page in real-time
-          const wishTitle = document.getElementById('main-wish-title');
-          if (wishTitle) wishTitle.textContent = `Deepawali Blessings from ${name}`;
-
-          const wishSubtitle = document.getElementById('main-wish-subtitle');
-          if (wishSubtitle) wishSubtitle.textContent = `${name} wishes you & your family an abundance of light, joy, health & golden prosperity!`;
-
-          const sigName = document.getElementById('letter-sender-name');
-          if (sigName) sigName.textContent = name;
-
-          // Build sharable URL
           const currentUrl = new URL(window.location.href);
-          currentUrl.searchParams.set('sender', name);
+          currentUrl.searchParams.set('sender', val);
           const newUrl = currentUrl.toString();
 
           window.history.replaceState({ path: newUrl }, '', newUrl);
 
-          if (this.generatedUrlDisplay) {
-            this.generatedUrlDisplay.textContent = newUrl;
-          }
+          if (this.drawerUrlBox) this.drawerUrlBox.value = newUrl;
+          if (this.drawerShareResult) this.drawerShareResult.classList.remove('hidden');
 
-          if (this.copyResultRow) {
-            this.copyResultRow.classList.remove('hidden');
-          }
+          const capsuleText = document.getElementById('capsule-wish-text');
+          if (capsuleText) capsuleText.textContent = `✨ ${val.toUpperCase()} WISHES YOU AN ELECTRIC DIWALI 💥`;
+
+          if (this.skyNameInput) this.skyNameInput.value = val.toUpperCase();
 
           sounds.playTempleBell();
           sounds.playDiyaChime();
         });
       }
 
-      if (this.copyLinkBtn) {
-        this.copyLinkBtn.addEventListener('click', () => {
-          const urlToCopy = this.generatedUrlDisplay ? this.generatedUrlDisplay.textContent : window.location.href;
+      if (this.drawerCopyBtn && this.drawerUrlBox) {
+        this.drawerCopyBtn.addEventListener('click', () => {
+          const url = this.drawerUrlBox.value || window.location.href;
           if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(urlToCopy).then(() => this.showCopyToast());
+            navigator.clipboard.writeText(url).then(() => this.showDrawerToast());
           } else {
-            const textarea = document.createElement('textarea');
-            textarea.value = urlToCopy;
-            document.body.appendChild(textarea);
-            textarea.select();
+            this.drawerUrlBox.select();
             document.execCommand('copy');
-            textarea.remove();
-            this.showCopyToast();
+            this.showDrawerToast();
           }
         });
       }
     }
 
-    showCopyToast() {
+    showDrawerToast() {
       sounds.playDiyaChime();
-      if (this.copyToast) {
-        this.copyToast.classList.remove('hidden');
-        setTimeout(() => {
-          this.copyToast.classList.add('hidden');
-        }, 3500);
+      if (this.drawerCopyToast) {
+        this.drawerCopyToast.classList.remove('hidden');
+        setTimeout(() => this.drawerCopyToast.classList.add('hidden'), 3500);
       }
     }
   }
