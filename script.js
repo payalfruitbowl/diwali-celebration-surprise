@@ -1156,7 +1156,9 @@ document.addEventListener('DOMContentLoaded', () => {
   class InviteSwitcher {
     constructor() {
       this.currentInvite = 1;
-      this.tabs = document.querySelectorAll('.invite-tab');
+      this.menuTrigger = document.getElementById('invite-menu-trigger');
+      this.menuPanel = document.getElementById('invite-dropdown-panel');
+      this.items = document.querySelectorAll('.dropdown-invite-item');
       this.views = {
         1: document.getElementById('invite-view-1'),
         2: document.getElementById('invite-view-2'),
@@ -1166,20 +1168,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     bindEvents() {
-      this.tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          const inviteId = parseInt(tab.dataset.invite, 10);
+      // Toggle dropdown menu
+      if (this.menuTrigger && this.menuPanel) {
+        this.menuTrigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isHidden = this.menuPanel.classList.toggle('hidden');
+          this.menuTrigger.setAttribute('aria-expanded', !isHidden ? 'true' : 'false');
+        });
+
+        // Close on outside click
+        document.addEventListener('click', (e) => {
+          if (!this.menuPanel.contains(e.target) && !this.menuTrigger.contains(e.target)) {
+            this.menuPanel.classList.add('hidden');
+            this.menuTrigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      this.items.forEach(item => {
+        item.addEventListener('click', () => {
+          const inviteId = parseInt(item.dataset.invite, 10);
           this.switchInvite(inviteId);
+          if (this.menuPanel) {
+            this.menuPanel.classList.add('hidden');
+            if (this.menuTrigger) this.menuTrigger.setAttribute('aria-expanded', 'false');
+          }
         });
       });
     }
 
     switchInvite(inviteId) {
       this.currentInvite = inviteId;
-      this.tabs.forEach(tab => {
-        const isMatch = parseInt(tab.dataset.invite, 10) === inviteId;
-        tab.classList.toggle('active', isMatch);
-        tab.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+      this.items.forEach(item => {
+        const isMatch = parseInt(item.dataset.invite, 10) === inviteId;
+        item.classList.toggle('active', isMatch);
       });
 
       Object.entries(this.views).forEach(([id, view]) => {
@@ -1496,195 +1518,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const neonManager = new NeonPatakhaManager();
 
-  // ==================== 13. VIDEO REEL CREATOR STUDIO & AUTO-PLAY DIRECTOR ====================
-  class VideoReelDirector {
-    constructor() {
-      this.modal = document.getElementById('video-studio-modal');
-      this.openBtn = document.getElementById('video-mode-btn');
-      this.closeBtn = document.getElementById('close-video-modal-btn');
-      this.tabBtns = document.querySelectorAll('.modal-tab');
-      this.startBtn = document.getElementById('start-cinematic-take-btn');
-
-      this.overlay = document.getElementById('reel-recording-overlay');
-      this.exitReelBtn = document.getElementById('exit-reel-btn');
-      this.progressBar = document.getElementById('reel-progress-bar');
-      this.statusText = document.getElementById('rec-status-text');
-      this.countdownOverlay = document.getElementById('reel-countdown-overlay');
-      this.countdownNum = document.getElementById('reel-countdown-num');
-
-      this.selectedTpl = 1;
-      this.selectedRatio = '9-16';
-      this.selectedDuration = 15;
-      this.isRunning = false;
-
-      this.bindEvents();
-    }
-
-    bindEvents() {
-      if (this.openBtn) this.openBtn.addEventListener('click', () => this.openModal());
-      if (this.closeBtn) this.closeBtn.addEventListener('click', () => this.closeModal());
-
-      // Tabs
-      this.tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          this.tabBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          const tabId = btn.dataset.tab;
-          document.getElementById('tab-director').classList.toggle('active', tabId === 'director');
-          document.getElementById('tab-scripts').classList.toggle('active', tabId === 'scripts');
-        });
-      });
-
-      // Template Choice Pills
-      const tplPills = document.querySelectorAll('#video-tpl-choices .pill-btn');
-      tplPills.forEach(p => {
-        p.addEventListener('click', () => {
-          tplPills.forEach(x => x.classList.remove('active'));
-          p.classList.add('active');
-          this.selectedTpl = parseInt(p.dataset.tpl, 10);
-        });
-      });
-
-      // Ratio Choice Pills
-      const ratioPills = document.querySelectorAll('#video-ratio-choices .pill-btn');
-      ratioPills.forEach(p => {
-        p.addEventListener('click', () => {
-          ratioPills.forEach(x => x.classList.remove('active'));
-          p.classList.add('active');
-          this.selectedRatio = p.dataset.ratio;
-        });
-      });
-
-      // Duration Choice Pills
-      const durPills = document.querySelectorAll('#video-duration-choices .pill-btn');
-      durPills.forEach(p => {
-        p.addEventListener('click', () => {
-          durPills.forEach(x => x.classList.remove('active'));
-          p.classList.add('active');
-          this.selectedDuration = parseInt(p.dataset.duration, 10);
-        });
-      });
-
-      // Start Cinematic Take
-      if (this.startBtn) {
-        this.startBtn.addEventListener('click', () => this.startTake());
-      }
-
-      // Exit Reel Framing
-      if (this.exitReelBtn) {
-        this.exitReelBtn.addEventListener('click', () => this.stopTake());
-      }
-    }
-
-    openModal() {
-      if (this.modal) this.modal.classList.remove('hidden');
-    }
-
-    closeModal() {
-      if (this.modal) this.modal.classList.add('hidden');
-    }
-
-    startTake() {
-      this.closeModal();
-      inviteSwitcher.switchInvite(this.selectedTpl);
-
-      // Framing
-      if (this.selectedRatio === '9-16') {
-        document.body.classList.add('reel-mode-active');
-      } else {
-        document.body.classList.remove('reel-mode-active');
-      }
-
-      // 3-2-1 Countdown
-      this.countdownOverlay.classList.remove('hidden');
-      let count = 3;
-      this.countdownNum.textContent = count;
-      sounds.playTempleBell();
-
-      const countInterval = setInterval(() => {
-        count--;
-        if (count > 0) {
-          this.countdownNum.textContent = count;
-          sounds.playTempleBell();
-        } else {
-          clearInterval(countInterval);
-          this.countdownOverlay.classList.add('hidden');
-          this.runTakeOrchestration();
-        }
-      }, 1000);
-    }
-
-    runTakeOrchestration() {
-      this.isRunning = true;
-      this.overlay.classList.remove('hidden');
-      const totalSeconds = this.selectedDuration;
-      let elapsed = 0;
-
-      // Orchestrate actions based on chosen template
-      if (this.selectedTpl === 1) {
-        // Invite 1 Orchestration (Royal Family Gala)
-        for (let i = 0; i < 5; i++) {
-          setTimeout(() => {
-            fireworks.launchRocket();
-          }, i * 600);
-        }
-        setTimeout(() => {
-          const storySection = document.querySelector('.story-section');
-          if (storySection) storySection.scrollIntoView({ behavior: 'smooth' });
-        }, 3500);
-        setTimeout(() => {
-          const rsvpSection = document.getElementById('rsvp-hub');
-          if (rsvpSection) rsvpSection.scrollIntoView({ behavior: 'smooth' });
-          sounds.playDiyaChime();
-        }, 9000);
-      } else if (this.selectedTpl === 2) {
-        // Invite 2 Orchestration (Rooftop Patakha Soirée)
-        neonManager.fireRapidBarrage();
-        setTimeout(() => {
-          neonManager.fireTwinAnars();
-        }, 3000);
-        setTimeout(() => {
-          neonManager.animateSparklerWriting();
-        }, 6000);
-      } else if (this.selectedTpl === 3) {
-        // Invite 3 Orchestration (Corporate Executive Hamper)
-        sounds.playTempleBell();
-        setTimeout(() => {
-          const hamperSection = document.querySelector('.luxury-hamper-section');
-          if (hamperSection) hamperSection.scrollIntoView({ behavior: 'smooth' });
-          sounds.playDiyaChime();
-        }, 2500);
-        setTimeout(() => {
-          const corpGalaCard = document.querySelector('.corporate-gala-card');
-          if (corpGalaCard) corpGalaCard.scrollIntoView({ behavior: 'smooth' });
-          sounds.playTempleBell();
-        }, 7000);
-      }
-
-      // Progress bar & timer ticker
-      const timerInterval = setInterval(() => {
-        elapsed += 0.2;
-        const progressPct = Math.min(100, (elapsed / totalSeconds) * 100);
-        this.progressBar.style.width = `${progressPct}%`;
-        const secs = Math.floor(elapsed);
-        const frac = Math.floor((elapsed % 1) * 10);
-        this.statusText.textContent = `REC 00:${secs < 10 ? '0' + secs : secs}.${frac}`;
-
-        if (elapsed >= totalSeconds || !this.isRunning) {
-          clearInterval(timerInterval);
-          this.stopTake();
-        }
-      }, 200);
-    }
-
-    stopTake() {
-      this.isRunning = false;
-      this.overlay.classList.add('hidden');
-      document.body.classList.remove('reel-mode-active');
-      sounds.playTempleBell();
-    }
-  }
-
-  const videoDirector = new VideoReelDirector();
+  // End of Main DOM Initialization
 });
 

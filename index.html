@@ -51,27 +51,44 @@
       <span class="royal-crest">⚜️</span>
       <div class="brand-text-col">
         <span class="brand-title">DEEPAWALI 2026</span>
-        <span class="brand-sub">Haute Digital Invites</span>
+        <span class="brand-sub">Haute Royal Invitation</span>
       </div>
     </div>
 
-    <!-- 3 Luxury Digital Invite Switcher -->
-    <div class="invite-selector-bar" role="tablist" aria-label="Select Interactive Invite Type">
-      <button class="invite-tab active" data-invite="1" role="tab" aria-selected="true" title="Invite 1: Royal Family Gala & Lakshmi Puja">
-        <span class="tab-icon">👑</span> <span class="tab-label">1. Royal Family Gala</span>
-      </button>
-      <button class="invite-tab" data-invite="2" role="tab" aria-selected="false" title="Invite 2: Midnight Rooftop Patakha & Cocktails Soirée">
-        <span class="tab-icon">🍸</span> <span class="tab-label">2. Rooftop Soirée</span>
-      </button>
-      <button class="invite-tab" data-invite="3" role="tab" aria-selected="false" title="Invite 3: Executive Corporate Deepawali Hamper & Dinner">
-        <span class="tab-icon">💼</span> <span class="tab-label">3. Corporate Executive</span>
-      </button>
-    </div>
-
     <div class="nav-actions">
-      <button id="video-mode-btn" class="nav-btn reel-record-pill" title="Start Screen-Recording Reel Showcase">
-        <span class="rec-icon">🎬</span> <span class="label">Screen Record Reel (9:16)</span>
-      </button>
+      <!-- Discreet Hidden Dropdown for 3 Invites -->
+      <div class="discreet-invite-menu" id="discreet-invite-dropdown">
+        <button id="invite-menu-trigger" class="discreet-menu-btn" aria-haspopup="true" aria-expanded="false" title="Switch Digital Invite">
+          <span class="menu-icon">⚜️</span>
+          <span class="menu-label">Invites</span>
+          <span class="menu-arrow">▾</span>
+        </button>
+        <div class="discreet-dropdown-panel hidden" id="invite-dropdown-panel" role="menu">
+          <div class="dropdown-header">Select Digital Invite:</div>
+          <button class="dropdown-invite-item active" data-invite="1" role="menuitem">
+            <span class="item-icon">👑</span>
+            <div class="item-info">
+              <span class="item-title">Royal Family Gala</span>
+              <span class="item-sub">Palace Lakshmi Puja & Feast</span>
+            </div>
+          </button>
+          <button class="dropdown-invite-item" data-invite="2" role="menuitem">
+            <span class="item-icon">🍸</span>
+            <div class="item-info">
+              <span class="item-title">Rooftop Soirée</span>
+              <span class="item-sub">Midnight Patakha & Cocktails</span>
+            </div>
+          </button>
+          <button class="dropdown-invite-item" data-invite="3" role="menuitem">
+            <span class="item-icon">💼</span>
+            <div class="item-info">
+              <span class="item-title">Corporate Executive</span>
+              <span class="item-sub">Prestige Gala & Hamper Box</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
       <button id="sound-btn" class="nav-btn audio-pill" title="Toggle Sound">
         <span class="icon" id="sound-icon">🔊</span>
       </button>
@@ -120,22 +137,6 @@
 
   <!-- ==================== 2. MAIN GRAND CELEBRATION HUB ==================== -->
   <main id="main-content" class="main-content hidden">
-
-    <!-- Video Recording Reel Frame Container -->
-    <div id="reel-recording-overlay" class="reel-recording-overlay hidden">
-      <div class="reel-safe-header">
-        <div class="rec-badge"><span class="rec-dot"></span> <span id="rec-status-text">REC 00:00</span></div>
-        <div class="reel-aspect-tag">9:16 Reel Mode</div>
-        <button id="exit-reel-btn" class="close-reel-btn" title="Exit Reel Framing">&times;</button>
-      </div>
-      <div class="reel-progress-track">
-        <div id="reel-progress-bar" class="reel-progress-fill"></div>
-      </div>
-      <div id="reel-countdown-overlay" class="reel-countdown-overlay hidden">
-        <span id="reel-countdown-num">3</span>
-        <p>Get your screen recorder ready!</p>
-      </div>
-    </div>
 
     <!-- ======================================================================
          INVITE 1: ROYAL FAMILY GALA & LAKSHMI PUJA INVITATION
@@ -777,195 +778,6 @@
     </footer>
 
   </main>
-
-  <!-- ==================== 8. VIDEO REEL MAKER & STORYBOARDS MODAL ==================== -->
-  <div id="video-studio-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
-    <div class="modal-dialog video-studio-dialog">
-      <div class="modal-header">
-        <div class="video-modal-title">
-          <span class="cam-icon">🎬</span>
-          <div>
-            <h3>Diwali Video Creator Studio</h3>
-            <p class="subtitle">Record Reels, YouTube Shorts, & WhatsApp Status videos in 3 stunning styles!</p>
-          </div>
-        </div>
-        <button id="close-video-modal-btn" class="modal-close">&times;</button>
-      </div>
-
-      <div class="modal-tabs">
-        <button class="modal-tab active" data-tab="director">🎥 Auto-Play Director</button>
-        <button class="modal-tab" data-tab="scripts">📜 3 Ready Video Scripts</button>
-      </div>
-
-      <div class="modal-body">
-        
-        <!-- Tab 1: Auto-Play Director -->
-        <div id="tab-director" class="tab-content active">
-          <div class="director-settings-card">
-            <h4>Select Your Invite Showcase Take:</h4>
-            
-            <div class="setting-row">
-              <label>Select Digital Invite To Record:</label>
-              <div class="choice-pills" id="video-tpl-choices">
-                <button class="pill-btn active" data-tpl="1">👑 1. Royal Family Gala</button>
-                <button class="pill-btn" data-tpl="2">🍸 2. Rooftop Soirée</button>
-                <button class="pill-btn" data-tpl="3">💼 3. Corporate Executive</button>
-              </div>
-            </div>
-
-            <div class="setting-row">
-              <label>Framing Ratio:</label>
-              <div class="choice-pills" id="video-ratio-choices">
-                <button class="pill-btn active" data-ratio="9-16">📱 9:16 Vertical Reel (Instagram / Shorts)</button>
-                <button class="pill-btn" data-ratio="full">🖥️ Full-Screen Showcase</button>
-              </div>
-            </div>
-
-            <div class="setting-row">
-              <label>Reel Take Duration:</label>
-              <div class="choice-pills" id="video-duration-choices">
-                <button class="pill-btn active" data-duration="15">⚡ 15 Seconds (Fast Hook Reel)</button>
-                <button class="pill-btn" data-duration="25">✨ 25 Seconds (Complete Showcase)</button>
-              </div>
-            </div>
-
-            <div class="recording-tip-box">
-              <span class="tip-icon">🎬</span>
-              <p>
-                <strong>Screen Recording for Client Showcase:</strong> Clicking "Start Cinematic Take" triggers a 3-second countdown and runs an automated director sequence (unboxing, fireworks, itinerary, and RSVP pass). Start your screen recorder (<kbd>Win + Alt + R</kbd> on Windows, <kbd>Cmd + Shift + 5</kbd> on Mac, or phone Screen Recorder) to record the video showing what you can make for clients!
-              </p>
-            </div>
-
-            <div class="director-actions">
-              <button id="start-cinematic-take-btn" class="luxury-gold-cta large-cta pulse-anim">
-                <span class="cta-shine"></span>
-                <span class="cta-icon">🔴</span>
-                <span class="cta-text">Start Auto-Play Reel Take</span>
-                <span class="cta-arrow">→</span>
-              </button>
-            </div>
-          </div>
-                <span>🔴</span> Start Auto-Play Cinematic Take
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab 2: 3 Ready Video Scripts & Storyboards -->
-        <div id="tab-scripts" class="tab-content">
-          <div class="scripts-accordion">
-
-            <!-- Script 1 -->
-            <div class="script-card">
-              <div class="script-header">
-                <span class="script-badge tpl1-badge">Template 1 Video Script</span>
-                <h4>"The Innocent WhatsApp Surprise" (Emotional / Nostalgic)</h4>
-                <span class="timing-badge">15 - 20s</span>
-              </div>
-              <div class="script-body">
-                <p class="audio-pick">🎵 <strong>Suggested Trending Audio:</strong> <em>Kabhi Khushi Kabhie Gham (Diwali Violin Theme)</em> or <em>Aasman Ko Chhukar</em></p>
-                <div class="storyboard-steps">
-                  <div class="step-item">
-                    <span class="step-time">0:00 - 0:03</span>
-                    <div class="step-desc">
-                      <strong>The Hook:</strong> Show WhatsApp chat preview card of the family photo.
-                      <em>Text on screen: "Mom said don't click this link... wait for it 😭🪔"</em>
-                    </div>
-                  </div>
-                  <div class="step-item">
-                    <span class="step-time">0:03 - 0:07</span>
-                    <div class="step-desc">
-                      <strong>The Action:</strong> Touch the unlit Diya. Instant flame ignite sound followed by a golden white radial flash!
-                    </div>
-                  </div>
-                  <div class="step-item">
-                    <span class="step-time">0:07 - 0:15</span>
-                    <div class="step-desc">
-                      <strong>The Climax:</strong> Golden sky rockets burst with temple bells ringing. Camera pans over the "How We Celebrated" Dhanteras gold and mithai thali!
-                    </div>
-                  </div>
-                  <div class="step-item">
-                    <span class="step-time">0:15 - 0:20</span>
-                    <div class="step-desc">
-                      <strong>The CTA:</strong> Shubh Deepawali personalized greeting.
-                      <em>Caption: "Send this to your family WhatsApp group! Link in bio ✨"</em>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Script 2 -->
-            <div class="script-card">
-              <div class="script-header">
-                <span class="script-badge tpl2-badge">Template 2 Video Script</span>
-                <h4>"Royal Maha Aarti & 1001 Sacred Diyas" (Devotional / Aesthetic)</h4>
-                <span class="timing-badge">15 - 25s</span>
-              </div>
-              <div class="script-body">
-                <p class="audio-pick">🎵 <strong>Suggested Trending Audio:</strong> <em>Deva Shree Ganesha Flute</em> or <em>Om Asato Ma Sadgamaya chant</em></p>
-                <div class="storyboard-steps">
-                  <div class="step-item">
-                    <span class="step-time">0:00 - 0:04</span>
-                    <div class="step-desc">
-                      <strong>The Hook:</strong> Dark serene temple courtyard with hanging brass bells chiming.
-                      <em>Text on screen: "May your darkness turn into eternal light 🪔✨"</em>
-                    </div>
-                  </div>
-                  <div class="step-item">
-                    <span class="step-time">0:04 - 0:12</span>
-                    <div class="step-desc">
-                      <strong>The Action:</strong> Sacred rotating Panch-Aarti thali swirls with 5 golden flames; 108 earthen diyas illuminate sequentially in a lotus mandala.
-                    </div>
-                  </div>
-                  <div class="step-item">
-                    <span class="step-time">0:12 - 0:20</span>
-                    <div class="step-desc">
-                      <strong>The Climax:</strong> Shower of pink lotus and marigold petals fills the screen with radiant golden bloom lighting.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Script 3 -->
-            <div class="script-card">
-              <div class="script-header">
-                <span class="script-badge tpl3-badge">Template 3 Video Script</span>
-                <h4>"Midnight Neon Patakha & Laser Sparkler Show" (High Energy / Viral)</h4>
-                <span class="timing-badge">12 - 18s</span>
-              </div>
-              <div class="script-body">
-                <p class="audio-pick">🎵 <strong>Suggested Trending Audio:</strong> Trending Diwali EDM / Bass Drop track</p>
-                <div class="storyboard-steps">
-                  <div class="step-item">
-                    <span class="step-time">0:00 - 0:03</span>
-                    <div class="step-desc">
-                      <strong>The Hook:</strong> High-voltage countdown on radar console: <em>"3... 2... 1... DROP THE BARRAGE 💥"</em>
-                    </div>
-                  </div>
-                  <div class="step-item">
-                    <span class="step-time">0:03 - 0:09</span>
-                    <div class="step-desc">
-                      <strong>The Beat Drop:</strong> 10 rapid-fire neon sky rockets detonate simultaneously; twin giant volcanic Anars erupt with electric sparks!
-                    </div>
-                  </div>
-                  <div class="step-item">
-                    <span class="step-time">0:09 - 0:15</span>
-                    <div class="step-desc">
-                      <strong>The Sparkler Light-Writing:</strong> Laser sparkler wand writes "SHUBH DIWALI 2026" in burning trails across the screen!
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
 
   <!-- Audio Synthesizer & Main Script -->
   <script src="script.js"></script>
