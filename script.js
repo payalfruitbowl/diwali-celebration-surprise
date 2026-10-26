@@ -1008,7 +1008,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==================== 9. THE GRAND REVEAL (IGNITE DIYA) ====================
-  const igniteBtn = document.getElementById('ignite-diya-btn');
+  const igniteBtn = document.getElementById('ignite-diya-btn') || document.getElementById('reveal-btn');
   const introScreen = document.getElementById('intro-screen');
   const mainContent = document.getElementById('main-content');
 
@@ -1485,6 +1485,205 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const neonManager = new NeonPatakhaManager();
+
+  // ==================== 13. WISH ONLY CELEBRATION MANAGER (wish.html) ====================
+  class WishPageManager {
+    constructor() {
+      this.fiveDiyas = document.querySelectorAll('.wish-diya-btn');
+      this.diyaStatusPill = document.getElementById('diya-status-pill');
+      this.wishChips = document.querySelectorAll('.wish-chip');
+      this.releaseLanternBtn = document.getElementById('release-lantern-btn');
+      this.lanternFeedback = document.getElementById('lantern-feedback');
+      this.senderInput = document.getElementById('sender-input');
+      this.generateWishBtn = document.getElementById('generate-wish-btn');
+      this.copyResultRow = document.getElementById('copy-result-row');
+      this.generatedUrlDisplay = document.getElementById('generated-url-display');
+      this.copyLinkBtn = document.getElementById('copy-link-btn');
+      this.copyToast = document.getElementById('copy-toast');
+      
+      this.selectedWish = 'Flourishing Prosperity & Success';
+      this.init();
+    }
+
+    init() {
+      this.parseUrlParameters();
+      this.bindDiyas();
+      this.bindLantern();
+      this.bindPersonalizer();
+    }
+
+    parseUrlParameters() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const sender = urlParams.get('sender') || urlParams.get('name') || urlParams.get('from');
+        if (sender && sender.trim()) {
+          const cleanSender = sender.trim();
+          
+          const introTag = document.getElementById('intro-sender-tag');
+          if (introTag) introTag.textContent = `✨ From: ${cleanSender} ✨`;
+
+          const introDesc = document.getElementById('intro-desc-text');
+          if (introDesc) introDesc.textContent = `${cleanSender} has sent you an auspicious Deepawali blessing. Light the sacred golden diya to receive your personal message.`;
+
+          const wishTitle = document.getElementById('main-wish-title');
+          if (wishTitle) wishTitle.textContent = `Deepawali Blessings from ${cleanSender}`;
+
+          const wishSubtitle = document.getElementById('main-wish-subtitle');
+          if (wishSubtitle) wishSubtitle.textContent = `${cleanSender} wishes you & your family an abundance of light, joy, health & golden prosperity!`;
+
+          const sigName = document.getElementById('letter-sender-name');
+          if (sigName) sigName.textContent = cleanSender;
+
+          if (this.senderInput) this.senderInput.value = cleanSender;
+        }
+      } catch (e) {
+        // Fallback gracefully
+      }
+    }
+
+    bindDiyas() {
+      const diyaBlessings = {
+        '1': '✨ Hope Ignited: May optimism and bright new horizons guide your steps!',
+        '2': '🌿 Health Ignited: May robust wellness, vitality and peace bless your home!',
+        '3': '🪙 Wealth Ignited: May Goddess Lakshmi shower golden abundance and prosperity!',
+        '4': '🕊️ Peace Ignited: May serene tranquility, understanding and love surround you!',
+        '5': '🪔 Joy Ignited: May celebration, laughter and sweetness never cease!'
+      };
+
+      this.fiveDiyas.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('lit');
+          sounds.playDiyaChime();
+
+          const id = btn.dataset.diya;
+          const isLit = btn.classList.contains('lit');
+
+          if (isLit && diyaBlessings[id] && this.diyaStatusPill) {
+            this.diyaStatusPill.textContent = diyaBlessings[id];
+          }
+
+          const litCount = document.querySelectorAll('.wish-diya-btn.lit').length;
+          if (litCount === this.fiveDiyas.length) {
+            if (this.diyaStatusPill) {
+              this.diyaStatusPill.textContent = '⚜️ All 5 Sacred Diyas Illuminated! May the Divine Light protect your family 🪔';
+            }
+            sounds.playTempleBell();
+            fireworks.sparkAnar(window.innerWidth / 2, window.innerHeight - 30);
+            for (let i = 0; i < 5; i++) {
+              setTimeout(() => {
+                fireworks.launchRocket(window.innerWidth * (0.2 + i * 0.15), window.innerHeight * 0.2);
+              }, i * 250);
+            }
+          }
+        });
+      });
+    }
+
+    bindLantern() {
+      this.wishChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          this.wishChips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          this.selectedWish = chip.dataset.wish || chip.textContent;
+        });
+      });
+
+      if (this.releaseLanternBtn) {
+        this.releaseLanternBtn.addEventListener('click', () => {
+          sounds.playRocketLaunch();
+          sounds.playDiyaChime();
+
+          // Spawn floating lantern
+          const lantern = document.createElement('div');
+          lantern.className = 'floating-sky-lantern';
+          lantern.innerHTML = '🏮';
+          lantern.style.left = `${30 + Math.random() * 40}vw`;
+          document.body.appendChild(lantern);
+
+          if (this.lanternFeedback) {
+            this.lanternFeedback.textContent = `🏮 Your wish for "${this.selectedWish}" has ascended to the heavens! ✨`;
+            this.lanternFeedback.style.color = '#fde68a';
+          }
+
+          setTimeout(() => {
+            sounds.playFireworkBurst();
+            fireworks.launchRocket(window.innerWidth * 0.5, window.innerHeight * 0.25, '#f59e0b');
+          }, 3200);
+
+          setTimeout(() => lantern.remove(), 7500);
+        });
+      }
+    }
+
+    bindPersonalizer() {
+      if (this.generateWishBtn && this.senderInput) {
+        this.generateWishBtn.addEventListener('click', () => {
+          const name = this.senderInput.value.trim();
+          if (!name) {
+            alert('Please enter your name or family name to personalize the wish!');
+            return;
+          }
+
+          // Update page in real-time
+          const wishTitle = document.getElementById('main-wish-title');
+          if (wishTitle) wishTitle.textContent = `Deepawali Blessings from ${name}`;
+
+          const wishSubtitle = document.getElementById('main-wish-subtitle');
+          if (wishSubtitle) wishSubtitle.textContent = `${name} wishes you & your family an abundance of light, joy, health & golden prosperity!`;
+
+          const sigName = document.getElementById('letter-sender-name');
+          if (sigName) sigName.textContent = name;
+
+          // Build sharable URL
+          const currentUrl = new URL(window.location.href);
+          currentUrl.searchParams.set('sender', name);
+          const newUrl = currentUrl.toString();
+
+          window.history.replaceState({ path: newUrl }, '', newUrl);
+
+          if (this.generatedUrlDisplay) {
+            this.generatedUrlDisplay.textContent = newUrl;
+          }
+
+          if (this.copyResultRow) {
+            this.copyResultRow.classList.remove('hidden');
+          }
+
+          sounds.playTempleBell();
+          sounds.playDiyaChime();
+        });
+      }
+
+      if (this.copyLinkBtn) {
+        this.copyLinkBtn.addEventListener('click', () => {
+          const urlToCopy = this.generatedUrlDisplay ? this.generatedUrlDisplay.textContent : window.location.href;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(urlToCopy).then(() => this.showCopyToast());
+          } else {
+            const textarea = document.createElement('textarea');
+            textarea.value = urlToCopy;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            textarea.remove();
+            this.showCopyToast();
+          }
+        });
+      }
+    }
+
+    showCopyToast() {
+      sounds.playDiyaChime();
+      if (this.copyToast) {
+        this.copyToast.classList.remove('hidden');
+        setTimeout(() => {
+          this.copyToast.classList.add('hidden');
+        }, 3500);
+      }
+    }
+  }
+
+  const wishManager = new WishPageManager();
 
   // End of Main DOM Initialization
 });

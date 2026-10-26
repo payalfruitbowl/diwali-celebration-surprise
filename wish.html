@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- Primary Meta Tags -->
+  <title>A Sacred Deepawali Wish For You ✨🪔 | Light the Divine Diya</title>
+  <meta name="title" content="A Sacred Deepawali Wish For You ✨🪔 | Light the Divine Diya">
+  <meta name="description" content="A sacred Deepawali blessing crafted with love, light & prayers. Tap to unwrap and ignite the divine golden flame!">
+  <meta name="theme-color" content="#180308">
+  
+  <!-- Open Graph / WhatsApp Preview Banner -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/wish.html">
+  <meta property="og:title" content="A Sacred Deepawali Blessing For You ✨🪔">
+  <meta property="og:description" content="Someone sent you an illuminated Deepawali wish. Tap to ignite the sacred flame and reveal your blessing!">
+  <meta property="og:image" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/og-diwali-wish.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A Sacred Deepawali Greeting Card with Glowing Diya and Marigold Petals">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/wish.html">
+  <meta name="twitter:title" content="A Sacred Deepawali Blessing For You ✨🪔">
+  <meta name="twitter:description" content="Someone sent you an illuminated Deepawali wish. Tap to ignite the sacred flame and reveal your blessing!">
+  <meta name="twitter:image" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/og-diwali-wish.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪔</text></svg>">
+</head>
+<body class="is-intro wish-page-body">
+
+  <!-- Background Canvas Elements -->
+  <canvas id="fireworks-canvas"></canvas>
+  <canvas id="sparkler-canvas"></canvas>
+  <div id="petals-container" aria-hidden="true"></div>
+
+  <!-- Haute Burgundy Navigation Bar -->
+  <header class="top-nav burgundy-header">
+    <div class="brand-badge">
+      <span class="royal-crest">🪔</span>
+      <div class="brand-text-col">
+        <span class="brand-title">SHUBH DEEPAWALI</span>
+        <span class="brand-sub">Sacred Wish & Blessings</span>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <!-- Discreet Dropdown to Switch Invites / Wish Page -->
+      <div class="discreet-invite-menu" id="discreet-invite-dropdown">
+        <button id="invite-menu-trigger" class="discreet-menu-btn" aria-haspopup="true" aria-expanded="false" title="Switch Digital Card">
+          <span class="menu-icon">⚜️</span>
+          <span class="menu-label">Invites</span>
+          <span class="menu-arrow">▾</span>
+        </button>
+        <div class="discreet-dropdown-panel hidden" id="invite-dropdown-panel" role="menu">
+          <div class="dropdown-header">Explore Templates:</div>
+          <a href="index.html" class="dropdown-invite-item" role="menuitem">
+            <span class="item-icon">👑</span>
+            <div class="item-info">
+              <span class="item-title">Royal Family Gala</span>
+              <span class="item-sub">Palace Lakshmi Puja & Feast</span>
+            </div>
+          </a>
+          <a href="rooftop-soiree.html" class="dropdown-invite-item" role="menuitem">
+            <span class="item-icon">🍸</span>
+            <div class="item-info">
+              <span class="item-title">Rooftop Soirée</span>
+              <span class="item-sub">Midnight Patakha & Cocktails</span>
+            </div>
+          </a>
+          <a href="corporate-gala.html" class="dropdown-invite-item" role="menuitem">
+            <span class="item-icon">💼</span>
+            <div class="item-info">
+              <span class="item-title">Corporate Executive</span>
+              <span class="item-sub">Prestige Gala & Hamper Box</span>
+            </div>
+          </a>
+          <a href="wish.html" class="dropdown-invite-item active" role="menuitem">
+            <span class="item-icon">🪔</span>
+            <div class="item-info">
+              <span class="item-title">Sacred Diwali Wish</span>
+              <span class="item-sub">Blessings, Diyas & Pure Wishes</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <button id="sound-btn" class="nav-btn audio-pill" title="Toggle Sound">
+        <span class="icon" id="sound-icon">🔊</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== STAGE 1: INTRIGUING GREETING CARD REVEAL ==================== -->
+  <section id="intro-screen" class="intro-screen">
+    <div class="intro-overlay"></div>
+    <div class="intro-card wish-intro-card">
+      <div class="meta-tag-badge">
+        <span class="pulse-dot"></span> <span id="intro-badge-text">Personal Blessing Enclosed</span>
+      </div>
+      
+      <!-- Greeting Card Banner Preview -->
+      <div class="family-thumbnail-container" id="intro-thumb-container">
+        <img id="intro-family-img" src="og-diwali-wish.jpg" alt="Sacred Diwali Wish" onerror="this.onerror=null; this.src='og-family-gala.jpg';">
+        <div class="photo-shimmer"></div>
+        <div class="family-tag" id="intro-sender-tag">✨ A Divine Wish For You ✨</div>
+      </div>
+
+      <div class="intro-text-block">
+        <h2 class="sub-intro" id="intro-greeting-title">Illuminating Your World</h2>
+        <h1 class="main-intro">Darkness fades where light is born...</h1>
+        <p class="intro-desc" id="intro-desc-text">
+          A heartfelt Deepawali blessing awaits your touch. Light the sacred golden diya to receive your personal festive message.
+        </p>
+      </div>
+
+      <!-- 24K Gold Interactive Reveal CTA -->
+      <button id="reveal-btn" class="gold-luxury-cta pulse-cta" aria-label="Touch to Light the Sacred Diya">
+        <span class="cta-shine"></span>
+        <span class="cta-crest">🪔</span>
+        <span class="cta-text">LIGHT THE SACRED DIYA</span>
+        <span class="cta-arrow">✦</span>
+      </button>
+
+      <p class="intro-hint">✦ Tap to awaken the golden flame & celebratory soundscapes ✦</p>
+    </div>
+  </section>
+
+  <!-- ==================== STAGE 2: MAIN ILLUMINATED WISH SANCTUARY ==================== -->
+  <main id="main-content" class="main-content hidden">
+
+    <!-- Grand Diwali Wish Hero -->
+    <section class="wish-hero-section">
+      <div class="festive-crest-ornament">
+        <span class="crest-line"></span>
+        <span class="crest-symbol">ॐ 🪔 ॐ</span>
+        <span class="crest-line"></span>
+      </div>
+
+      <h1 class="wish-personal-headline" id="main-wish-title">
+        Shubh Deepawali
+      </h1>
+      <p class="wish-personal-sub" id="main-wish-subtitle">
+        Wishing You & Your Beloved Family An Abundance of Light, Joy & Divine Grace
+      </p>
+
+      <!-- Sacred Sanskrit Vedic Shloka Box -->
+      <div class="vedic-shloka-card">
+        <div class="card-gold-corner top-left"></div>
+        <div class="card-gold-corner top-right"></div>
+        <div class="card-gold-corner bottom-left"></div>
+        <div class="card-gold-corner bottom-right"></div>
+        
+        <div class="shloka-devanagari">
+          ॐ असतो मा सद्गमय ।<br>
+          तमसो मा ज्योतिर्गमय ।<br>
+          मृत्योर्मा अमृतं गमय ॥<br>
+          <span class="shanti-line">ॐ शान्तिः शान्तिः शान्तिः ॥</span>
+        </div>
+        <div class="shloka-divider"></div>
+        <p class="shloka-english">
+          "From untruth, lead us unto Truth. From darkness, lead us unto Light.<br>
+          From the transient, lead us into the Eternal. May divine peace illuminate your soul."
+        </p>
+      </div>
+
+      <!-- The Grand Heartfelt Blessing Letter -->
+      <div class="blessing-letter-card">
+        <div class="royal-wax-mark">🪔</div>
+        <h2 class="letter-salutation" id="letter-salutation-text">Dear Beloved Friends & Family,</h2>
+        <p class="letter-body">
+          On this auspicious festival of lights, may the radiant glow of a thousand golden diyas dispel every shadow of doubt and illuminate your path with boundless optimism, prosperity, and laughter.
+        </p>
+        <p class="letter-body">
+          Just as Bhagwan Rama returned to Ayodhya amidst golden celebrations, may victorious new beginnings, good health, and joyful reunions fill your home today and in all the years ahead.
+        </p>
+        <div class="letter-signature-block">
+          <span class="sig-wishes">With warmest blessings & heartfelt prayers,</span>
+          <span class="sig-name" id="letter-sender-name">Your Well-Wishers</span>
+          <span class="sig-date">Deepawali • Samvat 2083</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- The 4 Sacred Pillars of Deepawali Blessings -->
+    <section class="wish-pillars-section">
+      <div class="section-gold-header">
+        <span class="ornate-sub">DIVINE BENEDICTIONS</span>
+        <h2 class="gold-section-title">The Four Blessings of Deepawali</h2>
+      </div>
+
+      <div class="pillars-grid">
+        <!-- Pillar 1: Health -->
+        <div class="pillar-card">
+          <div class="pillar-icon">🌿</div>
+          <h3 class="pillar-title">Aarogya (Radiant Health)</h3>
+          <p class="pillar-desc">
+            May you and your family be blessed with sound vitality, peaceful minds, rejuvenating energy, and long fulfilling lives.
+          </p>
+          <span class="pillar-flourish">✦ ✦ ✦</span>
+        </div>
+
+        <!-- Pillar 2: Wealth -->
+        <div class="pillar-card">
+          <div class="pillar-icon">🪙</div>
+          <h3 class="pillar-title">Samriddhi (Abundance)</h3>
+          <p class="pillar-desc">
+            May Goddess Lakshmi shower her boundless golden grace upon your home, bringing endless prosperity and fruitful endeavors.
+          </p>
+          <span class="pillar-flourish">✦ ✦ ✦</span>
+        </div>
+
+        <!-- Pillar 3: Wisdom -->
+        <div class="pillar-card">
+          <div class="pillar-icon">🐘</div>
+          <h3 class="pillar-title">Siddhi (Wisdom & Joy)</h3>
+          <p class="pillar-desc">
+            May Lord Ganesha remove every obstacle on your journey, granting clarity, auspicious wisdom, and effortless victory.
+          </p>
+          <span class="pillar-flourish">✦ ✦ ✦</span>
+        </div>
+
+        <!-- Pillar 4: Peace -->
+        <div class="pillar-card">
+          <div class="pillar-icon">🕊️</div>
+          <h3 class="pillar-title">Shanti (Harmony & Love)</h3>
+          <p class="pillar-desc">
+            May your home resonate with warmth, unbreakable family affection, laughter, and serene tranquility throughout the year.
+          </p>
+          <span class="pillar-flourish">✦ ✦ ✦</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== STAGE 3: INTERACTIVE CELEBRATION WISHES ==================== -->
+    <section class="interactive-wishing-sanctuary">
+      
+      <!-- Activity 1: Light the 5 Sacred Diyas -->
+      <div class="wish-activity-card">
+        <div class="activity-badge">Interactive Ritual</div>
+        <h2 class="activity-title">Light the 5 Sacred Diyas of Life</h2>
+        <p class="activity-desc">Tap each brass diya on the sacred thali to ignite its flame and unlock its blessing:</p>
+        
+        <div class="five-diyas-thali" id="five-diyas-container">
+          <button class="wish-diya-btn" data-diya="1" title="Light Diya of Hope">
+            <span class="diya-flame">🔥</span>
+            <span class="diya-pot">🪔</span>
+            <span class="diya-label">Hope</span>
+          </button>
+          <button class="wish-diya-btn" data-diya="2" title="Light Diya of Health">
+            <span class="diya-flame">🔥</span>
+            <span class="diya-pot">🪔</span>
+            <span class="diya-label">Health</span>
+          </button>
+          <button class="wish-diya-btn" data-diya="3" title="Light Diya of Wealth">
+            <span class="diya-flame">🔥</span>
+            <span class="diya-pot">🪔</span>
+            <span class="diya-label">Wealth</span>
+          </button>
+          <button class="wish-diya-btn" data-diya="4" title="Light Diya of Peace">
+            <span class="diya-flame">🔥</span>
+            <span class="diya-pot">🪔</span>
+            <span class="diya-label">Peace</span>
+          </button>
+          <button class="wish-diya-btn" data-diya="5" title="Light Diya of Joy">
+            <span class="diya-flame">🔥</span>
+            <span class="diya-pot">🪔</span>
+            <span class="diya-label">Joy</span>
+          </button>
+        </div>
+
+        <div class="diya-progress-pill" id="diya-status-pill">
+          Tap a diya to begin lighting the sacred thali ✨
+        </div>
+      </div>
+
+      <!-- Activity 2: Release a Sky Lantern of Hope -->
+      <div class="wish-activity-card">
+        <div class="activity-badge">Night Sky Ritual</div>
+        <h2 class="activity-title">Send a Wish to the Heavens</h2>
+        <p class="activity-desc">Choose a blessing you desire most this Diwali and release a glowing sky lantern:</p>
+        
+        <div class="wish-chip-group" id="lantern-wish-chips">
+          <button class="wish-chip active" data-wish="Flourishing Prosperity & Success">🌟 Prosperity & Success</button>
+          <button class="wish-chip" data-wish="Love, Harmony & Family Happiness">💖 Love & Harmony</button>
+          <button class="wish-chip" data-wish="Vibrant Health & Longevity">🌿 Vibrant Health</button>
+          <button class="wish-chip" data-wish="Peace of Mind & Spiritual Grace">🧘 Inner Serenity</button>
+        </div>
+
+        <button id="release-lantern-btn" class="gold-luxury-cta mini-cta">
+          <span class="cta-crest">🏮</span>
+          <span class="cta-text">RELEASE GOLDEN SKY LANTERN</span>
+          <span class="cta-arrow">✦</span>
+        </button>
+
+        <p class="lantern-hint" id="lantern-feedback">Your lantern will float into the starlit sky with festive fireworks!</p>
+      </div>
+
+    </section>
+
+    <!-- ==================== STAGE 4: PERSONALIZE YOUR OWN WISH ==================== -->
+    <section class="personalize-wish-section">
+      <div class="personalize-gold-box">
+        <div class="card-gold-corner top-left"></div>
+        <div class="card-gold-corner top-right"></div>
+        <div class="card-gold-corner bottom-left"></div>
+        <div class="card-gold-corner bottom-right"></div>
+
+        <span class="personalize-crest">✍️ ⚜️ 🪔</span>
+        <h2 class="personalize-title">Share the Light With Your Name</h2>
+        <p class="personalize-desc">
+          Enter your name or family name below to instantly personalize this wish card. You can screen-record your custom greeting or copy your personal link:
+        </p>
+
+        <div class="personalize-input-row">
+          <input type="text" id="sender-input" class="gold-styled-input" placeholder="e.g., Payal & Family" maxlength="40">
+          <button id="generate-wish-btn" class="gold-luxury-cta mini-cta">
+            <span class="cta-text">PERSONALIZE MY WISH</span>
+          </button>
+        </div>
+
+        <div id="copy-result-row" class="copy-result-row hidden">
+          <span class="generated-url-text" id="generated-url-display"></span>
+          <button id="copy-link-btn" class="secondary-gold-btn">
+            <span>📋 Copy Link</span>
+          </button>
+        </div>
+        
+        <div id="copy-toast" class="copy-toast hidden">
+          ⚜️ Link Copied! Send it to your loved ones 🪔
+        </div>
+      </div>
+    </section>
+
+    <!-- Haute Royal Footer -->
+    <footer class="royal-burgundy-footer">
+      <div class="footer-divider-ornament">
+        <span class="fd-line"></span>
+        <span class="fd-diya">🪔</span>
+        <span class="fd-line"></span>
+      </div>
+      <p class="footer-blessing-quote">
+        "May the divine light of Deepawali illuminate your world with everlasting joy and prosperity."
+      </p>
+      <p class="footer-royal-copyright">
+        Deepawali 2026 • Curated with Love & Light
+      </p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
