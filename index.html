@@ -45,38 +45,35 @@
   <canvas id="sparkler-canvas"></canvas>
   <div id="petals-container" aria-hidden="true"></div>
 
-  <!-- Audio Controls & Template Switcher Bar -->
-  <header class="top-nav">
+  <!-- Haute Burgundy & Gold Navigation Bar -->
+  <header class="top-nav burgundy-header">
     <div class="brand-badge">
-      <span class="diya-icon">🪔</span>
-      <span class="brand-text">Shubh Deepawali</span>
+      <span class="royal-crest">⚜️</span>
+      <div class="brand-text-col">
+        <span class="brand-title">DEEPAWALI 2026</span>
+        <span class="brand-sub">Haute Digital Invites</span>
+      </div>
     </div>
 
-    <!-- 3 Interactive Video Templates Switcher -->
-    <div class="template-selector-bar" role="tablist" aria-label="Select Video Template">
-      <button class="tpl-tab active" data-template="1" role="tab" aria-selected="true" title="Template 1: Emotional Family Prank & Surprise Reveal">
-        <span class="tpl-icon">🌟</span> <span class="tpl-name">1. Family Surprise</span>
+    <!-- 3 Luxury Digital Invite Switcher -->
+    <div class="invite-selector-bar" role="tablist" aria-label="Select Interactive Invite Type">
+      <button class="invite-tab active" data-invite="1" role="tab" aria-selected="true" title="Invite 1: Royal Family Gala & Lakshmi Puja">
+        <span class="tab-icon">👑</span> <span class="tab-label">1. Royal Family Gala</span>
       </button>
-      <button class="tpl-tab" data-template="2" role="tab" aria-selected="false" title="Template 2: Royal Maha Aarti & 1001 Glowing Diyas">
-        <span class="tpl-icon">🪔</span> <span class="tpl-name">2. Royal Maha Aarti</span>
+      <button class="invite-tab" data-invite="2" role="tab" aria-selected="false" title="Invite 2: Midnight Rooftop Patakha & Cocktails Soirée">
+        <span class="tab-icon">🍸</span> <span class="tab-label">2. Rooftop Soirée</span>
       </button>
-      <button class="tpl-tab" data-template="3" role="tab" aria-selected="false" title="Template 3: Midnight Neon Patakha & Laser Sparkler Show">
-        <span class="tpl-icon">🎆</span> <span class="tpl-name">3. Neon Patakha Show</span>
+      <button class="invite-tab" data-invite="3" role="tab" aria-selected="false" title="Invite 3: Executive Corporate Deepawali Hamper & Dinner">
+        <span class="tab-icon">💼</span> <span class="tab-label">3. Corporate Executive</span>
       </button>
     </div>
 
     <div class="nav-actions">
-      <button id="video-mode-btn" class="nav-btn video-record-btn" title="Open Video Maker / Reel Mode">
-        <span class="icon">🎬</span> <span class="label">Reel / Video Mode</span>
+      <button id="video-mode-btn" class="nav-btn reel-record-pill" title="Start Screen-Recording Reel Showcase">
+        <span class="rec-icon">🎬</span> <span class="label">Screen Record Reel (9:16)</span>
       </button>
-      <button id="sparkler-mode-btn" class="nav-btn" title="Toggle Sparkler Wand Mode">
-        <span class="icon">✨</span> <span class="label">Phuljhadi Wand</span>
-      </button>
-      <button id="sound-btn" class="nav-btn" title="Toggle Festive Sound FX">
-        <span class="icon" id="sound-icon">🔊</span> <span class="label" id="sound-label">Sound On</span>
-      </button>
-      <button id="customize-btn" class="nav-btn highlight" title="Create your own shareable greeting link">
-        <span class="icon">🎁</span> <span class="label">Share Your Own</span>
+      <button id="sound-btn" class="nav-btn audio-pill" title="Toggle Sound">
+        <span class="icon" id="sound-icon">🔊</span>
       </button>
     </div>
   </header>
@@ -141,24 +138,31 @@
     </div>
 
     <!-- ======================================================================
-         TEMPLATE 1: THE INNOCENT FAMILY PRANK & SURPRISE CELEBRATION
+         INVITE 1: ROYAL FAMILY GALA & LAKSHMI PUJA INVITATION
          ====================================================================== -->
-    <div id="template-1-view" class="template-view active">
+    <div id="invite-view-1" class="invite-view active">
       <div class="hero-decorative-arch"></div>
-      <div class="hero-badge">
+      <div class="royal-invite-crest">⚜️</div>
+      <div class="hero-badge luxury-invitation-badge">
         <span class="rangoli-bullet">✦</span> 
-        <span id="hero-greeting-to">Happy Diwali To You & Your Loved Ones</span> 
+        <span id="hero-greeting-to">The Royal Singhania Family Cordially Invites You</span> 
         <span class="rangoli-bullet">✦</span>
       </div>
 
       <h1 class="celebration-title">
         <span class="gradient-text glow">SHUBH DEEPAWALI</span>
-        <span class="celebration-year">2026</span>
+        <span class="celebration-year">ROYAL GALA & LAKSHMI PUJA</span>
       </h1>
 
       <p class="celebration-blessing" id="hero-custom-message">
-        "May the supreme light of diyas illuminate your minds, enlighten your hearts, and strengthen the bonds of love in your homes."
+        "May the supreme light of diyas illuminate your minds, enlighten your hearts, and strengthen the sacred bonds of love in your homes."
       </p>
+
+      <div class="gala-info-pills">
+        <span class="info-pill">📅 Kartik Amavasya • 7:00 PM</span>
+        <span class="info-pill">📍 The Imperial Heritage Palace</span>
+        <span class="info-pill">👗 Dress Code: Regal Silk & Velvet</span>
+      </div>
 
       <div class="hero-stats-bar">
         <div class="stat-item">
@@ -418,8 +422,8 @@
           </div>
         </div>
         <div class="thali-actions">
-          <button id="send-thali-whatsapp" class="primary-festive-btn">
-            <span>📲</span> Send Sweet Thali on WhatsApp
+          <button id="reserve-thali-btn" class="primary-festive-btn luxury-thali-btn">
+            <span>✨</span> Add Sweets to Royal RSVP Thali
           </button>
           <button id="clear-thali-btn" class="secondary-btn">Reset Thali</button>
         </div>
@@ -467,183 +471,153 @@
       </div>
     </section>
 
-    <!-- ==================== 6. "SHARE YOUR OWN" CUSTOMIZER & META IMAGE GENERATOR ==================== -->
-    <section class="share-customizer-section" id="customizer-hub">
-      <div class="customizer-card">
-        <div class="card-sparkle-decor">✨</div>
+    <!-- ==================== 6. ROYAL BURGUNDY RSVP & DIGITAL PASS CONCIERGE ==================== -->
+    <section class="rsvp-concierge-section" id="rsvp-hub">
+      <div class="customizer-card luxury-rsvp-card">
+        <div class="card-sparkle-decor">⚜️</div>
         <div class="section-heading">
-          <span class="sub-label">Share The Magic With Friends & Relatives</span>
-          <h2>Customize This Surprise For Your Family</h2>
-          <div class="decorative-divider"><span>🎁</span><span>🪔</span><span>🎁</span></div>
+          <span class="sub-label">Royal Guest Concierge</span>
+          <h2>Confirm Your Royal Attendance</h2>
+          <div class="decorative-divider"><span>⚜️</span><span>🪔</span><span>⚜️</span></div>
           <p class="section-desc">
-            Want to stun your own friends and family? Type your family name and recipient name below to generate a custom greeting link with realistic WhatsApp/Twitter meta preview!
+            Kindly confirm your presence for the auspicious Lakshmi Puja, sacred Aarti, and the Grand Terrace Feast.
           </p>
         </div>
 
-        <form id="customizer-form" class="customizer-grid" onsubmit="return false;">
+        <form id="rsvp-form" class="customizer-grid" onsubmit="return false;">
           <div class="form-group">
-            <label for="input-family-name">Your Family Name / Sender:</label>
-            <input type="text" id="input-family-name" value="The Sharma Family" placeholder="e.g. The Kapoor Family or Ananya & Rohan">
+            <label for="input-guest-name">Honored Guest Name(s):</label>
+            <input type="text" id="input-guest-name" value="Lord & Lady Kapoor" placeholder="e.g. Mr. & Mrs. Sharma">
           </div>
 
           <div class="form-group">
-            <label for="input-recipient-name">Recipient's Name (Optional):</label>
-            <input type="text" id="input-recipient-name" value="Dear Friend" placeholder="e.g. Grandma, Rohit & Family, Priya">
+            <label for="input-guest-count">Number of Attendees:</label>
+            <select id="input-guest-count" class="luxury-select">
+              <option value="2" selected>2 Guests (Royal Couple)</option>
+              <option value="1">1 Guest</option>
+              <option value="4">4 Guests (Family)</option>
+              <option value="6">6+ Guests (VIP Table)</option>
+            </select>
           </div>
 
           <div class="form-group full-width">
-            <label for="input-custom-wish">Personalized Blessing / Message:</label>
-            <textarea id="input-custom-wish" rows="3" placeholder="Write a warm heartfelt Diwali message...">May the golden light of diyas fill your home with wealth, peace, boundless health, and unending happiness this Diwali and always!</textarea>
+            <label for="input-diet-pref">Feast & Dietary Preference:</label>
+            <select id="input-diet-pref" class="luxury-select">
+              <option value="Royal Shahi Saffron Feast" selected>Royal Shahi Saffron Feast (Traditional Vegetarian)</option>
+              <option value="Pure Jain Satvik Feast">Pure Jain Satvik Feast (Without Onion & Garlic)</option>
+              <option value="Vegan & Gluten-Free Delicacies">Vegan & Gluten-Free Festive Delicacies</option>
+            </select>
           </div>
 
-          <div class="form-group full-width">
-            <label>Pick a Family Image for the Meta Preview Card:</label>
-            <div class="preset-images-picker">
-              <label class="preset-img-option active">
-                <input type="radio" name="photo-choice" value="default" checked>
-                <img src="family-diwali.png" alt="Traditional Family Celebration" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'60\' viewBox=\'0 0 100 60\'%3E%3Crect fill=\'%23d97706\' width=\'100\' height=\'60\'/%3E%3Ctext x=\'50%25\' y=\'55%25\' text-anchor=\'middle\' fill=\'white\' font-size=\'20\'%3E🪔%3C/text%3E%3C/svg%3E';">
-                <span>Traditional Family</span>
-              </label>
-              <label class="preset-img-option">
-                <input type="radio" name="photo-choice" value="diyas">
-                <div class="preset-box diya-preset">🪔 Golden Diyas</div>
-                <span>Royal Diyas</span>
-              </label>
-              <label class="preset-img-option">
-                <input type="radio" name="photo-choice" value="sparkler">
-                <div class="preset-box sparkler-preset">✨ Sparklers</div>
-                <span>Festive Night</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-actions full-width">
-            <button type="button" id="generate-link-btn" class="primary-festive-btn large">
-              <span>🪄</span> Generate My Custom Surprise Link
-            </button>
-            <button type="button" id="preview-meta-btn" class="secondary-btn large">
-              <span>📱</span> Preview WhatsApp & Meta Card
+          <div class="form-actions full-width rsvp-actions-row">
+            <button type="button" id="confirm-rsvp-btn" class="luxury-gold-cta large-cta">
+              <span class="cta-shine"></span>
+              <span class="cta-icon">👑</span>
+              <span class="cta-text">Confirm Royal RSVP & Receive Pass</span>
+              <span class="cta-arrow">→</span>
             </button>
           </div>
         </form>
 
-        <!-- Live Generated Link Box -->
-        <div id="generated-link-box" class="generated-link-box hidden">
-          <label>Your Live Shareable Diwali Link:</label>
-          <div class="link-copy-row">
-            <input type="text" id="shareable-url-input" readonly value="">
-            <button id="copy-link-btn" class="copy-btn">📋 Copy</button>
-          </div>
-          <div class="social-share-row">
-            <a id="share-whatsapp-btn" href="#" target="_blank" class="social-share-pill whatsapp">
-              <span>💬</span> Share on WhatsApp
-            </a>
-            <a id="share-twitter-btn" href="#" target="_blank" class="social-share-pill twitter">
-              <span>🐦</span> Share on X / Twitter
-            </a>
-            <a id="share-facebook-btn" href="#" target="_blank" class="social-share-pill facebook">
-              <span>📘</span> Share on Facebook
-            </a>
+        <!-- Live Generated Royal Invitation Pass -->
+        <div id="rsvp-confirmed-pass" class="royal-pass-container hidden">
+          <div class="pass-ribbon">CONFIRMED ROYAL GUEST</div>
+          <div class="pass-inner">
+            <div class="pass-header">
+              <span class="pass-crest">⚜️</span>
+              <div class="pass-title-group">
+                <h3>ROYAL DEEPAWALI GALA 2026</h3>
+                <span class="pass-serial">INVITE PASS #DIW-8892</span>
+              </div>
+            </div>
+
+            <div class="pass-details-grid">
+              <div class="pass-field">
+                <span class="field-label">HONORED GUEST</span>
+                <span class="field-val" id="pass-guest-name">Lord & Lady Kapoor</span>
+              </div>
+              <div class="pass-field">
+                <span class="field-label">DATE & TIME</span>
+                <span class="field-val">Kartik Amavasya • 7:00 PM</span>
+              </div>
+              <div class="pass-field">
+                <span class="field-label">TABLE RESERVATION</span>
+                <span class="field-val" id="pass-table-val">Heritage Pavilion #4</span>
+              </div>
+              <div class="pass-field">
+                <span class="field-label">VENUE</span>
+                <span class="field-val">The Grand Palace, Umaid Gardens</span>
+              </div>
+            </div>
+
+            <div class="pass-cta-row">
+              <button class="pass-action-btn" id="calendar-btn">
+                <span>📅</span> Add to Calendar
+              </button>
+              <button class="pass-action-btn" id="directions-btn">
+                <span>📍</span> Palace Directions
+              </button>
+            </div>
           </div>
         </div>
 
       </div>
     </section>
-    </div><!-- End of Template 1 -->
+    </div><!-- End of Invite 1 -->
 
     <!-- ======================================================================
-         TEMPLATE 2: ROYAL MAHA AARTI & 1001 SACRED DIYAS
+         INVITE 2: MIDNIGHT ROOFTOP PATAKHA & COCKTAILS SOIRÉE
          ====================================================================== -->
-    <div id="template-2-view" class="template-view hidden">
-      <section class="aarti-hero-section">
-        <div class="temple-bells-row">
-          <span class="temple-bell-interactive" data-bell="1">🔔</span>
-          <span class="temple-bell-interactive" data-bell="2">🔔</span>
-          <span class="temple-bell-interactive central-bell" data-bell="3">🪔</span>
-          <span class="temple-bell-interactive" data-bell="4">🔔</span>
-          <span class="temple-bell-interactive" data-bell="5">🔔</span>
+    <div id="invite-view-2" class="invite-view hidden">
+      <section class="rooftop-invite-section">
+        <div class="rooftop-badge-banner">
+          <span class="neon-pulse-dot"></span> VIP ROOFTOP INVITATION • ADULTS & COCKTAILS SOIRÉE
         </div>
 
-        <div class="sanskrit-mantra-box">
-          <div class="sanskrit-text glow">
-            ॐ असतो मा सद्गमय । तमसो मा ज्योतिर्गमय । मृत्योर्मा अमृतं गमय ॥
-          </div>
-          <div class="mantra-translation">
-            "Lead us from falsehood to truth, from darkness to light, from mortality to eternal bliss."
-          </div>
+        <div class="rooftop-host-badge">
+          KABIR & ANANYA CORDIALLY INVITE YOU TO
         </div>
 
-        <h1 class="aarti-title">
-          <span class="gold-shimmer-text">DIVINE MAHA AARTI</span>
-          <span class="aarti-subtitle">The Sacred Illumination Ceremony</span>
+        <h1 class="rooftop-hero-title">
+          <span class="burgundy-shimmer-text">MIDNIGHT ROOFTOP</span>
+          <span class="gold-gradient-text">PATAKHA & COCKTAILS</span>
         </h1>
 
-        <!-- Sacred Panch Aarti Rotating Thali -->
-        <div class="sacred-panch-aarti-container">
-          <div class="aarti-aura-glow"></div>
-          <div id="interactive-aarti-thali" class="panch-aarti-thali">
-            <div class="thali-engraving"></div>
-            <!-- 5 Sacred Camphor & Ghee Flames -->
-            <div class="aarti-flame flame-center"><div class="wick-fire"></div></div>
-            <div class="aarti-flame flame-top"><div class="wick-fire"></div></div>
-            <div class="aarti-flame flame-right"><div class="wick-fire"></div></div>
-            <div class="aarti-flame flame-bottom"><div class="wick-fire"></div></div>
-            <div class="aarti-flame flame-left"><div class="wick-fire"></div></div>
-            <div class="thali-center-flower">🌸</div>
+        <!-- Event Itinerary Card -->
+        <div class="soiree-itinerary-card">
+          <div class="itinerary-item">
+            <span class="itinerary-time">08:30 PM</span>
+            <div class="itinerary-info">
+              <strong>Saffron Spritzers & Mezze</strong>
+              <span>Artisanal cocktails & acoustic sitar-saxophone fusion</span>
+            </div>
           </div>
-          <p class="aarti-hint">👆 Touch & swirl your finger / mouse to perform the sacred clockwise Aarti!</p>
-        </div>
-
-        <!-- 108 Sacred Diyas Illumination Field -->
-        <div class="diya-field-section">
-          <div class="diya-field-heading">
-            <h3>108 Sacred Earthen Lamps Field</h3>
-            <span id="diyas-lit-badge" class="sacred-badge">12 / 108 Lit</span>
+          <div class="itinerary-item">
+            <span class="itinerary-time">10:30 PM</span>
+            <div class="itinerary-info">
+              <strong>Royal Terrace Dining</strong>
+              <span>Contemporary Indian gourmet barbecue under the stars</span>
+            </div>
           </div>
-          <div id="diya-mandala-grid" class="diya-mandala-grid">
-            <!-- Dynamically populated 108 glowing diyas -->
+          <div class="itinerary-item highlight">
+            <span class="itinerary-time">12:00 AM</span>
+            <div class="itinerary-info">
+              <strong>Midnight 360° Sky Show & Sparklers</strong>
+              <span>Artisanal phuljhadis & synchronised sky rocket barrage</span>
+            </div>
           </div>
-          <div class="aarti-actions-bar">
-            <button id="ignite-all-diyas-btn" class="primary-festive-btn">
-              <span>🔥</span> Ignite All 108 Sacred Diyas
-            </button>
-            <button id="shower-lotus-btn" class="secondary-btn">
-              <span>🌸</span> Shower Sacred Lotus Petals
-            </button>
-            <button id="ring-temple-chimes-btn" class="secondary-btn">
-              <span>🔔</span> Ring All Temple Bells
-            </button>
+          <div class="soiree-venue-badge">
+            📍 Sky Lounge, 24th Floor Terrace • The Oberoi • Dress Code: Indo-Western Velvet & Gold
           </div>
         </div>
-      </section>
-    </div><!-- End of Template 2 -->
-
-    <!-- ======================================================================
-         TEMPLATE 3: MIDNIGHT NEON PATAKHA & LASER SPARKLER SHOW
-         ====================================================================== -->
-    <div id="template-3-view" class="template-view hidden">
-      <section class="neon-patakha-section">
-        <div class="neon-badge-banner">
-          <span class="neon-pulse-dot"></span> MIDNIGHT SKY LAUNCHPAD • HIGH VOLTAGE FESTIVAL
-        </div>
-
-        <h1 class="neon-hero-title">
-          <span class="cyber-neon-orange">MIDNIGHT</span>
-          <span class="cyber-neon-gold">FIREWORKS</span>
-          <span class="cyber-neon-pink">SHOWDOWN</span>
-        </h1>
-
-        <p class="neon-subtext">
-          Sync your screen with the loudest, brightest pyrotechnic sky-show! Tap launchpad triggers to fire multi-tube barrages.
-        </p>
 
         <!-- Live Pyrotechnic Launchpad Console -->
-        <div class="launchpad-console">
+        <div class="launchpad-console luxury-burgundy-console">
           <div class="console-screen">
             <div class="radar-scan"></div>
             <div class="console-metrics">
               <div class="metric-box">
-                <span class="metric-label">BARRAGE READY</span>
+                <span class="metric-label">TERRACE PYRO</span>
                 <span class="metric-val" id="barrage-status">ARMED 🚀</span>
               </div>
               <div class="metric-box">
@@ -651,7 +625,7 @@
                 <span class="metric-val">100% ⚡</span>
               </div>
               <div class="metric-box">
-                <span class="metric-label">EXPLOSIONS</span>
+                <span class="metric-label">BURSTS FIRED</span>
                 <span class="metric-val" id="neon-burst-count">0 💥</span>
               </div>
             </div>
@@ -660,14 +634,14 @@
           <div class="launchpad-controls-grid">
             <button id="btn-rapid-barrage" class="launch-card barrage-card">
               <span class="launch-icon">🚀🚀🚀</span>
-              <span class="launch-title">10x Sky Rocket Barrage</span>
-              <span class="launch-desc">Fires rapid-sequence high altitude burst</span>
+              <span class="launch-title">10x Midnight Sky Barrage</span>
+              <span class="launch-desc">Tap to ignite synchronized high-altitude shells</span>
             </button>
 
             <button id="btn-twin-anar" class="launch-card anar-card">
               <span class="launch-icon">🌋🌋</span>
-              <span class="launch-title">Twin Mega Anars</span>
-              <span class="launch-desc">15ft golden volcanic sparkle eruption</span>
+              <span class="launch-title">Twin Terrace Mega Anars</span>
+              <span class="launch-desc">15ft golden volcanic sparkle fountain</span>
             </button>
 
             <button id="btn-hyper-chakri" class="launch-card chakri-card">
@@ -678,73 +652,131 @@
 
             <button id="btn-light-paint-auto" class="launch-card sparkler-card">
               <span class="launch-icon">✨✍️</span>
-              <span class="launch-title">Laser Sparkler Light-Writing</span>
-              <span class="launch-desc">Draws "SHUBH DIWALI" in real burning fire!</span>
+              <span class="launch-title">Phuljhadi Light-Writing</span>
+              <span class="launch-desc">Draws "KABIR & ANANYA" in burning fire</span>
             </button>
           </div>
         </div>
 
         <!-- Sparkler Neon Light Canvas Demonstration -->
         <div class="neon-light-board">
-          <canvas id="light-writing-canvas" width="800" height="280"></canvas>
-          <div class="light-board-hint">💡 Click "Laser Sparkler Light-Writing" or drag with mouse to draw fire trails</div>
+          <canvas id="light-writing-canvas" width="800" height="260"></canvas>
+          <div class="light-board-hint">💡 Touch & drag on canvas or tap Phuljhadi Light-Writing to paint fire trails</div>
+        </div>
+
+        <!-- VIP RSVP Action -->
+        <div class="soiree-rsvp-wrapper">
+          <button id="rsvp-rooftop-btn" class="luxury-gold-cta large-cta">
+            <span class="cta-shine"></span>
+            <span class="cta-icon">🍸</span>
+            <span class="cta-text">Claim VIP Terrace Access Pass</span>
+            <span class="cta-arrow">→</span>
+          </button>
         </div>
       </section>
-    </div><!-- End of Template 3 -->
+    </div><!-- End of Invite 2 -->
+
+    <!-- ======================================================================
+         INVITE 3: CORPORATE EXECUTIVE DEEPAWALI HAMPER & SOIRÉE
+         ====================================================================== -->
+    <div id="invite-view-3" class="invite-view hidden">
+      <section class="corporate-invite-section">
+        <div class="corporate-crest-badge">
+          <span class="corp-crest">⚜️</span>
+          <span>ANNUAL EXECUTIVE DEEPAWALI GALA</span>
+        </div>
+
+        <div class="corporate-host-title">
+          VERTEX GLOBAL CAPITAL & ADVISORY
+        </div>
+
+        <h1 class="corporate-hero-title">
+          <span class="gold-gradient-text">SHUBH DEEPAWALI</span>
+          <span class="corp-sub">Executive Reception & Royal Dinner</span>
+        </h1>
+
+        <p class="corporate-summary">
+          In celebration of prosperity and enduring partnerships, leadership cordially invites executive partners, board members, and distinguished clients for an evening of fine dining and bespoke gifting.
+        </p>
+
+        <!-- Unboxing The Luxury Digital Hamper -->
+        <div class="luxury-hamper-section">
+          <div class="hamper-header">
+            <h3>🎁 Unbox Your Executive Deepawali Gift Hamper</h3>
+            <p>Tap each heirloom treasure below to inspect its handcrafted details</p>
+          </div>
+
+          <div class="hamper-items-grid">
+            <div class="hamper-item-card" data-item="coin">
+              <div class="hamper-icon">🪙</div>
+              <div class="hamper-info">
+                <h4>24K Pure Gold Laxmi Coin</h4>
+                <p>999.9 Purity Swiss Certified keepsake embossed with sacred blessings</p>
+              </div>
+              <span class="inspect-tag">✦ 24K Gold</span>
+            </div>
+
+            <div class="hamper-item-card" data-item="diya">
+              <div class="hamper-icon">🪔</div>
+              <div class="hamper-info">
+                <h4>Hallmarked Sterling Silver Diya</h4>
+                <p>Hand-chased 92.5 pure silver heirloom oil lamp from Jaipur artisans</p>
+              </div>
+              <span class="inspect-tag">✦ 925 Silver</span>
+            </div>
+
+            <div class="hamper-item-card" data-item="saffron">
+              <div class="hamper-icon">🌺</div>
+              <div class="hamper-info">
+                <h4>Kashmiri Mongra Saffron</h4>
+                <p>Grade-A1 certified golden saffron stamen in a hand-engraved brass jar</p>
+              </div>
+              <span class="inspect-tag">✦ Grade A1</span>
+            </div>
+
+            <div class="hamper-item-card" data-item="truffles">
+              <div class="hamper-icon">🍫</div>
+              <div class="hamper-info">
+                <h4>Belgian Pistachio Truffles</h4>
+                <p>Artisanal roasted pistachio praline enrobed in single-origin dark chocolate</p>
+              </div>
+              <span class="inspect-tag">✦ Artisanal</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Corporate Gala Itinerary & Table Booking -->
+        <div class="corporate-gala-card">
+          <div class="gala-details-col">
+            <h4>Event Schedule & Venue</h4>
+            <ul class="gala-bullets">
+              <li><strong>Date:</strong> Kartik Amavasya, Friday Evening</li>
+              <li><strong>Time:</strong> 6:30 PM Welcome Reception • 7:30 PM Keynote & Lamp Lighting • 8:15 PM Seven-Course Dinner</li>
+              <li><strong>Venue:</strong> The Grand Royal Ballroom, Taj Palace, New Delhi</li>
+              <li><strong>Dress Code:</strong> Black-Tie / Imperial Bandhgala</li>
+            </ul>
+          </div>
+          <div class="gala-cta-col">
+            <button id="reserve-corporate-table-btn" class="luxury-gold-cta large-cta">
+              <span class="cta-shine"></span>
+              <span class="cta-icon">💼</span>
+              <span class="cta-text">Reserve Executive VIP Table</span>
+              <span class="cta-arrow">→</span>
+            </button>
+            <span class="valet-note">✓ Complimentary Chauffeured Valet Service Included</span>
+          </div>
+        </div>
+      </section>
+    </div><!-- End of Invite 3 -->
 
     <!-- Footer -->
     <footer class="festive-footer">
       <div class="footer-lanterns">🏮 🪔 🏮</div>
-      <p>Crafted with love & light for the Festival of Lights 2026</p>
+      <p>Haute Digital Invitations • Crafted with love & light for Deepawali 2026</p>
       <p class="copyright">Shubh Deepawali • May Darkness Turn Into Light</p>
     </footer>
 
   </main>
-
-  <!-- ==================== 7. META / SOCIAL SHARE PREVIEW MODAL ==================== -->
-  <div id="meta-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
-    <div class="modal-dialog">
-      <div class="modal-header">
-        <h3>📱 Live Social Media Meta Card Preview</h3>
-        <button id="close-modal-btn" class="modal-close">&times;</button>
-      </div>
-      <div class="modal-body">
-        <p class="modal-explainer">
-          When you send this link on WhatsApp, iMessage, Twitter, or Facebook, the app unfurls this unsuspecting, beautiful family photo card that makes everyone click!
-        </p>
-        
-        <!-- WhatsApp Chat Bubble Mockup -->
-        <div class="whatsapp-bubble-mockup">
-          <div class="mockup-header">
-            <span class="user-avatar">🪔</span>
-            <div class="user-info">
-              <span class="contact-name" id="mockup-contact-name">Family WhatsApp Group</span>
-              <span class="contact-status">online</span>
-            </div>
-          </div>
-          <div class="chat-bubble">
-            <div class="link-preview-card">
-              <div class="preview-img-container">
-                <canvas id="meta-canvas-preview" width="600" height="315"></canvas>
-              </div>
-              <div class="preview-meta-details">
-                <h4 id="modal-meta-title">The Sharma Family Diwali Celebration 2026 ✨</h4>
-                <p id="modal-meta-desc">A warm Diwali surprise from our home to yours! Tap to light the golden diya and experience our family's celebration.</p>
-                <span class="preview-domain">diwali-surprise.vercel.app</span>
-              </div>
-            </div>
-            <div class="message-timestamp">9:45 PM • Read ✓✓</div>
-          </div>
-        </div>
-
-        <div class="modal-actions">
-          <button id="download-og-image-btn" class="primary-festive-btn">
-            <span>💾</span> Download High-Res 1200x630 OG Meta Image
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- ==================== 8. VIDEO REEL MAKER & STORYBOARDS MODAL ==================== -->
   <div id="video-studio-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
@@ -770,14 +802,14 @@
         <!-- Tab 1: Auto-Play Director -->
         <div id="tab-director" class="tab-content active">
           <div class="director-settings-card">
-            <h4>Select Your Video Setup:</h4>
+            <h4>Select Your Invite Showcase Take:</h4>
             
             <div class="setting-row">
-              <label>Choose Template:</label>
+              <label>Select Digital Invite To Record:</label>
               <div class="choice-pills" id="video-tpl-choices">
-                <button class="pill-btn active" data-tpl="1">🌟 1. Family Surprise</button>
-                <button class="pill-btn" data-tpl="2">🪔 2. Royal Maha Aarti</button>
-                <button class="pill-btn" data-tpl="3">🎆 3. Neon Patakha Show</button>
+                <button class="pill-btn active" data-tpl="1">👑 1. Royal Family Gala</button>
+                <button class="pill-btn" data-tpl="2">🍸 2. Rooftop Soirée</button>
+                <button class="pill-btn" data-tpl="3">💼 3. Corporate Executive</button>
               </div>
             </div>
 
@@ -785,27 +817,34 @@
               <label>Framing Ratio:</label>
               <div class="choice-pills" id="video-ratio-choices">
                 <button class="pill-btn active" data-ratio="9-16">📱 9:16 Vertical Reel (Instagram / Shorts)</button>
-                <button class="pill-btn" data-ratio="full">🖥️ Full-Screen Cinematic</button>
+                <button class="pill-btn" data-ratio="full">🖥️ Full-Screen Showcase</button>
               </div>
             </div>
 
             <div class="setting-row">
-              <label>Pacing Duration:</label>
+              <label>Reel Take Duration:</label>
               <div class="choice-pills" id="video-duration-choices">
-                <button class="pill-btn active" data-duration="15">⚡ 15 Seconds (Fast Hook)</button>
-                <button class="pill-btn" data-duration="25">✨ 25 Seconds (Complete Story)</button>
+                <button class="pill-btn active" data-duration="15">⚡ 15 Seconds (Fast Hook Reel)</button>
+                <button class="pill-btn" data-duration="25">✨ 25 Seconds (Complete Showcase)</button>
               </div>
             </div>
 
             <div class="recording-tip-box">
-              <span class="tip-icon">💡</span>
+              <span class="tip-icon">🎬</span>
               <p>
-                <strong>How to Record:</strong> Clicking "Start Cinematic Take" triggers a 3-second countdown and automatically plays camera moves, sound effects, and firework explosions. Start your screen recorder (Windows: <kbd>Win + Alt + R</kbd>, Mac: <kbd>Cmd + Shift + 5</kbd>, iPhone/Android: Swipe Screen Recorder tile) and enjoy!
+                <strong>Screen Recording for Client Showcase:</strong> Clicking "Start Cinematic Take" triggers a 3-second countdown and runs an automated director sequence (unboxing, fireworks, itinerary, and RSVP pass). Start your screen recorder (<kbd>Win + Alt + R</kbd> on Windows, <kbd>Cmd + Shift + 5</kbd> on Mac, or phone Screen Recorder) to record the video showing what you can make for clients!
               </p>
             </div>
 
             <div class="director-actions">
-              <button id="start-cinematic-take-btn" class="primary-festive-btn large pulse-anim">
+              <button id="start-cinematic-take-btn" class="luxury-gold-cta large-cta pulse-anim">
+                <span class="cta-shine"></span>
+                <span class="cta-icon">🔴</span>
+                <span class="cta-text">Start Auto-Play Reel Take</span>
+                <span class="cta-arrow">→</span>
+              </button>
+            </div>
+          </div>
                 <span>🔴</span> Start Auto-Play Cinematic Take
               </button>
             </div>

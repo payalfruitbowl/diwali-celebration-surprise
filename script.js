@@ -1136,7 +1136,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const mahaAartiCta = document.getElementById('cta-open-maha-aarti');
   if (mahaAartiCta) {
     mahaAartiCta.addEventListener('click', () => {
-      templateSwitcher.switchTemplate(2);
+      inviteSwitcher.switchInvite(2);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
@@ -1152,15 +1152,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ==================== 10. TEMPLATE SWITCHER & MANAGERS ====================
-  class TemplateSwitcher {
+  // ==================== 10. 3 DIGITAL INVITES SWITCHER & MANAGERS ====================
+  class InviteSwitcher {
     constructor() {
-      this.currentTemplate = 1;
-      this.tabs = document.querySelectorAll('.tpl-tab');
+      this.currentInvite = 1;
+      this.tabs = document.querySelectorAll('.invite-tab');
       this.views = {
-        1: document.getElementById('template-1-view'),
-        2: document.getElementById('template-2-view'),
-        3: document.getElementById('template-3-view')
+        1: document.getElementById('invite-view-1'),
+        2: document.getElementById('invite-view-2'),
+        3: document.getElementById('invite-view-3')
       };
       this.bindEvents();
     }
@@ -1168,23 +1168,23 @@ document.addEventListener('DOMContentLoaded', () => {
     bindEvents() {
       this.tabs.forEach(tab => {
         tab.addEventListener('click', () => {
-          const tplId = parseInt(tab.dataset.template, 10);
-          this.switchTemplate(tplId);
+          const inviteId = parseInt(tab.dataset.invite, 10);
+          this.switchInvite(inviteId);
         });
       });
     }
 
-    switchTemplate(tplId) {
-      this.currentTemplate = tplId;
+    switchInvite(inviteId) {
+      this.currentInvite = inviteId;
       this.tabs.forEach(tab => {
-        const isMatch = parseInt(tab.dataset.template, 10) === tplId;
+        const isMatch = parseInt(tab.dataset.invite, 10) === inviteId;
         tab.classList.toggle('active', isMatch);
         tab.setAttribute('aria-selected', isMatch ? 'true' : 'false');
       });
 
       Object.entries(this.views).forEach(([id, view]) => {
         if (!view) return;
-        if (parseInt(id, 10) === tplId) {
+        if (parseInt(id, 10) === inviteId) {
           view.classList.remove('hidden');
           view.classList.add('active');
         } else {
@@ -1193,7 +1193,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // If intro screen is still visible, dissolve it so user can see the template immediately
+      // If intro screen is still visible, dissolve it so user can see the invite immediately
       if (document.body.classList.contains('is-intro')) {
         document.getElementById('intro-screen').classList.add('dissolve');
         document.getElementById('main-content').classList.remove('hidden');
@@ -1204,7 +1204,65 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const templateSwitcher = new TemplateSwitcher();
+  const inviteSwitcher = new InviteSwitcher();
+
+  // Royal RSVP Submission & Concierge Actions
+  const confirmRsvpBtn = document.getElementById('confirm-rsvp-btn');
+  if (confirmRsvpBtn) {
+    confirmRsvpBtn.addEventListener('click', () => {
+      const nameInput = document.getElementById('input-guest-name');
+      const guestName = (nameInput && nameInput.value.trim()) || 'Lord & Lady Kapoor';
+      const passName = document.getElementById('pass-guest-name');
+      if (passName) passName.textContent = guestName;
+      const confirmedPass = document.getElementById('rsvp-confirmed-pass');
+      if (confirmedPass) confirmedPass.classList.remove('hidden');
+      sounds.playTempleBell();
+      sounds.playDiyaChime();
+      fireworks.launchRocket();
+      confirmedPass.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  const calBtn = document.getElementById('calendar-btn');
+  if (calBtn) {
+    calBtn.addEventListener('click', () => {
+      alert("📅 Event added to your calendar: Royal Deepawali Gala • Kartik Amavasya • 7:00 PM at The Grand Palace!");
+    });
+  }
+
+  const dirBtn = document.getElementById('directions-btn');
+  if (dirBtn) {
+    dirBtn.addEventListener('click', () => {
+      alert("📍 Navigating to The Grand Heritage Palace, Umaid Gardens. Valet parking reserved for your vehicle.");
+    });
+  }
+
+  const rooftopRsvp = document.getElementById('rsvp-rooftop-btn');
+  if (rooftopRsvp) {
+    rooftopRsvp.addEventListener('click', () => {
+      sounds.playTempleBell();
+      fireworks.launchRocket();
+      alert("🍸 VIP Terrace Access Pass Confirmed! We look forward to clinking saffron spritzers at Kabir & Ananya's Rooftop Soirée!");
+    });
+  }
+
+  const corpTableBtn = document.getElementById('reserve-corporate-table-btn');
+  if (corpTableBtn) {
+    corpTableBtn.addEventListener('click', () => {
+      sounds.playTempleBell();
+      sounds.playDiyaChime();
+      alert("💼 Executive VIP Table Reserved for Vertex Global Annual Deepawali Gala at The Grand Ballroom, Taj Palace.");
+    });
+  }
+
+  const reserveThaliBtn = document.getElementById('reserve-thali-btn');
+  if (reserveThaliBtn) {
+    reserveThaliBtn.addEventListener('click', () => {
+      sounds.playTempleBell();
+      sounds.playDiyaChime();
+      alert("✨ Festive Mithai selection saved to your Royal Guest Thali! It will be served fresh at your reserved table. 🥮🪔");
+    });
+  }
 
   // ==================== 11. TEMPLATE 2: ROYAL MAHA AARTI MANAGER ====================
   class MahaAartiManager {
@@ -1528,7 +1586,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startTake() {
       this.closeModal();
-      templateSwitcher.switchTemplate(this.selectedTpl);
+      inviteSwitcher.switchInvite(this.selectedTpl);
 
       // Framing
       if (this.selectedRatio === '9-16') {
@@ -1564,7 +1622,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Orchestrate actions based on chosen template
       if (this.selectedTpl === 1) {
-        // Template 1 Orchestration
+        // Invite 1 Orchestration (Royal Family Gala)
         for (let i = 0; i < 5; i++) {
           setTimeout(() => {
             fireworks.launchRocket();
@@ -1575,25 +1633,12 @@ document.addEventListener('DOMContentLoaded', () => {
           if (storySection) storySection.scrollIntoView({ behavior: 'smooth' });
         }, 3500);
         setTimeout(() => {
-          const customizerSection = document.getElementById('customizer-hub');
-          if (customizerSection) customizerSection.scrollIntoView({ behavior: 'smooth' });
+          const rsvpSection = document.getElementById('rsvp-hub');
+          if (rsvpSection) rsvpSection.scrollIntoView({ behavior: 'smooth' });
           sounds.playDiyaChime();
         }, 9000);
       } else if (this.selectedTpl === 2) {
-        // Template 2 Orchestration
-        sounds.playTempleBell();
-        setTimeout(() => {
-          aartiManager.thali.classList.add('swirling');
-          sounds.playDiyaChime();
-        }, 1500);
-        setTimeout(() => {
-          aartiManager.igniteAll();
-        }, 4000);
-        setTimeout(() => {
-          aartiManager.showerLotusPetals();
-        }, 8000);
-      } else if (this.selectedTpl === 3) {
-        // Template 3 Orchestration
+        // Invite 2 Orchestration (Rooftop Patakha Soirée)
         neonManager.fireRapidBarrage();
         setTimeout(() => {
           neonManager.fireTwinAnars();
@@ -1601,6 +1646,19 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
           neonManager.animateSparklerWriting();
         }, 6000);
+      } else if (this.selectedTpl === 3) {
+        // Invite 3 Orchestration (Corporate Executive Hamper)
+        sounds.playTempleBell();
+        setTimeout(() => {
+          const hamperSection = document.querySelector('.luxury-hamper-section');
+          if (hamperSection) hamperSection.scrollIntoView({ behavior: 'smooth' });
+          sounds.playDiyaChime();
+        }, 2500);
+        setTimeout(() => {
+          const corpGalaCard = document.querySelector('.corporate-gala-card');
+          if (corpGalaCard) corpGalaCard.scrollIntoView({ behavior: 'smooth' });
+          sounds.playTempleBell();
+        }, 7000);
       }
 
       // Progress bar & timer ticker
