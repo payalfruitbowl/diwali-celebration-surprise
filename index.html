@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- Primary Meta Tags -->
+  <title id="meta-title">The Sharma Family Diwali Celebration 2026 ✨ | A Surprise Gift Inside</title>
+  <meta name="title" content="The Sharma Family Diwali Celebration 2026 ✨ | A Surprise Gift Inside">
+  <meta name="description" content="We gathered together to celebrate the Festival of Lights! Tap to see our family memories, light a sacred Diya, burst virtual crackers, and unlock a special surprise blessing curated just for you. 🪔💥✨">
+  <meta name="theme-color" content="#d97706">
+  
+  <!-- Open Graph / Facebook / WhatsApp Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/">
+  <meta property="og:title" id="og-title" content="The Sharma Family Diwali Celebration 2026 ✨">
+  <meta property="og:description" id="og-desc" content="A warm Diwali surprise from our home to yours! Tap to light the golden diya and experience our family's celebration.">
+  <meta property="og:image" id="og-image-tag" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Sharma Family Celebrating Diwali with Diyas and Sweets">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/">
+  <meta name="twitter:title" id="tw-title" content="The Sharma Family Diwali Celebration 2026 ✨">
+  <meta name="twitter:description" id="tw-desc" content="A warm Diwali surprise from our home to yours! Tap to light the golden diya and experience our family's celebration.">
+  <meta name="twitter:image" id="tw-image-tag" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/og-image.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪔</text></svg>">
+</head>
+<body class="is-intro">
+
+  <!-- Ambient Fireworks & Sparkles Canvas Background -->
+  <canvas id="fireworks-canvas"></canvas>
+  <canvas id="sparkler-canvas"></canvas>
+  <div id="petals-container" aria-hidden="true"></div>
+
+  <!-- Audio Controls Bar -->
+  <header class="top-nav">
+    <div class="brand-badge">
+      <span class="diya-icon">🪔</span>
+      <span class="brand-text">Shubh Deepawali</span>
+    </div>
+    <div class="nav-actions">
+      <button id="sparkler-mode-btn" class="nav-btn" title="Toggle Sparkler Wand Mode">
+        <span class="icon">✨</span> <span class="label">Phuljhadi Wand</span>
+      </button>
+      <button id="sound-btn" class="nav-btn" title="Toggle Festive Sound FX">
+        <span class="icon" id="sound-icon">🔊</span> <span class="label" id="sound-label">Sound On</span>
+      </button>
+      <button id="customize-btn" class="nav-btn highlight" title="Create your own shareable greeting link">
+        <span class="icon">🎁</span> <span class="label">Share Your Own</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== 1. STUNNING INTRO / THE REVEAL HOOK ==================== -->
+  <section id="intro-screen" class="intro-screen">
+    <div class="intro-overlay"></div>
+    <div class="intro-card">
+      <div class="meta-tag-badge">
+        <span class="pulse-dot"></span> Private Family Greeting
+      </div>
+      
+      <!-- Innocent Photo Thumbnail that matches the Meta Image preview -->
+      <div class="family-thumbnail-container" id="intro-thumb-container">
+        <img id="intro-family-img" src="family-diwali.png" alt="Our Family Diwali Celebration" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'350\' viewBox=\'0 0 600 350\'%3E%3Crect fill=\'%232d1202\' width=\'600\' height=\'350\'/%3E%3Ccircle cx=\'300\' cy=\'160\' r=\'80\' fill=\'%23f59e0b\' opacity=\'0.2\'/%3E%3Ctext x=\'50%25\' y=\'45%25\' text-anchor=\'middle\' fill=\'%23fef3c7\' font-family=\'sans-serif\' font-size=\'38\' font-weight=\'bold\'%3E🪔 Shubh Deepawali 🪔%3C/text%3E%3Ctext x=\'50%25\' y=\'65%25\' text-anchor=\'middle\' fill=\'%23fde68a\' font-family=\'sans-serif\' font-size=\'20\'%3EThe Sharma Family Diwali Celebration 2026%3C/text%3E%3C/svg%3E';">
+        <div class="photo-shimmer"></div>
+        <div class="family-tag" id="intro-family-caption">✨ From: The Sharma Family ✨</div>
+      </div>
+
+      <div class="intro-text-block">
+        <h2 class="sub-intro" id="intro-to-greeting">A Festive Blessing for You</h2>
+        <h1 class="main-intro">The house is quiet in the dark...</h1>
+        <p class="intro-instruction">Touch the sacred Diya below to light up our Diwali celebration & reveal the magic!</p>
+      </div>
+
+      <!-- Interactive Diya to ignite the surprise -->
+      <div class="diya-igniter-wrapper">
+        <button id="ignite-diya-btn" class="diya-igniter" aria-label="Light the Diya to unlock celebration">
+          <div class="flame-glow"></div>
+          <div class="flame-flicker"></div>
+          <div class="earthen-lamp">
+            <svg viewBox="0 0 120 70" class="diya-svg">
+              <path d="M10,40 Q60,75 110,40 Q115,30 100,32 Q60,45 20,32 Q5,30 10,40 Z" fill="#b45309" stroke="#78350f" stroke-width="2"/>
+              <path d="M18,34 Q60,46 102,34 Q60,54 18,34 Z" fill="#d97706"/>
+              <ellipse cx="60" cy="38" rx="35" ry="5" fill="#f59e0b"/>
+              <path d="M92,33 Q85,28 88,24" stroke="#451a03" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="click-indicator">👆 Tap to Light the Diya</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 2. MAIN GRAND CELEBRATION HUB ==================== -->
+  <main id="main-content" class="main-content hidden">
+
+    <!-- Hero Grand Welcome -->
+    <section class="hero-section">
+      <div class="hero-decorative-arch"></div>
+      <div class="hero-badge">
+        <span class="rangoli-bullet">✦</span> 
+        <span id="hero-greeting-to">Happy Diwali To You & Your Loved Ones</span> 
+        <span class="rangoli-bullet">✦</span>
+      </div>
+
+      <h1 class="celebration-title">
+        <span class="gradient-text glow">SHUBH DEEPAWALI</span>
+        <span class="celebration-year">2026</span>
+      </h1>
+
+      <p class="celebration-blessing" id="hero-custom-message">
+        "May the supreme light of diyas illuminate your minds, enlighten your hearts, and strengthen the bonds of love in your homes."
+      </p>
+
+      <div class="hero-stats-bar">
+        <div class="stat-item">
+          <span class="stat-number" id="crackers-burst-count">0</span>
+          <span class="stat-label">Fireworks Burst</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="diyas-lit-count">1</span>
+          <span class="stat-label">Diyas Glowing</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Love & Warmth</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Floating Dock -->
+      <div class="quick-action-dock">
+        <button class="dock-btn" id="launch-sky-rocket">
+          <span class="btn-emoji">🚀</span> Launch Sky Rocket
+        </button>
+        <button class="dock-btn" id="light-anar-btn">
+          <span class="btn-emoji">🌋</span> Spark Anar (Flowerpot)
+        </button>
+        <button class="dock-btn" id="spin-chakri-btn">
+          <span class="btn-emoji">🌀</span> Spin Chakri
+        </button>
+        <button class="dock-btn" id="play-temple-bell">
+          <span class="btn-emoji">🔔</span> Ring Temple Bell
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== 3. "HOW WE CELEBRATED" STORY TIMELINE ==================== -->
+    <section class="story-section">
+      <div class="section-heading">
+        <span class="sub-label">A Glimpse Into Our Home</span>
+        <h2>How We Celebrated Our Diwali</h2>
+        <div class="decorative-divider">
+          <span>🪔</span><span>✨</span><span>🪔</span>
+        </div>
+        <p class="section-desc">
+          From the chaotic Dhanteras cleaning to midnight sparklers and devouring boxes of Kaju Katli — take a walk through our festivities!
+        </p>
+      </div>
+
+      <div class="timeline-container">
+
+        <!-- Day 1: Dhanteras -->
+        <article class="timeline-card left">
+          <div class="timeline-dot">🪙</div>
+          <div class="card-inner">
+            <div class="card-media">
+              <div class="media-badge">Day 1 • Dhanteras</div>
+              <div class="illustration-art art-dhanteras">
+                <span class="art-icon">🏺✨</span>
+                <div class="coins-shower">
+                  <i>🪙</i><i>🪙</i><i>🪙</i><i>🪙</i><i>🪙</i>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3>The Great Deep-Cleaning & Gold Shopping</h3>
+              <p>Mom inspected every corner of the house with a laser eye! We finally bought our shiny brass utensil and traditional silver coin for Lakshmi ji, followed by a hearty dinner of piping hot samosas.</p>
+              <div class="card-quote">“Everything must sparkle before Lakshmi enters!” — Dadi</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 2: Choti Diwali & Rangoli -->
+        <article class="timeline-card right">
+          <div class="timeline-dot">🎨</div>
+          <div class="card-inner">
+            <div class="card-media">
+              <div class="media-badge">Day 2 • Choti Diwali</div>
+              <div class="illustration-art art-rangoli">
+                <span class="art-icon">🪷</span>
+                <div class="rangoli-mandala"></div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3>Courtyard Rangoli & 14 Diyas</h3>
+              <p>Three hours of bent backs, seven vibrant powder colors, and an accidental footprint from the neighbor's cat! But our Peacock Rangoli turned out to be the talk of the entire neighborhood street.</p>
+              <button class="action-link-btn" id="jump-to-rangoli">🎨 Draw your own Rangoli below</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 3: Badi Diwali (Lakshmi Puja) -->
+        <article class="timeline-card left highlight-card">
+          <div class="timeline-dot pulse">🪔</div>
+          <div class="card-inner">
+            <div class="card-media">
+              <div class="media-badge">Day 3 • The Main Night</div>
+              <div class="illustration-art art-puja">
+                <span class="art-icon">🪔🙏🪔</span>
+                <div class="puja-glow"></div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3>The Sacred Lakshmi-Ganesh Puja & Feast</h3>
+              <p>Draped in brand-new silk kurtas and Banarasi sarees, our entire family gathered for the evening Aarti. We filled 101 clay diyas with mustard oil and cotton wicks, placing them on every ledge, window, and roof parapet.</p>
+              <p>The feast: Paneer makhani, fragrant saffron poori, dry fruit kheer, and grandma's secret warm gulab jamuns.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 4: The Crackers & Sparkler Night -->
+        <article class="timeline-card right">
+          <div class="timeline-dot">🎆</div>
+          <div class="card-inner">
+            <div class="card-media">
+              <div class="media-badge">Midnight Celebration</div>
+              <div class="illustration-art art-fireworks">
+                <span class="art-icon">🎇💥</span>
+                <div class="firework-flare"></div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3>Laughter, Green Crackers & Terrace Sparklers</h3>
+              <p>The sky turned purple and gold! The kids were spinning phuljhadis making glowing light spirals in long-exposure photos while cousins fought over who gets to light the last rocket.</p>
+              <div class="card-tags">
+                <span>#TerraceNights</span><span>#PhuljhadiFun</span><span>#FamilyTogether</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Day 5: Bhai Dooj & Sweet Gifting -->
+        <article class="timeline-card left">
+          <div class="timeline-dot">🍬</div>
+          <div class="card-inner">
+            <div class="card-media">
+              <div class="media-badge">Day 5 • Bhai Dooj</div>
+              <div class="illustration-art art-sweets">
+                <span class="art-icon">🎁🥮</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3>The Sweet Exchange & Bidding Blessings</h3>
+              <p>Brother-sister rituals, affectionate teasing, exchanging mithai boxes (and passing the mysterious Soan Papdi box to the next relative's house!). Wrapping up 5 unforgettable days of pure joy.</p>
+              <button class="action-link-btn" id="jump-to-mithai">🍬 Send a Virtual Mithai Box</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==================== 4. INTERACTIVE VIRTUAL MITHAI (SWEETS) PLATTER ==================== -->
+    <section class="mithai-section" id="mithai-hub">
+      <div class="section-heading">
+        <span class="sub-label">Kuch Meetha Ho Jaye!</span>
+        <h2>Serve & Share Virtual Diwali Mithai</h2>
+        <div class="decorative-divider"><span>🍬</span><span>🥮</span><span>✨</span></div>
+        <p class="section-desc">Tap your favorite traditional Indian sweets to add them to your personalized festive thali!</p>
+      </div>
+
+      <div class="mithai-box-grid">
+        <div class="mithai-tray-card" data-sweet="Kaju Katli">
+          <div class="sweet-render silver-leaf">💎</div>
+          <div class="sweet-info">
+            <h4>Kaju Katli</h4>
+            <p>Diamond of cashew perfection with silver vark</p>
+          </div>
+          <button class="add-sweet-btn">+ Add to Thali</button>
+        </div>
+
+        <div class="mithai-tray-card" data-sweet="Motichoor Ladoo">
+          <div class="sweet-render ladoo-glow">🟠</div>
+          <div class="sweet-info">
+            <h4>Motichoor Ladoo</h4>
+            <p>Golden saffron pearls bound with pure desi ghee</p>
+          </div>
+          <button class="add-sweet-btn">+ Add to Thali</button>
+        </div>
+
+        <div class="mithai-tray-card" data-sweet="Warm Gulab Jamun">
+          <div class="sweet-render jamun-glow">🟤</div>
+          <div class="sweet-info">
+            <h4>Warm Gulab Jamun</h4>
+            <p>Melt-in-mouth milk dumplings drenched in rose syrup</p>
+          </div>
+          <button class="add-sweet-btn">+ Add to Thali</button>
+        </div>
+
+        <div class="mithai-tray-card" data-sweet="Crispy Jalebi">
+          <div class="sweet-render jalebi-glow">🌀</div>
+          <div class="sweet-info">
+            <h4>Crispy Saffron Jalebi</h4>
+            <p>Deep-fried golden spirals bursting with hot sugar syrup</p>
+          </div>
+          <button class="add-sweet-btn">+ Add to Thali</button>
+        </div>
+
+        <div class="mithai-tray-card" data-sweet="Soan Papdi">
+          <div class="sweet-render soan-glow">📦</div>
+          <div class="sweet-info">
+            <h4>The Immortal Soan Papdi</h4>
+            <p>The legendary box that travels across 5 households!</p>
+          </div>
+          <button class="add-sweet-btn">+ Add to Thali</button>
+        </div>
+
+        <div class="mithai-tray-card" data-sweet="Rasgulla">
+          <div class="sweet-render rasgulla-glow">⚪</div>
+          <div class="sweet-info">
+            <h4>Spongy Rasgulla</h4>
+            <p>Delicate cottage-cheese orbs in cardamom nectar</p>
+          </div>
+          <button class="add-sweet-btn">+ Add to Thali</button>
+        </div>
+      </div>
+
+      <!-- The Live Festive Thali Display -->
+      <div class="thali-display-container">
+        <div class="brass-thali">
+          <div class="thali-rim"></div>
+          <div class="thali-center-diya">🪔</div>
+          <div class="thali-items" id="thali-items-tray">
+            <!-- Dynamically populated sweets -->
+            <span class="empty-thali-hint">Your Thali is empty! Tap sweets above to load it up.</span>
+          </div>
+        </div>
+        <div class="thali-actions">
+          <button id="send-thali-whatsapp" class="primary-festive-btn">
+            <span>📲</span> Send Sweet Thali on WhatsApp
+          </button>
+          <button id="clear-thali-btn" class="secondary-btn">Reset Thali</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. INTERACTIVE RANGOLI CANVAS STUDIO ==================== -->
+    <section class="rangoli-studio-section" id="rangoli-studio">
+      <div class="section-heading">
+        <span class="sub-label">Express Your Creativity</span>
+        <h2>Interactive Rangoli Studio</h2>
+        <div class="decorative-divider"><span>🪷</span><span>✨</span><span>🪷</span></div>
+        <p class="section-desc">Choose vibrant festive colors and drag on the floor canvas to draw symmetric 8-fold mandala patterns!</p>
+      </div>
+
+      <div class="rangoli-studio-container">
+        <div class="rangoli-toolbar">
+          <div class="color-palette">
+            <button class="color-dot active" data-color="#f59e0b" style="background: #f59e0b;" title="Marigold Orange"></button>
+            <button class="color-dot" data-color="#ef4444" style="background: #ef4444;" title="Kumkum Red"></button>
+            <button class="color-dot" data-color="#ec4899" style="background: #ec4899;" title="Gulab Pink"></button>
+            <button class="color-dot" data-color="#10b981" style="background: #10b981;" title="Emerald Green"></button>
+            <button class="color-dot" data-color="#3b82f6" style="background: #3b82f6;" title="Krishna Peacock Blue"></button>
+            <button class="color-dot" data-color="#fef08a" style="background: #fef08a;" title="Haldi Yellow"></button>
+            <button class="color-dot" data-color="#ffffff" style="background: #ffffff;" title="Rice White"></button>
+          </div>
+          <div class="brush-controls">
+            <label>Symmetry: 
+              <select id="rangoli-symmetry">
+                <option value="8" selected>8-Fold Flower</option>
+                <option value="12">12-Fold Star</option>
+                <option value="4">4-Fold Swastik</option>
+                <option value="1">Freehand</option>
+              </select>
+            </label>
+            <button id="clear-rangoli-btn" class="small-btn">Clear Canvas</button>
+            <button id="preset-rangoli-btn" class="small-btn highlight">Magic Blossom</button>
+          </div>
+        </div>
+
+        <div class="rangoli-canvas-wrapper">
+          <canvas id="rangoli-canvas" width="600" height="600"></canvas>
+          <div class="canvas-hint">Touch & drag across the circle to paint glowing sand powder!</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. "SHARE YOUR OWN" CUSTOMIZER & META IMAGE GENERATOR ==================== -->
+    <section class="share-customizer-section" id="customizer-hub">
+      <div class="customizer-card">
+        <div class="card-sparkle-decor">✨</div>
+        <div class="section-heading">
+          <span class="sub-label">Share The Magic With Friends & Relatives</span>
+          <h2>Customize This Surprise For Your Family</h2>
+          <div class="decorative-divider"><span>🎁</span><span>🪔</span><span>🎁</span></div>
+          <p class="section-desc">
+            Want to stun your own friends and family? Type your family name and recipient name below to generate a custom greeting link with realistic WhatsApp/Twitter meta preview!
+          </p>
+        </div>
+
+        <form id="customizer-form" class="customizer-grid" onsubmit="return false;">
+          <div class="form-group">
+            <label for="input-family-name">Your Family Name / Sender:</label>
+            <input type="text" id="input-family-name" value="The Sharma Family" placeholder="e.g. The Kapoor Family or Ananya & Rohan">
+          </div>
+
+          <div class="form-group">
+            <label for="input-recipient-name">Recipient's Name (Optional):</label>
+            <input type="text" id="input-recipient-name" value="Dear Friend" placeholder="e.g. Grandma, Rohit & Family, Priya">
+          </div>
+
+          <div class="form-group full-width">
+            <label for="input-custom-wish">Personalized Blessing / Message:</label>
+            <textarea id="input-custom-wish" rows="3" placeholder="Write a warm heartfelt Diwali message...">May the golden light of diyas fill your home with wealth, peace, boundless health, and unending happiness this Diwali and always!</textarea>
+          </div>
+
+          <div class="form-group full-width">
+            <label>Pick a Family Image for the Meta Preview Card:</label>
+            <div class="preset-images-picker">
+              <label class="preset-img-option active">
+                <input type="radio" name="photo-choice" value="default" checked>
+                <img src="family-diwali.png" alt="Traditional Family Celebration" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'60\' viewBox=\'0 0 100 60\'%3E%3Crect fill=\'%23d97706\' width=\'100\' height=\'60\'/%3E%3Ctext x=\'50%25\' y=\'55%25\' text-anchor=\'middle\' fill=\'white\' font-size=\'20\'%3E🪔%3C/text%3E%3C/svg%3E';">
+                <span>Traditional Family</span>
+              </label>
+              <label class="preset-img-option">
+                <input type="radio" name="photo-choice" value="diyas">
+                <div class="preset-box diya-preset">🪔 Golden Diyas</div>
+                <span>Royal Diyas</span>
+              </label>
+              <label class="preset-img-option">
+                <input type="radio" name="photo-choice" value="sparkler">
+                <div class="preset-box sparkler-preset">✨ Sparklers</div>
+                <span>Festive Night</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-actions full-width">
+            <button type="button" id="generate-link-btn" class="primary-festive-btn large">
+              <span>🪄</span> Generate My Custom Surprise Link
+            </button>
+            <button type="button" id="preview-meta-btn" class="secondary-btn large">
+              <span>📱</span> Preview WhatsApp & Meta Card
+            </button>
+          </div>
+        </form>
+
+        <!-- Live Generated Link Box -->
+        <div id="generated-link-box" class="generated-link-box hidden">
+          <label>Your Live Shareable Diwali Link:</label>
+          <div class="link-copy-row">
+            <input type="text" id="shareable-url-input" readonly value="">
+            <button id="copy-link-btn" class="copy-btn">📋 Copy</button>
+          </div>
+          <div class="social-share-row">
+            <a id="share-whatsapp-btn" href="#" target="_blank" class="social-share-pill whatsapp">
+              <span>💬</span> Share on WhatsApp
+            </a>
+            <a id="share-twitter-btn" href="#" target="_blank" class="social-share-pill twitter">
+              <span>🐦</span> Share on X / Twitter
+            </a>
+            <a id="share-facebook-btn" href="#" target="_blank" class="social-share-pill facebook">
+              <span>📘</span> Share on Facebook
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="festive-footer">
+      <div class="footer-lanterns">🏮 🪔 🏮</div>
+      <p>Crafted with love & light for the Festival of Lights 2026</p>
+      <p class="copyright">Shubh Deepawali • May Darkness Turn Into Light</p>
+    </footer>
+
+  </main>
+
+  <!-- ==================== 7. META / SOCIAL SHARE PREVIEW MODAL ==================== -->
+  <div id="meta-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>📱 Live Social Media Meta Card Preview</h3>
+        <button id="close-modal-btn" class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-explainer">
+          When you send this link on WhatsApp, iMessage, Twitter, or Facebook, the app unfurls this unsuspecting, beautiful family photo card that makes everyone click!
+        </p>
+        
+        <!-- WhatsApp Chat Bubble Mockup -->
+        <div class="whatsapp-bubble-mockup">
+          <div class="mockup-header">
+            <span class="user-avatar">🪔</span>
+            <div class="user-info">
+              <span class="contact-name" id="mockup-contact-name">Family WhatsApp Group</span>
+              <span class="contact-status">online</span>
+            </div>
+          </div>
+          <div class="chat-bubble">
+            <div class="link-preview-card">
+              <div class="preview-img-container">
+                <canvas id="meta-canvas-preview" width="600" height="315"></canvas>
+              </div>
+              <div class="preview-meta-details">
+                <h4 id="modal-meta-title">The Sharma Family Diwali Celebration 2026 ✨</h4>
+                <p id="modal-meta-desc">A warm Diwali surprise from our home to yours! Tap to light the golden diya and experience our family's celebration.</p>
+                <span class="preview-domain">diwali-surprise.vercel.app</span>
+              </div>
+            </div>
+            <div class="message-timestamp">9:45 PM • Read ✓✓</div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button id="download-og-image-btn" class="primary-festive-btn">
+            <span>💾</span> Download High-Res 1200x630 OG Meta Image
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Synthesizer & Main Script -->
+  <script src="script.js"></script>
+</body>
+</html>
