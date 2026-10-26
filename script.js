@@ -1122,6 +1122,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Luxury Timeline CTA Button Actions
+  const dhanterasCta = document.getElementById('cta-dhanteras-blessing');
+  if (dhanterasCta) {
+    dhanterasCta.addEventListener('click', () => {
+      sounds.playTempleBell();
+      sounds.playDiyaChime();
+      fireworks.sparkAnar(window.innerWidth / 2, window.innerHeight - 50);
+      alert("✨ Shubh Dhanteras! May Goddess Lakshmi bless your home with boundless prosperity, gold, and eternal happiness! 🪙🪔");
+    });
+  }
+
+  const mahaAartiCta = document.getElementById('cta-open-maha-aarti');
+  if (mahaAartiCta) {
+    mahaAartiCta.addEventListener('click', () => {
+      templateSwitcher.switchTemplate(2);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  const sparklerCta = document.getElementById('cta-sparkler-ignite');
+  if (sparklerCta) {
+    sparklerCta.addEventListener('click', () => {
+      const active = sparkler.toggle(true);
+      const sparklerBtn = document.getElementById('sparkler-mode-btn');
+      if (sparklerBtn) sparklerBtn.classList.toggle('active', active);
+      sounds.playSparklerCrackle();
+      alert("✨ Virtual Phuljhadi Activated! Move your mouse or drag your finger across the screen to paint glowing fire trails! 🎆");
+    });
+  }
+
   // ==================== 10. TEMPLATE SWITCHER & MANAGERS ====================
   class TemplateSwitcher {
     constructor() {
