@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- Primary Meta Tags -->
+  <title>Vertex Global Capital | Executive Deepawali Gala & Reception 2026 💼✨</title>
+  <meta name="title" content="Vertex Global Capital | Executive Deepawali Gala & Reception 2026 💼✨">
+  <meta name="description" content="In celebration of prosperity and enduring leadership. You are cordially invited to The Grand Ballroom, Taj Palace for the annual keynote reception & digital hamper unboxing. Tap to view your executive invitation.">
+  <meta name="theme-color" content="#180308">
+  
+  <!-- Open Graph / WhatsApp Preview Banner -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/corporate-gala.html">
+  <meta property="og:title" content="Vertex Global Capital | Executive Deepawali Gala 2026 💼✨">
+  <meta property="og:description" content="Executive Deepawali Invitation: Keynote address, seven-course dinner, and bespoke heirloom gift hamper unboxing. Tap to view invitation.">
+  <meta property="og:image" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/og-corporate-gala.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Corporate Executive Deepawali Gala and Gift Hamper Invitation Banner">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/corporate-gala.html">
+  <meta name="twitter:title" content="Vertex Global Capital | Executive Deepawali Gala 2026 💼✨">
+  <meta name="twitter:description" content="Executive Deepawali Invitation: Keynote address, seven-course dinner, and bespoke heirloom gift hamper unboxing. Tap to view invitation.">
+  <meta name="twitter:image" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/og-corporate-gala.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💼</text></svg>">
+</head>
+<body class="is-intro">
+
+  <!-- Background Fireworks Canvas -->
+  <canvas id="fireworks-canvas"></canvas>
+  <canvas id="sparkler-canvas"></canvas>
+  <div id="petals-container" aria-hidden="true"></div>
+
+  <!-- Haute Burgundy Navigation Bar -->
+  <header class="top-nav burgundy-header">
+    <div class="brand-badge">
+      <span class="royal-crest">💼</span>
+      <div class="brand-text-col">
+        <span class="brand-title">EXECUTIVE GALA</span>
+        <span class="brand-sub">Corporate VIP Invitation</span>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <!-- Discreet Hidden Dropdown for 3 Invites -->
+      <div class="discreet-invite-menu" id="discreet-invite-dropdown">
+        <button id="invite-menu-trigger" class="discreet-menu-btn" aria-haspopup="true" aria-expanded="false" title="Switch Digital Invite">
+          <span class="menu-icon">⚜️</span>
+          <span class="menu-label">Invites</span>
+          <span class="menu-arrow">▾</span>
+        </button>
+        <div class="discreet-dropdown-panel hidden" id="invite-dropdown-panel" role="menu">
+          <div class="dropdown-header">Switch Digital Invite:</div>
+          <a href="index.html" class="dropdown-invite-item" role="menuitem">
+            <span class="item-icon">👑</span>
+            <div class="item-info">
+              <span class="item-title">Royal Family Gala</span>
+              <span class="item-sub">Palace Lakshmi Puja & Feast</span>
+            </div>
+          </a>
+          <a href="rooftop-soiree.html" class="dropdown-invite-item" role="menuitem">
+            <span class="item-icon">🍸</span>
+            <div class="item-info">
+              <span class="item-title">Rooftop Soirée</span>
+              <span class="item-sub">Midnight Patakha & Cocktails</span>
+            </div>
+          </a>
+          <a href="corporate-gala.html" class="dropdown-invite-item active" role="menuitem">
+            <span class="item-icon">💼</span>
+            <div class="item-info">
+              <span class="item-title">Corporate Executive</span>
+              <span class="item-sub">Prestige Gala & Hamper Box</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <button id="sound-btn" class="nav-btn audio-pill" title="Toggle Sound">
+        <span class="icon" id="sound-icon">🔊</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== 1. STUNNING INTRO / THE CORPORATE REVEAL HOOK ==================== -->
+  <section id="intro-screen" class="intro-screen">
+    <div class="intro-overlay"></div>
+    <div class="intro-card luxury-card">
+      <div class="meta-tag-badge">
+        <span class="pulse-dot"></span> Executive Gifting Box
+      </div>
+      
+      <!-- Invitation Banner Thumbnail -->
+      <div class="family-thumbnail-container">
+        <img src="og-corporate-gala.jpg" alt="Corporate Executive Deepawali Hamper Gala" onerror="this.onerror=null; this.src='timeline-dhanteras.jpg';">
+        <div class="photo-shimmer"></div>
+        <div class="family-tag">⚜️ Vertex Global Annual Deepawali Gala ⚜️</div>
+      </div>
+
+      <div class="intro-text-block">
+        <h2 class="sub-intro">Celebrating Enduring Leadership</h2>
+        <h1 class="main-intro">An evening of prestige awaits...</h1>
+        <p class="intro-instruction">Touch the Golden Seal below to unbox your executive invitation & bespoke digital hamper.</p>
+      </div>
+
+      <!-- Interactive Gold Seal Igniter -->
+      <div class="diya-igniter-wrapper">
+        <button id="ignite-diya-btn" class="diya-igniter" aria-label="Touch to unbox executive invitation">
+          <div class="flame-glow"></div>
+          <div class="flame-flicker"></div>
+          <div class="earthen-lamp">
+            <span style="font-size: 3rem; display: block; filter: drop-shadow(0 4px 15px #d4af37);">🎁⚜️</span>
+          </div>
+          <span class="click-indicator">👆 Tap to Unbox Invitation</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 2. MAIN CORPORATE EXECUTIVE EXPERIENCE ==================== -->
+  <main id="main-content" class="main-content hidden">
+
+    <section class="corporate-invite-section">
+      <div class="corporate-crest-badge">
+        <span class="corp-crest">⚜️</span>
+        <span>ANNUAL EXECUTIVE DEEPAWALI GALA</span>
+      </div>
+
+      <div class="corporate-host-title">
+        VERTEX GLOBAL CAPITAL & ADVISORY
+      </div>
+
+      <h1 class="corporate-hero-title">
+        <span class="gold-gradient-text">SHUBH DEEPAWALI</span>
+        <span class="corp-sub">Executive Reception & Royal Dinner</span>
+      </h1>
+
+      <p class="corporate-summary">
+        In celebration of prosperity and enduring partnerships, leadership cordially invites executive partners, board members, and distinguished clients for an evening of fine dining, classical sarod recitals, and bespoke gifting.
+      </p>
+
+      <!-- Unboxing The Luxury Digital Hamper -->
+      <div class="luxury-hamper-section">
+        <div class="hamper-header">
+          <h3>🎁 Unbox Your Executive Deepawali Gift Hamper</h3>
+          <p>Tap each heirloom treasure below to inspect its handcrafted details</p>
+        </div>
+
+        <div class="hamper-items-grid">
+          <div class="hamper-item-card" data-item="coin" onclick="alert('🪙 24K Pure Gold Laxmi Coin (999.9 Purity Swiss Certified). Embossed with Goddess Lakshmi & Lord Ganesha blessings.');">
+            <div class="hamper-icon">🪙</div>
+            <div class="hamper-info">
+              <h4>24K Pure Gold Laxmi Coin</h4>
+              <p>999.9 Purity Swiss Certified keepsake embossed with sacred blessings</p>
+            </div>
+            <span class="inspect-tag">✦ 24K Gold</span>
+          </div>
+
+          <div class="hamper-item-card" data-item="diya" onclick="alert('🪔 Hallmarked 92.5 Sterling Silver Diya. Hand-chased by master Jaipur artisans with heirloom floral filigree.');">
+            <div class="hamper-icon">🪔</div>
+            <div class="hamper-info">
+              <h4>Sterling Silver Diya</h4>
+              <p>Hand-chased 92.5 pure silver heirloom oil lamp from Jaipur artisans</p>
+            </div>
+            <span class="inspect-tag">✦ 925 Silver</span>
+          </div>
+
+          <div class="hamper-item-card" data-item="saffron" onclick="alert('🌺 Grade-A1 Royal Kashmiri Mongra Saffron stamen presented in a velvet-lined brass jar.');">
+            <div class="hamper-icon">🌺</div>
+            <div class="hamper-info">
+              <h4>Kashmiri Mongra Saffron</h4>
+              <p>Grade-A1 certified golden saffron stamen in a hand-engraved brass jar</p>
+            </div>
+            <span class="inspect-tag">✦ Grade A1</span>
+          </div>
+
+          <div class="hamper-item-card" data-item="truffles" onclick="alert('🍫 Artisanal Belgian Pistachio & Cardamom Truffles dusted with edible 24K gold leaf.');">
+            <div class="hamper-icon">🍫</div>
+            <div class="hamper-info">
+              <h4>Belgian Pistachio Truffles</h4>
+              <p>Artisanal roasted pistachio praline enrobed in single-origin dark chocolate</p>
+            </div>
+            <span class="inspect-tag">✦ Artisanal</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Corporate Gala Itinerary & Table Booking -->
+      <div class="corporate-gala-card">
+        <div class="gala-details-col">
+          <h4>Event Schedule & Venue</h4>
+          <ul class="gala-bullets">
+            <li><strong>Date:</strong> Kartik Amavasya, Friday Evening</li>
+            <li><strong>Time:</strong> 6:30 PM Welcome Reception • 7:30 PM Keynote & Lamp Lighting • 8:15 PM Seven-Course Dinner</li>
+            <li><strong>Venue:</strong> The Grand Royal Ballroom, Taj Palace, New Delhi</li>
+            <li><strong>Dress Code:</strong> Black-Tie / Imperial Bandhgala</li>
+          </ul>
+        </div>
+        <div class="gala-cta-col">
+          <button id="reserve-corporate-table-btn" class="luxury-gold-cta large-cta">
+            <span class="cta-shine"></span>
+            <span class="cta-icon">💼</span>
+            <span class="cta-text">Reserve Executive VIP Table</span>
+            <span class="cta-arrow">→</span>
+          </button>
+          <span class="valet-note">✓ Complimentary Chauffeured Valet Service Included</span>
+        </div>
+      </div>
+
+      <!-- Confirmed Corporate Table Pass -->
+      <div id="corporate-confirmed-pass" class="royal-pass-container hidden" style="max-width: 680px; margin: 30px auto 0;">
+        <div class="pass-ribbon" style="background: linear-gradient(135deg, #d4af37, #b45309); color: #1a0802;">CONFIRMED EXECUTIVE TABLE</div>
+        <div class="pass-inner">
+          <div class="pass-header">
+            <span class="pass-crest">💼</span>
+            <div class="pass-title-group">
+              <h3>VERTEX GLOBAL DEEPAWALI GALA 2026</h3>
+              <span class="pass-serial">PASS #EXEC-TABLE-08</span>
+            </div>
+          </div>
+
+          <div class="pass-details-grid">
+            <div class="pass-field">
+              <span class="field-label">DISTINGUISHED GUEST</span>
+              <span class="field-val">Executive Board Partner</span>
+            </div>
+            <div class="pass-field">
+              <span class="field-label">TIME</span>
+              <span class="field-val">6:30 PM Reception</span>
+            </div>
+            <div class="pass-field">
+              <span class="field-label">VENUE</span>
+              <span class="field-val">The Grand Ballroom, Taj Palace</span>
+            </div>
+            <div class="pass-field">
+              <span class="field-label">VALET ACCESS</span>
+              <span class="field-val">Chauffeured VIP Gate 2</span>
+            </div>
+          </div>
+
+          <div class="pass-cta-row">
+            <button class="pass-action-btn" onclick="alert('📅 Added to Calendar: Vertex Global Deepawali Gala • 6:30 PM at The Grand Ballroom, Taj Palace!');">
+              <span>📅</span> Add to Outlook / Google Calendar
+            </button>
+            <button class="pass-action-btn" onclick="alert('📍 Directions to The Grand Ballroom, Taj Palace, Sardar Patel Marg, New Delhi.');">
+              <span>📍</span> Venue Directions & Map
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="festive-footer">
+      <div class="footer-lanterns">🏮 🪔 🏮</div>
+      <p>Haute Digital Invitations • Crafted with love & light for Deepawali 2026</p>
+      <p class="copyright">Shubh Deepawali • May Darkness Turn Into Light</p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1155,15 +1155,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==================== 10. 3 DIGITAL INVITES SWITCHER & MANAGERS ====================
   class InviteSwitcher {
     constructor() {
-      this.currentInvite = 1;
       this.menuTrigger = document.getElementById('invite-menu-trigger');
       this.menuPanel = document.getElementById('invite-dropdown-panel');
-      this.items = document.querySelectorAll('.dropdown-invite-item');
-      this.views = {
-        1: document.getElementById('invite-view-1'),
-        2: document.getElementById('invite-view-2'),
-        3: document.getElementById('invite-view-3')
-      };
       this.bindEvents();
     }
 
@@ -1184,45 +1177,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       }
-
-      this.items.forEach(item => {
-        item.addEventListener('click', () => {
-          const inviteId = parseInt(item.dataset.invite, 10);
-          this.switchInvite(inviteId);
-          if (this.menuPanel) {
-            this.menuPanel.classList.add('hidden');
-            if (this.menuTrigger) this.menuTrigger.setAttribute('aria-expanded', 'false');
-          }
-        });
-      });
-    }
-
-    switchInvite(inviteId) {
-      this.currentInvite = inviteId;
-      this.items.forEach(item => {
-        const isMatch = parseInt(item.dataset.invite, 10) === inviteId;
-        item.classList.toggle('active', isMatch);
-      });
-
-      Object.entries(this.views).forEach(([id, view]) => {
-        if (!view) return;
-        if (parseInt(id, 10) === inviteId) {
-          view.classList.remove('hidden');
-          view.classList.add('active');
-        } else {
-          view.classList.add('hidden');
-          view.classList.remove('active');
-        }
-      });
-
-      // If intro screen is still visible, dissolve it so user can see the invite immediately
-      if (document.body.classList.contains('is-intro')) {
-        document.getElementById('intro-screen').classList.add('dissolve');
-        document.getElementById('main-content').classList.remove('hidden');
-        document.body.classList.remove('is-intro');
-      }
-
-      sounds.playTempleBell();
     }
   }
 
@@ -1263,8 +1217,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (rooftopRsvp) {
     rooftopRsvp.addEventListener('click', () => {
       sounds.playTempleBell();
+      sounds.playDiyaChime();
       fireworks.launchRocket();
-      alert("🍸 VIP Terrace Access Pass Confirmed! We look forward to clinking saffron spritzers at Kabir & Ananya's Rooftop Soirée!");
+      const pass = document.getElementById('rooftop-confirmed-pass');
+      if (pass) {
+        pass.classList.remove('hidden');
+        pass.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        alert("🍸 VIP Terrace Access Pass Confirmed! We look forward to clinking saffron spritzers at Kabir & Ananya's Rooftop Soirée!");
+      }
     });
   }
 
@@ -1273,7 +1234,14 @@ document.addEventListener('DOMContentLoaded', () => {
     corpTableBtn.addEventListener('click', () => {
       sounds.playTempleBell();
       sounds.playDiyaChime();
-      alert("💼 Executive VIP Table Reserved for Vertex Global Annual Deepawali Gala at The Grand Ballroom, Taj Palace.");
+      fireworks.launchRocket();
+      const pass = document.getElementById('corporate-confirmed-pass');
+      if (pass) {
+        pass.classList.remove('hidden');
+        pass.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        alert("💼 Executive VIP Table Reserved for Vertex Global Annual Deepawali Gala at The Grand Ballroom, Taj Palace.");
+      }
     });
   }
 

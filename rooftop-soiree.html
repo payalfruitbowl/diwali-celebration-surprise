@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- Primary Meta Tags -->
+  <title>Kabir & Ananya's Diwali Rooftop Bash 2026 🍸🎆 | Midnight Cocktails & Sky Show</title>
+  <meta name="title" content="Kabir & Ananya's Diwali Rooftop Bash 2026 🍸🎆 | Midnight Cocktails & Sky Show">
+  <meta name="description" content="You are on the VIP guest list! Join us on the 24th Floor Sky Lounge for artisanal saffron cocktails, live sitar-saxophone fusion, and a midnight pyrotechnic sky show. Tap to view your VIP Terrace Pass.">
+  <meta name="theme-color" content="#180308">
+  
+  <!-- Open Graph / WhatsApp Preview Banner -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/rooftop-soiree.html">
+  <meta property="og:title" content="Kabir & Ananya's Diwali Rooftop Bash 2026 🍸🎆">
+  <meta property="og:description" content="VIP Terrace Invitation: Artisanal saffron cocktails, live fusion beats, and midnight rooftop fireworks. Tap to enter the soirée!">
+  <meta property="og:image" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/og-rooftop-soiree.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Diwali Rooftop Cocktails and Fireworks Soirée Invitation Banner">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/rooftop-soiree.html">
+  <meta name="twitter:title" content="Kabir & Ananya's Diwali Rooftop Bash 2026 🍸🎆">
+  <meta name="twitter:description" content="VIP Terrace Invitation: Artisanal saffron cocktails, live fusion beats, and midnight rooftop fireworks. Tap to enter the soirée!">
+  <meta name="twitter:image" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/og-rooftop-soiree.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍸</text></svg>">
+</head>
+<body class="is-intro">
+
+  <!-- Background Fireworks Canvas -->
+  <canvas id="fireworks-canvas"></canvas>
+  <canvas id="sparkler-canvas"></canvas>
+  <div id="petals-container" aria-hidden="true"></div>
+
+  <!-- Haute Burgundy Navigation Bar -->
+  <header class="top-nav burgundy-header">
+    <div class="brand-badge">
+      <span class="royal-crest">🍸</span>
+      <div class="brand-text-col">
+        <span class="brand-title">MIDNIGHT SOIRÉE</span>
+        <span class="brand-sub">Rooftop VIP Invitation</span>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <!-- Discreet Hidden Dropdown for 3 Invites -->
+      <div class="discreet-invite-menu" id="discreet-invite-dropdown">
+        <button id="invite-menu-trigger" class="discreet-menu-btn" aria-haspopup="true" aria-expanded="false" title="Switch Digital Invite">
+          <span class="menu-icon">⚜️</span>
+          <span class="menu-label">Invites</span>
+          <span class="menu-arrow">▾</span>
+        </button>
+        <div class="discreet-dropdown-panel hidden" id="invite-dropdown-panel" role="menu">
+          <div class="dropdown-header">Switch Digital Invite:</div>
+          <a href="index.html" class="dropdown-invite-item" role="menuitem">
+            <span class="item-icon">👑</span>
+            <div class="item-info">
+              <span class="item-title">Royal Family Gala</span>
+              <span class="item-sub">Palace Lakshmi Puja & Feast</span>
+            </div>
+          </a>
+          <a href="rooftop-soiree.html" class="dropdown-invite-item active" role="menuitem">
+            <span class="item-icon">🍸</span>
+            <div class="item-info">
+              <span class="item-title">Rooftop Soirée</span>
+              <span class="item-sub">Midnight Patakha & Cocktails</span>
+            </div>
+          </a>
+          <a href="corporate-gala.html" class="dropdown-invite-item" role="menuitem">
+            <span class="item-icon">💼</span>
+            <div class="item-info">
+              <span class="item-title">Corporate Executive</span>
+              <span class="item-sub">Prestige Gala & Hamper Box</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <button id="sound-btn" class="nav-btn audio-pill" title="Toggle Sound">
+        <span class="icon" id="sound-icon">🔊</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== 1. STUNNING INTRO / THE ROOFTOP REVEAL HOOK ==================== -->
+  <section id="intro-screen" class="intro-screen">
+    <div class="intro-overlay"></div>
+    <div class="intro-card luxury-card">
+      <div class="meta-tag-badge">
+        <span class="pulse-dot"></span> VIP Guest Pass
+      </div>
+      
+      <!-- Invitation Banner Thumbnail -->
+      <div class="family-thumbnail-container">
+        <img src="og-rooftop-soiree.jpg" alt="Diwali Rooftop Soirée" onerror="this.onerror=null; this.src='timeline-fireworks.jpg';">
+        <div class="photo-shimmer"></div>
+        <div class="family-tag">✨ Kabir & Ananya's Rooftop Soirée ✨</div>
+      </div>
+
+      <div class="intro-text-block">
+        <h2 class="sub-intro">A Night of Golden Sparkles</h2>
+        <h1 class="main-intro">The skyline awaits you...</h1>
+        <p class="intro-instruction">Touch the Golden Sparkler below to unlock your VIP Terrace Pass & light up the sky!</p>
+      </div>
+
+      <!-- Interactive Sparkler / Flute Igniter -->
+      <div class="diya-igniter-wrapper">
+        <button id="ignite-diya-btn" class="diya-igniter" aria-label="Touch to enter Rooftop Soirée">
+          <div class="flame-glow"></div>
+          <div class="flame-flicker"></div>
+          <div class="earthen-lamp">
+            <span style="font-size: 3rem; display: block; filter: drop-shadow(0 4px 15px #f59e0b);">🍸✨</span>
+          </div>
+          <span class="click-indicator">👆 Tap to Enter the Soirée</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 2. MAIN ROOFTOP SOIRÉE EXPERIENCE ==================== -->
+  <main id="main-content" class="main-content hidden">
+
+    <section class="rooftop-invite-section">
+      <div class="rooftop-badge-banner">
+        <span class="neon-pulse-dot"></span> VIP ROOFTOP INVITATION • ADULTS & COCKTAILS SOIRÉE
+      </div>
+
+      <div class="rooftop-host-badge">
+        KABIR & ANANYA CORDIALLY INVITE YOU TO
+      </div>
+
+      <h1 class="rooftop-hero-title">
+        <span class="burgundy-shimmer-text">MIDNIGHT ROOFTOP</span>
+        <span class="gold-gradient-text">PATAKHA & COCKTAILS</span>
+      </h1>
+
+      <!-- Event Itinerary Card -->
+      <div class="soiree-itinerary-card">
+        <div class="itinerary-item">
+          <span class="itinerary-time">08:30 PM</span>
+          <div class="itinerary-info">
+            <strong>Saffron Spritzers & Mezze</strong>
+            <span>Artisanal cocktails & acoustic sitar-saxophone fusion</span>
+          </div>
+        </div>
+        <div class="itinerary-item">
+          <span class="itinerary-time">10:30 PM</span>
+          <div class="itinerary-info">
+            <strong>Royal Terrace Dining</strong>
+            <span>Contemporary Indian gourmet barbecue under the stars</span>
+          </div>
+        </div>
+        <div class="itinerary-item highlight">
+          <span class="itinerary-time">12:00 AM</span>
+          <div class="itinerary-info">
+            <strong>Midnight 360° Sky Show & Sparklers</strong>
+            <span>Artisanal phuljhadis & synchronised sky rocket barrage</span>
+          </div>
+        </div>
+        <div class="soiree-venue-badge">
+          📍 Sky Lounge, 24th Floor Terrace • The Oberoi • Dress Code: Indo-Western Velvet & Gold
+        </div>
+      </div>
+
+      <!-- Live Pyrotechnic Launchpad Console -->
+      <div class="launchpad-console luxury-burgundy-console">
+        <div class="console-screen">
+          <div class="radar-scan"></div>
+          <div class="console-metrics">
+            <div class="metric-box">
+              <span class="metric-label">TERRACE PYRO</span>
+              <span class="metric-val" id="barrage-status">ARMED 🚀</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">VOLTAGE</span>
+              <span class="metric-val">100% ⚡</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">BURSTS FIRED</span>
+              <span class="metric-val" id="neon-burst-count">0 💥</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="launchpad-controls-grid">
+          <button id="btn-rapid-barrage" class="launch-card barrage-card">
+            <span class="launch-icon">🚀🚀🚀</span>
+            <span class="launch-title">10x Midnight Sky Barrage</span>
+            <span class="launch-desc">Tap to ignite synchronized high-altitude shells</span>
+          </button>
+
+          <button id="btn-twin-anar" class="launch-card anar-card">
+            <span class="launch-icon">🌋🌋</span>
+            <span class="launch-title">Twin Terrace Mega Anars</span>
+            <span class="launch-desc">15ft golden volcanic sparkle fountain</span>
+          </button>
+
+          <button id="btn-hyper-chakri" class="launch-card chakri-card">
+            <span class="launch-icon">🌀⚡</span>
+            <span class="launch-title">Hyper Chakri Vortex</span>
+            <span class="launch-desc">High-speed color-shifting ground spiral</span>
+          </button>
+
+          <button id="btn-light-paint-auto" class="launch-card sparkler-card">
+            <span class="launch-icon">✨✍️</span>
+            <span class="launch-title">Phuljhadi Light-Writing</span>
+            <span class="launch-desc">Draws "KABIR & ANANYA" in burning fire</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sparkler Neon Light Canvas Demonstration -->
+      <div class="neon-light-board">
+        <canvas id="light-writing-canvas" width="800" height="260"></canvas>
+        <div class="light-board-hint">💡 Touch & drag on canvas or tap Phuljhadi Light-Writing to paint fire trails</div>
+      </div>
+
+      <!-- VIP RSVP Action -->
+      <div class="soiree-rsvp-wrapper">
+        <button id="rsvp-rooftop-btn" class="luxury-gold-cta large-cta">
+          <span class="cta-shine"></span>
+          <span class="cta-icon">🍸</span>
+          <span class="cta-text">Claim VIP Terrace Access Pass</span>
+          <span class="cta-arrow">→</span>
+        </button>
+      </div>
+
+      <!-- Confirmed VIP Pass -->
+      <div id="rooftop-confirmed-pass" class="royal-pass-container hidden" style="max-width: 680px; margin: 30px auto 0;">
+        <div class="pass-ribbon" style="background: linear-gradient(135deg, #f43f5e, #be123c); color: #fff;">VIP TERRACE ACCESS</div>
+        <div class="pass-inner">
+          <div class="pass-header">
+            <span class="pass-crest">🍸</span>
+            <div class="pass-title-group">
+              <h3>MIDNIGHT ROOFTOP SOIRÉE 2026</h3>
+              <span class="pass-serial">PASS #ROOF-2408-VIP</span>
+            </div>
+          </div>
+
+          <div class="pass-details-grid">
+            <div class="pass-field">
+              <span class="field-label">GUEST</span>
+              <span class="field-val">Honored VIP Guest</span>
+            </div>
+            <div class="pass-field">
+              <span class="field-label">TIME</span>
+              <span class="field-val">8:30 PM Till Late</span>
+            </div>
+            <div class="pass-field">
+              <span class="field-label">LOCATION</span>
+              <span class="field-val">Sky Lounge, 24th Floor, The Oberoi</span>
+            </div>
+            <div class="pass-field">
+              <span class="field-label">DRESS CODE</span>
+              <span class="field-val">Indo-Western Velvet & Gold</span>
+            </div>
+          </div>
+
+          <div class="pass-cta-row">
+            <button class="pass-action-btn" onclick="alert('📅 Added to Calendar: Kabir & Ananya\'s Diwali Rooftop Bash • 8:30 PM at Sky Lounge!');">
+              <span>📅</span> Add to Calendar
+            </button>
+            <button class="pass-action-btn" onclick="alert('📍 Navigating to Sky Lounge, 24th Floor Rooftop Terrace, The Oberoi.');">
+              <span>📍</span> Venue Map & Valet
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="festive-footer">
+      <div class="footer-lanterns">🏮 🪔 🏮</div>
+      <p>Haute Digital Invitations • Crafted with love & light for Deepawali 2026</p>
+      <p class="copyright">Shubh Deepawali • May Darkness Turn Into Light</p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
