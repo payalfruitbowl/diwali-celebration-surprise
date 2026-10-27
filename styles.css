@@ -6220,15 +6220,352 @@ body.reel-mode-active .main-content {
   line-height: 1.35;
 }
 
-.comic-tag-final {
-  display: block;
-  font-family: 'Bungee', cursive, sans-serif;
-  font-size: 0.78rem;
-  color: #fbbf24;
-  text-shadow: 2px 2px 0 #000;
-  text-align: center;
-  margin-top: 4px;
+/* ==================== 3D SPINNING LUXURY DIWALI SHOWCASE ==================== */
+.luxury-spin-body {
+  background: radial-gradient(circle at 50% 25%, #2a050f 0%, #140207 55%, #070003 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
+
+.luxury-viewport {
+  background: radial-gradient(circle at 50% 20%, #2f0612 0%, #150208 65%, #0a0104 100%) !important;
+  border: 1.5px solid rgba(212, 175, 55, 0.45) !important;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 60px rgba(212, 175, 55, 0.18) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.luxury-header {
+  top: 24px;
+}
+
+.gold-halo-badge {
+  background: rgba(18, 3, 7, 0.8) !important;
+  border: 1px solid rgba(212, 175, 55, 0.5) !important;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+}
+
+.gold-dot {
+  background: #fbbf24 !important;
+  box-shadow: 0 0 8px #fbbf24 !important;
+}
+
+.luxury-sound-btn {
+  background: rgba(18, 3, 7, 0.8) !important;
+  border: 1px solid rgba(212, 175, 55, 0.5) !important;
+  color: #fef08a !important;
+}
+
+.luxury-main-wrapper {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 44px 14px 12px;
+}
+
+/* Header Typography */
+.luxury-wish-header {
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.haute-tag {
+  font-family: 'Cinzel Decorative', Georgia, serif;
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  color: #d4af37;
+  margin-bottom: 4px;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.luxury-shubh-title {
+  font-family: 'Cinzel Decorative', 'Rozha One', Georgia, serif;
+  font-size: clamp(1.6rem, 5vw, 2.1rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #fff 0%, #fef08a 35%, #d4af37 70%, #b45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 10px rgba(212, 175, 55, 0.4));
+  margin-bottom: 4px;
+}
+
+.luxury-hero-wish {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #f8fafc;
+  line-height: 1.35;
+  padding: 0 8px;
+}
+
+.gold-gradient-text {
+  font-weight: 800;
+  background: linear-gradient(135deg, #fde047 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  text-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+}
+
+/* ==================== 3D SPINNING TURNTABLE ==================== */
+.spin-stage-container {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.spin-stage-container:active {
+  cursor: grabbing;
+}
+
+.carousel-3d-scene {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotateX(-7deg);
+}
+
+.carousel-3d-ring {
+  width: 200px;
+  height: 275px;
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.carousel-card {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 18px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 30px rgba(212, 175, 55, 0.22);
+  transition: filter 0.4s ease;
+}
+
+.card-face-0 { transform: rotateY(0deg) translateZ(175px); }
+.card-face-1 { transform: rotateY(90deg) translateZ(175px); }
+.card-face-2 { transform: rotateY(180deg) translateZ(175px); }
+.card-face-3 { transform: rotateY(270deg) translateZ(175px); }
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1.5px solid rgba(212, 175, 55, 0.65);
+  background: #000;
+}
+
+.card-image-wrap {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-glare {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 40%, transparent 70%);
+  pointer-events: none;
+}
+
+.card-gold-border {
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 14px;
+  pointer-events: none;
+}
+
+.card-info-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(10, 2, 5, 0.95) 0%, rgba(10, 2, 5, 0.7) 65%, transparent 100%);
+  padding: 16px 8px 8px;
+  text-align: center;
+}
+
+.edition-no {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #fef08a;
+  margin-bottom: 2px;
+}
+
+.edition-title {
+  display: block;
+  font-family: 'Cinzel Decorative', Georgia, serif;
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* Pedestal */
+.turntable-pedestal {
+  position: absolute;
+  bottom: 8px;
+  width: 250px;
+  height: 65px;
+  transform: rotateX(75deg);
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.pedestal-ring {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.ring-outer {
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.25);
+}
+
+@keyframes ringRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.ring-middle {
+  width: 76%;
+  height: 76%;
+  border: 1.5px dashed rgba(254, 240, 138, 0.6);
+  animation: ringRotate 25s linear infinite;
+}
+
+.ring-inner {
+  width: 50%;
+  height: 50%;
+  border: 1.5px solid rgba(245, 158, 11, 0.8);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.7);
+}
+
+.pedestal-glow-spot {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 70%);
+}
+
+/* Detail HUD */
+.luxury-detail-hud {
+  background: rgba(18, 4, 9, 0.88);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 14px;
+  padding: 10px 12px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+  margin: 4px 0 6px;
+  transition: all 0.3s ease;
+}
+
+.hud-edition-tag {
+  font-family: 'Cinzel Decorative', Georgia, serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #d4af37;
+  letter-spacing: 1px;
+}
+
+.hud-edition-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 1px 0 3px;
+}
+
+.hud-edition-desc {
+  font-size: 0.73rem;
+  color: #e2e8f0;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
+.hud-specs-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.hud-spec-pill {
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 9999px;
+  padding: 2px 8px;
+  font-size: 0.64rem;
+  color: #fef08a;
+  font-weight: 600;
+}
+
+.luxury-bottom-signoff {
+  text-align: center;
+  padding-bottom: 2px;
+}
+
+.luxury-sig-text {
+  font-size: 0.72rem;
+  color: #cbd5e1;
+  font-style: italic;
+  line-height: 1.3;
+}
+
+/* Luxury Controller */
+.luxury-controller .nav-control-btn {
+  background: rgba(22, 5, 11, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: #fef08a;
+}
+
+.luxury-controller .concept-pill-btn {
+  background: rgba(22, 5, 11, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #e2e8f0;
+}
+
+.luxury-controller .concept-pill-btn.active {
+  background: #d4af37;
+  color: #120206;
+  border-color: #fef08a;
+  font-weight: 800;
+}
+
 
 .comic-badge {
   display: inline-block;
