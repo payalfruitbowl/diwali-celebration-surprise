@@ -1618,282 +1618,236 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const neonManager = new NeonPatakhaManager();
 
-  // ==================== 13. COOL PYROTECHNIC & SKY WRITING SUITE (wish.html) ====================
+  // ==================== 13. INTERACTIVE DIWALI WISH & WHATSAPP ENGINE (wish.html) ====================
   class WishPageManager {
     constructor() {
-      this.fuseIntro = document.getElementById('fuse-intro-screen');
-      this.igniteFuseBtn = document.getElementById('ignite-fuse-btn');
-      this.coolMatrix = document.getElementById('cool-main-matrix');
-      this.skyNameInput = document.getElementById('sky-name-input');
-      this.launchSkyNameBtn = document.getElementById('launch-sky-name-btn');
-      this.quickTagBtns = document.querySelectorAll('.quick-tag-btn');
-      this.statusHudText = document.getElementById('hud-status-text');
-      
-      // Arsenal buttons
-      this.btnBarrage = document.getElementById('arsenal-sky-barrage');
-      this.btnAnar = document.getElementById('arsenal-mega-anar');
-      this.btnChakri = document.getElementById('arsenal-hyper-chakri');
-      this.btnLadi = document.getElementById('arsenal-ladi-chain');
-      this.btnSparkler = document.getElementById('arsenal-sparkler-ribbon');
-      this.btnPersonalize = document.getElementById('arsenal-personalize-btn');
-
-      // Personalize drawer
-      this.drawer = document.getElementById('personalize-drawer');
-      this.drawerOverlay = document.getElementById('drawer-overlay');
-      this.closeDrawerBtn = document.getElementById('close-drawer-btn');
-      this.drawerInput = document.getElementById('drawer-sender-input');
-      this.drawerGenerateBtn = document.getElementById('drawer-generate-btn');
-      this.drawerShareResult = document.getElementById('drawer-share-result');
-      this.drawerUrlBox = document.getElementById('drawer-url-copy-input');
-      this.drawerCopyBtn = document.getElementById('drawer-copy-btn');
-      this.drawerCopyToast = document.getElementById('drawer-copy-toast');
-
       this.senderName = '';
-      this.isSparklerActive = false;
+      this.fortunes = [
+        "🪙 Goddess Lakshmi is opening golden gates of unexpected wealth, prosperity, and financial freedom for you this year!",
+        "🐘 Lord Ganesha removes every hidden obstacle from your path—expect a monumental breakthrough in your endeavors!",
+        "🌟 A deeply cherished dream and heartfelt prayer you've held will joyously manifest into reality this season.",
+        "🌿 Radiant vitality, peaceful thoughts, and robust good health will protect and nourish your entire family.",
+        "🦚 Your home will overflow with sweet harmony, unconditional love, heartwarming laughter, and festive reunions.",
+        "👑 Auspicious triumph, golden career growth, and immense recognition will crown your dedicated efforts.",
+        "🪔 May the light of a thousand sacred diyas permanently dispel all doubt, bringing supreme inner serenity.",
+        "🕊️ Divine peace will settle in your heart, guiding you into a prosperous and abundantly blessed New Year!"
+      ];
+      this.fortuneIndex = 0;
       this.init();
     }
 
     init() {
       this.parseUrlParameters();
-      this.bindFuseIgnition();
-      this.bindSkyWriting();
-      this.bindArsenal();
-      this.bindDrawer();
+      this.bindFortuneOracle();
+      this.bindFiveDiyas();
+      this.bindSendEngine();
     }
 
     parseUrlParameters() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
-        const sender = urlParams.get('sender') || urlParams.get('name') || urlParams.get('from');
-        if (sender && sender.trim()) {
-          this.senderName = sender.trim().toUpperCase();
-          
-          const introChip = document.getElementById('intro-sender-chip');
-          if (introChip) introChip.textContent = `FROM ${this.senderName}: TAP TO DETONATE`;
-
-          const capsuleText = document.getElementById('capsule-wish-text');
-          if (capsuleText) capsuleText.textContent = `✨ ${this.senderName} WISHES YOU AN ELECTRIC DIWALI 💥`;
-
-          if (this.skyNameInput) this.skyNameInput.value = this.senderName;
-          if (this.drawerInput) this.drawerInput.value = this.senderName;
+        const name = urlParams.get('name') || urlParams.get('sender') || urlParams.get('from');
+        if (name && name.trim()) {
+          this.senderName = name.trim();
+          this.applySenderName(this.senderName);
+        } else {
+          this.updateGeneratedUrl('Your Name');
         }
       } catch (e) {
         // Fallback gracefully
       }
     }
 
-    bindFuseIgnition() {
-      if (!this.igniteFuseBtn) return;
-      this.igniteFuseBtn.addEventListener('click', () => {
-        sounds.init();
-        sounds.playRocketLaunch();
+    applySenderName(name) {
+      if (!name) return;
+      const clean = name.trim();
+
+      const badgeSender = document.getElementById('intro-badge-sender');
+      if (badgeSender) badgeSender.textContent = `🎁 SURPRISE FROM ${clean.toUpperCase()}`;
+
+      const senderHeadline = document.getElementById('intro-sender-headline');
+      if (senderHeadline) senderHeadline.textContent = `${clean} has sent you a Diwali Blessing`;
+
+      const mainHook = document.getElementById('intro-main-hook');
+      if (mainHook) mainHook.textContent = `A special spark ignited for you...`;
+
+      const senderTag = document.getElementById('intro-sender-tag');
+      if (senderTag) senderTag.textContent = `✨ Sent with love by: ${clean} ✨`;
+
+      const descText = document.getElementById('intro-desc-text');
+      if (descText) descText.textContent = `Touch the golden Diya below to ignite the flame, reveal ${clean}'s heartfelt message, and unlock your 2026 fortune!`;
+
+      const wishSubtitle = document.getElementById('main-wish-subtitle');
+      if (wishSubtitle) wishSubtitle.textContent = `From ${clean} & Family with Infinite Love, Light & Prosperity`;
+
+      const sigName = document.getElementById('letter-sender-name');
+      if (sigName) sigName.textContent = clean;
+
+      const inputField = document.getElementById('custom-sender-input');
+      if (inputField && !inputField.value) inputField.value = clean;
+
+      this.updateGeneratedUrl(clean);
+    }
+
+    updateGeneratedUrl(name) {
+      const cleanName = (name || '').trim();
+      const currentUrl = new URL(window.location.href);
+      if (cleanName && cleanName !== 'Your Name') {
+        currentUrl.searchParams.set('name', cleanName);
+      } else {
+        currentUrl.searchParams.delete('name');
+        currentUrl.searchParams.delete('sender');
+      }
+      
+      const fullUrl = currentUrl.toString();
+      const urlBox = document.getElementById('shareable-url-input');
+      if (urlBox) urlBox.value = fullUrl;
+
+      const boxContainer = document.getElementById('generated-url-box');
+      if (boxContainer) boxContainer.classList.remove('hidden');
+
+      return fullUrl;
+    }
+
+    bindFortuneOracle() {
+      const trigger = document.getElementById('fortune-coin-trigger');
+      const drawBtn = document.getElementById('draw-another-fortune-btn');
+      const resultBox = document.getElementById('fortune-result-box');
+      const textEl = document.getElementById('fortune-text');
+
+      const revealFortune = () => {
+        sounds.playDiyaChime();
         sounds.playTempleBell();
 
-        // Flash and dissolve
-        const flash = document.getElementById('flash-overlay');
-        if (flash) {
-          flash.classList.add('active');
-          setTimeout(() => flash.classList.remove('active'), 200);
+        this.fortuneIndex = (this.fortuneIndex + 1) % this.fortunes.length;
+        if (textEl) textEl.textContent = `"${this.fortunes[this.fortuneIndex]}"`;
+
+        if (resultBox) {
+          resultBox.classList.remove('hidden');
+          resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
-        if (this.fuseIntro) this.fuseIntro.classList.add('dissolve');
-        if (this.coolMatrix) this.coolMatrix.classList.remove('hidden');
-
-        // Auto explode initial greeting in the sky!
-        setTimeout(() => {
-          const initialText = this.senderName || 'HAPPY DIWALI';
-          fireworks.explodeText(initialText);
-          if (this.statusHudText) {
-            this.statusHudText.textContent = `💥 SKY DETONATION: ${initialText} 💥`;
-          }
-        }, 500);
-      });
-    }
-
-    bindSkyWriting() {
-      if (this.launchSkyNameBtn && this.skyNameInput) {
-        this.launchSkyNameBtn.addEventListener('click', () => {
-          const text = this.skyNameInput.value.trim() || 'HAPPY DIWALI';
-          fireworks.explodeText(text);
-          if (this.statusHudText) {
-            this.statusHudText.textContent = `💥 SKY DETONATING: "${text.toUpperCase()}" 💥`;
-          }
-        });
-
-        this.skyNameInput.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') {
-            this.launchSkyNameBtn.click();
-          }
-        });
-      }
-
-      this.quickTagBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const text = btn.dataset.name || btn.textContent.trim();
-          if (this.skyNameInput) this.skyNameInput.value = text;
-          fireworks.explodeText(text);
-          if (this.statusHudText) {
-            this.statusHudText.textContent = `💥 SKY DETONATING: "${text}" 💥`;
-          }
-        });
-      });
-    }
-
-    bindArsenal() {
-      // 1. Sky Barrage: 50 rapid multishot rockets
-      if (this.btnBarrage) {
-        this.btnBarrage.addEventListener('click', () => {
-          sounds.playRocketLaunch();
-          if (this.statusHudText) this.statusHudText.textContent = '🚀 50-SHOT SKY BARRAGE DETONATING!';
-          const colors = ['#f59e0b', '#fbbf24', '#ec4899', '#3b82f6', '#10b981', '#a855f7', '#ef4444'];
-          for (let i = 0; i < 40; i++) {
-            setTimeout(() => {
-              const x = window.innerWidth * (0.1 + Math.random() * 0.8);
-              const y = window.innerHeight * (0.12 + Math.random() * 0.35);
-              fireworks.launchRocket(x, y, colors[i % colors.length]);
-            }, i * 110);
-          }
-        });
-      }
-
-      // 2. Mega Anar: Massive volcanic golden fountain
-      if (this.btnAnar) {
-        this.btnAnar.addEventListener('click', () => {
-          sounds.playDiyaChime();
-          if (this.statusHudText) this.statusHudText.textContent = '🌋 MEGA VOLCANO ANAR ERUPTING!';
-          const centerX = window.innerWidth / 2;
-          const baseY = window.innerHeight - 30;
-          for (let i = 0; i < 18; i++) {
-            setTimeout(() => {
-              fireworks.sparkAnar(centerX, baseY);
-              fireworks.sparkAnar(centerX - 80, baseY);
-              fireworks.sparkAnar(centerX + 80, baseY);
-            }, i * 200);
-          }
-        });
-      }
-
-      // 3. Hyper Chakri: Twin blazing ground vortexes
-      if (this.btnChakri) {
-        this.btnChakri.addEventListener('click', () => {
-          sounds.playFireworkBurst();
-          if (this.statusHudText) this.statusHudText.textContent = '🌀 HYPER CHAKRI GROUND VORTEX ACTIVATED!';
-          fireworks.spinChakri(window.innerWidth * 0.3, window.innerHeight * 0.65);
-          fireworks.spinChakri(window.innerWidth * 0.7, window.innerHeight * 0.65);
-        });
-      }
-
-      // 4. 1000-Wala Ladi Chain: 40 sequential rapid popping crackles
-      if (this.btnLadi) {
-        this.btnLadi.addEventListener('click', () => {
-          if (this.statusHudText) this.statusHudText.textContent = '🧨 1000-WALA LADI CHAIN CRACKLING!';
-          const baseX = window.innerWidth * 0.5;
-          const baseY = window.innerHeight * 0.7;
-          for (let i = 0; i < 35; i++) {
-            setTimeout(() => {
-              const rx = baseX + (Math.random() - 0.5) * 160;
-              const ry = baseY + (Math.random() - 0.5) * 100;
-              sounds.playSparklerCrackle();
-              // Spawn mini spark pop on fireworks
-              for (let j = 0; j < 12; j++) {
-                const angle = Math.random() * Math.PI * 2;
-                fireworks.particles.push({
-                  x: rx,
-                  y: ry,
-                  vx: Math.cos(angle) * (2 + Math.random() * 4),
-                  vy: Math.sin(angle) * (2 + Math.random() * 4),
-                  color: j % 2 === 0 ? '#ef4444' : '#fbbf24',
-                  alpha: 1,
-                  decay: 0.04,
-                  size: 2,
-                  gravity: 0.1
-                });
-              }
-              if (i === 34) {
-                sounds.playFireworkBurst();
-                fireworks.createBurst(baseX, baseY - 50, '#ef4444');
-              }
-            }, i * 65);
-          }
-        });
-      }
-
-      // 5. Laser Sparkler Ribbon
-      if (this.btnSparkler) {
-        this.btnSparkler.addEventListener('click', () => {
-          this.isSparklerActive = sparkler.toggle();
-          this.btnSparkler.classList.toggle('active', this.isSparklerActive);
-          sounds.playSparklerCrackle();
-          if (this.statusHudText) {
-            this.statusHudText.textContent = this.isSparklerActive 
-              ? '✨ LASER SPARKLER ACTIVE: DRAG FINGER ACROSS SCREEN TO DRAW IN FIRE!' 
-              : '✨ LASER SPARKLER PAUSED';
-          }
-        });
-      }
-
-      // 6. Personalize Drawer
-      if (this.btnPersonalize) {
-        this.btnPersonalize.addEventListener('click', () => {
-          if (this.drawer) this.drawer.classList.remove('hidden');
-        });
-      }
-    }
-
-    bindDrawer() {
-      const close = () => {
-        if (this.drawer) this.drawer.classList.add('hidden');
+        // Mini confetti burst
+        fireworks.createBurst(window.innerWidth / 2, window.innerHeight * 0.45, '#fbbf24');
       };
 
-      if (this.closeDrawerBtn) this.closeDrawerBtn.addEventListener('click', close);
-      if (this.drawerOverlay) this.drawerOverlay.addEventListener('click', close);
+      if (trigger) trigger.addEventListener('click', revealFortune);
+      if (drawBtn) drawBtn.addEventListener('click', revealFortune);
+    }
 
-      if (this.drawerGenerateBtn && this.drawerInput) {
-        this.drawerGenerateBtn.addEventListener('click', () => {
-          const val = this.drawerInput.value.trim();
-          if (!val) {
-            alert('Please enter your name!');
-            return;
+    bindFiveDiyas() {
+      const diyas = document.querySelectorAll('.wish-diya-btn');
+      const pill = document.getElementById('diya-status-pill');
+
+      const diyaBlessings = {
+        '1': '✨ Hope Ignited: May optimism and bright new horizons guide your steps!',
+        '2': '🌿 Health Ignited: May robust wellness, vitality and peace bless your home!',
+        '3': '🪙 Wealth Ignited: May Goddess Lakshmi shower golden abundance and prosperity!',
+        '4': '🕊️ Peace Ignited: May serene tranquility, understanding and love surround you!',
+        '5': '🪔 Joy Ignited: May celebration, laughter and sweetness never cease!'
+      };
+
+      diyas.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('lit');
+          sounds.playDiyaChime();
+
+          const id = btn.dataset.diya;
+          const isLit = btn.classList.contains('lit');
+
+          if (isLit && diyaBlessings[id] && pill) {
+            pill.textContent = diyaBlessings[id];
           }
 
-          const currentUrl = new URL(window.location.href);
-          currentUrl.searchParams.set('sender', val);
-          const newUrl = currentUrl.toString();
+          const litCount = document.querySelectorAll('.wish-diya-btn.lit').length;
+          if (litCount === diyas.length) {
+            if (pill) {
+              pill.textContent = '⚜️ All 5 Sacred Diyas Illuminated! May the Divine Light protect your family 🪔';
+            }
+            sounds.playTempleBell();
+            fireworks.sparkAnar(window.innerWidth / 2, window.innerHeight - 30);
+            for (let i = 0; i < 6; i++) {
+              setTimeout(() => {
+                fireworks.launchRocket(window.innerWidth * (0.15 + i * 0.14), window.innerHeight * 0.2);
+              }, i * 220);
+            }
+          }
+        });
+      });
+    }
 
+    bindSendEngine() {
+      const input = document.getElementById('custom-sender-input');
+      const whatsappBtn = document.getElementById('whatsapp-share-btn');
+      const copyBtn = document.getElementById('copy-magic-link-btn');
+      const previewBtn = document.getElementById('preview-my-wish-btn');
+      const toast = document.getElementById('wish-toast');
+
+      if (input) {
+        input.addEventListener('input', () => {
+          this.updateGeneratedUrl(input.value);
+        });
+      }
+
+      // WhatsApp Share
+      if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', () => {
+          const name = (input && input.value.trim()) || 'A Friend';
+          const shareUrl = this.updateGeneratedUrl(name);
+          const messageText = `🪔✨ *Happy Deepawali!* I sent you a magical interactive Diwali surprise. Touch the golden diya to open your surprise & unlock your fortune:\n\n${shareUrl}`;
+
+          const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(messageText)}`;
+          window.open(whatsappUrl, '_blank');
+          sounds.playTempleBell();
+        });
+      }
+
+      // Copy Magic Link
+      if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+          const name = (input && input.value.trim()) || 'Your Friend';
+          const shareUrl = this.updateGeneratedUrl(name);
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(shareUrl).then(() => this.showToast());
+          } else {
+            const temp = document.createElement('textarea');
+            temp.value = shareUrl;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            temp.remove();
+            this.showToast();
+          }
+        });
+      }
+
+      // Live Preview Button
+      if (previewBtn) {
+        previewBtn.addEventListener('click', () => {
+          const name = (input && input.value.trim()) || 'Payal & Family';
+          this.applySenderName(name);
+
+          // Update browser history
+          const newUrl = this.updateGeneratedUrl(name);
           window.history.replaceState({ path: newUrl }, '', newUrl);
-
-          if (this.drawerUrlBox) this.drawerUrlBox.value = newUrl;
-          if (this.drawerShareResult) this.drawerShareResult.classList.remove('hidden');
-
-          const capsuleText = document.getElementById('capsule-wish-text');
-          if (capsuleText) capsuleText.textContent = `✨ ${val.toUpperCase()} WISHES YOU AN ELECTRIC DIWALI 💥`;
-
-          if (this.skyNameInput) this.skyNameInput.value = val.toUpperCase();
 
           sounds.playTempleBell();
           sounds.playDiyaChime();
-        });
-      }
+          fireworks.createBurst(window.innerWidth / 2, window.innerHeight * 0.3, '#f59e0b');
 
-      if (this.drawerCopyBtn && this.drawerUrlBox) {
-        this.drawerCopyBtn.addEventListener('click', () => {
-          const url = this.drawerUrlBox.value || window.location.href;
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(url).then(() => this.showDrawerToast());
-          } else {
-            this.drawerUrlBox.select();
-            document.execCommand('copy');
-            this.showDrawerToast();
-          }
+          // Smooth scroll to top of card
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       }
     }
 
-    showDrawerToast() {
+    showToast() {
       sounds.playDiyaChime();
-      if (this.drawerCopyToast) {
-        this.drawerCopyToast.classList.remove('hidden');
-        setTimeout(() => this.drawerCopyToast.classList.add('hidden'), 3500);
+      const toast = document.getElementById('wish-toast');
+      if (toast) {
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 3500);
       }
     }
   }
