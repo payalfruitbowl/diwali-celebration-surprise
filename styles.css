@@ -5990,8 +5990,244 @@ body.reel-mode-active .main-content {
 }
 
 /* 3. Comic Theme */
-.comic-theme {
-  text-align: left;
+/* ==================== SOAN PAPDI CHRONICLE (COMIC REEL THEME) ==================== */
+.soan-papdi-theme {
+  background: #0f070b;
+}
+
+.comic-halftone {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.45) 1.5px, transparent 1.5px);
+  background-size: 7px 7px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.comic-speedlines {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.88) 100%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.comic-live-badge {
+  background: #111827 !important;
+  border: 2px solid #fbbf24 !important;
+  box-shadow: 2px 2px 0 #000;
+}
+
+.comic-sticker {
+  display: inline-block;
+  background: #fbbf24;
+  color: #000;
+  font-family: 'Bungee', cursive, 'Space Grotesk', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.5px;
+  padding: 5px 12px;
+  border: 2px solid #000;
+  box-shadow: 3px 3px 0 #e11d48;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  transform: rotate(-1.5deg);
+}
+
+.comic-sticker.flash {
+  background: #e11d48;
+  color: #fff;
+  box-shadow: 3px 3px 0 #fbbf24;
+}
+
+@keyframes comicPopBounce {
+  0% { transform: rotate(-2deg) scale(1); }
+  50% { transform: rotate(1deg) scale(1.04); }
+  100% { transform: rotate(-1deg) scale(0.98); }
+}
+
+.comic-bounce {
+  animation: comicPopBounce 3s ease-in-out infinite alternate;
+}
+
+.comic-headline {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: clamp(1.4rem, 4.8vw, 1.95rem);
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 12px;
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 4px 15px rgba(225, 29, 72, 0.6);
+  letter-spacing: -0.5px;
+}
+
+.comic-headline.hero-punch {
+  color: #fef08a;
+  text-shadow: 3px 3px 0 #991b1b, -2px -2px 0 #000;
+}
+
+.comic-subcard {
+  background: rgba(15, 10, 15, 0.88);
+  border: 2.5px solid #fbbf24;
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  box-shadow: 4px 4px 0 #000, 0 10px 30px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+.comic-lead {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.comic-caption {
+  font-size: 0.76rem;
+  color: #cbd5e1;
+  line-height: 1.35;
+}
+
+.comic-fact-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #000;
+  border: 1.5px solid #fbbf24;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.74rem;
+  color: #fbbf24;
+  margin: 6px 0 8px 0;
+}
+
+.comic-fact-pill.danger {
+  border-color: #ef4444;
+  color: #f87171;
+}
+
+.comic-fact-pill strong {
+  color: #fff;
+}
+
+.comic-relay-tracker {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.relay-item {
+  font-size: 0.77rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  padding: 3px 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  border-left: 3px solid #38bdf8;
+}
+
+.relay-item.highlight {
+  border-left-color: #fbbf24;
+  color: #fef08a;
+  background: rgba(251, 191, 36, 0.12);
+}
+
+.comic-specs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+
+.spec-cell {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  border-radius: 6px;
+  padding: 5px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spec-label {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.spec-val {
+  font-size: 0.75rem;
+  color: #fef08a;
+  font-weight: 800;
+}
+
+.comic-punch {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 800;
+  font-style: italic;
+  color: #fde047;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+.comic-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #fbbf24;
+}
+
+.finale-card {
+  border-color: #ef4444;
+  box-shadow: 4px 4px 0 #fbbf24, 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.finale-wish {
+  font-size: 0.86rem;
+  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.finale-wish strong {
+  font-size: 1.05rem;
+  color: #fef08a;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.punchline-banner {
+  background: #e11d48;
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 0.92rem;
+  text-align: center;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+}
+
+.pass-warning {
+  font-size: 0.73rem;
+  color: #fca5a5;
+  line-height: 1.35;
+}
+
+.comic-tag-final {
+  display: block;
+  font-family: 'Bungee', cursive, sans-serif;
+  font-size: 0.78rem;
+  color: #fbbf24;
+  text-shadow: 2px 2px 0 #000;
+  text-align: center;
+  margin-top: 4px;
 }
 
 .comic-badge {
