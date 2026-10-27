@@ -1618,294 +1618,191 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const neonManager = new NeonPatakhaManager();
 
-  // ==================== 13. GEN-Z DIWALI VIBE CHECK & WISH MACHINE (wish.html) ====================
-  class WishPageManager {
+  // ==================== 14. CINEMA REEL ENGINE (4 CONCEPTS VIDEO SHOWCASE) ====================
+  class CinemaReelEngine {
     constructor() {
-      this.senderName = '';
-      this.auraPoints = 10000;
-      this.soanPapdiYeets = 0;
-      this.fortunes = [
-        "💸 Laxmi Ji saw your Myntra cart and decided to sponsor your entire aesthetic lifestyle this year.",
-        "💅 Your Diwali photo dump is getting 1,000+ likes and your ex will cry in the club no cap.",
-        "🧠 Your 2 AM overthinking is permanently cancelled. 8-figure bank alerts and peaceful sleep only.",
-        "🧘 You will successfully dodge every single nosy auntie asking about your salary and marriage.",
-        "👑 Massive CEO energy incoming. Your side hustle is secretly turning into a multi-million dollar startup.",
-        "🍕 Zero guilt on sweets. Your metabolism this festive season has been supercharged to 300%."
+      this.currentIndex = 0;
+      this.totalConcepts = 4;
+      this.durationPerConcept = 10000; // 10s per concept auto-advance
+      this.elapsedTime = 0;
+      this.isPlaying = true;
+      this.timerInterval = null;
+      this.lastTick = Date.now();
+
+      this.scenes = [
+        document.getElementById('scene-0'),
+        document.getElementById('scene-1'),
+        document.getElementById('scene-2'),
+        document.getElementById('scene-3')
       ];
-      this.fortuneIndex = 0;
+
+      this.fills = [
+        document.getElementById('fill-0'),
+        document.getElementById('fill-1'),
+        document.getElementById('fill-2'),
+        document.getElementById('fill-3')
+      ];
+
+      this.segments = document.querySelectorAll('.progress-segment');
+      this.pills = document.querySelectorAll('.concept-pill-btn');
+      this.badgeTitle = document.getElementById('reel-badge-title');
+      this.hudNowPlaying = document.getElementById('hud-now-playing');
+      this.playPauseBtn = document.getElementById('play-pause-btn');
+      this.prevBtn = document.getElementById('prev-btn');
+      this.nextBtn = document.getElementById('next-btn');
+      this.toggleAspectBtn = document.getElementById('toggle-aspect-btn');
+      this.reelViewport = document.getElementById('reel-viewport');
+
+      this.conceptTitles = [
+        "CONCEPT 1 • 90s RETRO",
+        "CONCEPT 2 • 8-BIT PIXEL",
+        "CONCEPT 3 • SOAN PAPDI",
+        "CONCEPT 4 • KINETIC GOLD"
+      ];
+
+      this.hudDescriptions = [
+        "Playing: Concept 1 / 4 • 90s Nostalgia",
+        "Playing: Concept 2 / 4 • 8-Bit Pixel Mohalla",
+        "Playing: Concept 3 / 4 • The Soan Papdi Chronicle",
+        "Playing: Concept 4 / 4 • Kinetic Molten Gold"
+      ];
+
       this.init();
     }
 
     init() {
-      this.parseUrlParameters();
-      this.bindStickerSlapper();
-      this.bindSoanPapdiYeeter();
-      this.bindBadVibesPatakha();
-      this.bindFortuneCookie();
-      this.bindSendEngine();
+      this.bindControls();
+      this.loadConcept(0);
+      this.startLoop();
     }
 
-    parseUrlParameters() {
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const name = urlParams.get('name') || urlParams.get('sender') || urlParams.get('from');
-        if (name && name.trim()) {
-          this.senderName = name.trim();
-          this.applySenderName(this.senderName);
-        } else {
-          this.updateGeneratedUrl('Your Name');
+    bindControls() {
+      if (this.playPauseBtn) {
+        this.playPauseBtn.addEventListener('click', () => this.togglePlayPause());
+      }
+      if (this.prevBtn) {
+        this.prevBtn.addEventListener('click', () => this.prevConcept());
+      }
+      if (this.nextBtn) {
+        this.nextBtn.addEventListener('click', () => this.nextConcept());
+      }
+
+      this.pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          const idx = parseInt(pill.dataset.index, 10);
+          this.loadConcept(idx);
+        });
+      });
+
+      this.segments.forEach((seg, idx) => {
+        seg.addEventListener('click', () => this.loadConcept(idx));
+      });
+
+      if (this.toggleAspectBtn && this.reelViewport) {
+        this.toggleAspectBtn.addEventListener('click', () => {
+          const isFs = this.reelViewport.classList.toggle('fullscreen-mode');
+          this.toggleAspectBtn.textContent = isFs ? '📺 Exit Full' : '📱 Reel 9:16';
+        });
+      }
+    }
+
+    startLoop() {
+      if (this.timerInterval) clearInterval(this.timerInterval);
+      this.lastTick = Date.now();
+      this.timerInterval = setInterval(() => {
+        if (!this.isPlaying) return;
+        const now = Date.now();
+        const delta = now - this.lastTick;
+        this.lastTick = now;
+
+        this.elapsedTime += delta;
+        const pct = Math.min(100, (this.elapsedTime / this.durationPerConcept) * 100);
+
+        if (this.fills[this.currentIndex]) {
+          this.fills[this.currentIndex].style.width = `${pct}%`;
         }
+
+        if (this.elapsedTime >= this.durationPerConcept) {
+          this.nextConcept();
+        }
+      }, 50);
+    }
+
+    loadConcept(index) {
+      this.currentIndex = index;
+      this.elapsedTime = 0;
+      this.lastTick = Date.now();
+
+      // Update Scenes
+      this.scenes.forEach((sc, i) => {
+        if (sc) sc.classList.toggle('active', i === index);
+      });
+
+      // Update Progress Bars
+      this.segments.forEach((seg, i) => {
+        seg.classList.toggle('completed', i < index);
+        if (this.fills[i]) {
+          this.fills[i].style.width = i < index ? '100%' : (i === index ? '0%' : '0%');
+        }
+      });
+
+      // Update Navigation Pills
+      this.pills.forEach((pill, i) => {
+        pill.classList.toggle('active', i === index);
+      });
+
+      // Update Titles
+      if (this.badgeTitle && this.conceptTitles[index]) {
+        this.badgeTitle.textContent = this.conceptTitles[index];
+      }
+      if (this.hudNowPlaying && this.hudDescriptions[index]) {
+        this.hudNowPlaying.textContent = this.hudDescriptions[index];
+      }
+
+      // Trigger Theme-Specific Sound & Fireworks
+      this.triggerConceptAudio(index);
+    }
+
+    triggerConceptAudio(index) {
+      try {
+        if (index === 0) {
+          sounds.playSparklerCrackle();
+        } else if (index === 1) {
+          sounds.playDiyaChime();
+        } else if (index === 2) {
+          sounds.playRocketLaunch();
+        } else if (index === 3) {
+          sounds.playTempleBell();
+          sounds.playDiyaChime();
+        }
+        fireworks.createBurst(window.innerWidth / 2, window.innerHeight * 0.35, '#fbbf24');
       } catch (e) {
         // Fallback gracefully
       }
     }
 
-    applySenderName(name) {
-      if (!name) return;
-      const clean = name.trim();
-
-      const badgeSender = document.getElementById('intro-badge-sender');
-      if (badgeSender) badgeSender.textContent = `⚡ ${clean.toUpperCase()}'S DIWALI VIBE CHECK ⚡`;
-
-      const senderHeadline = document.getElementById('intro-sender-headline');
-      if (senderHeadline) senderHeadline.textContent = `${clean} said: Open before someone passes you Soan Papdi 💀`;
-
-      const senderTag = document.getElementById('intro-sender-tag');
-      if (senderTag) senderTag.textContent = `✨ Dropped by: ${clean} ✨`;
-
-      const descText = document.getElementById('intro-desc-text');
-      if (descText) descText.textContent = `Your official Diwali blessing from ${clean} is here. Tap to unlock +10,000 Aura points & claim your desi drip!`;
-
-      const wishSubtitle = document.getElementById('main-wish-subtitle');
-      if (wishSubtitle) wishSubtitle.textContent = `From ${clean} with +10,000 Aura Points & Zero Toxic Vibes`;
-
-      const sigName = document.getElementById('letter-sender-name');
-      if (sigName) sigName.textContent = clean;
-
-      const inputField = document.getElementById('custom-sender-input');
-      if (inputField && !inputField.value) inputField.value = clean;
-
-      this.updateGeneratedUrl(clean);
+    nextConcept() {
+      const nextIdx = (this.currentIndex + 1) % this.totalConcepts;
+      this.loadConcept(nextIdx);
     }
 
-    updateGeneratedUrl(name) {
-      const cleanName = (name || '').trim();
-      const currentUrl = new URL(window.location.href);
-      if (cleanName && cleanName !== 'Your Name') {
-        currentUrl.searchParams.set('name', cleanName);
-      } else {
-        currentUrl.searchParams.delete('name');
-        currentUrl.searchParams.delete('sender');
+    prevConcept() {
+      const prevIdx = (this.currentIndex - 1 + this.totalConcepts) % this.totalConcepts;
+      this.loadConcept(prevIdx);
+    }
+
+    togglePlayPause() {
+      this.isPlaying = !this.isPlaying;
+      if (this.playPauseBtn) {
+        this.playPauseBtn.textContent = this.isPlaying ? '⏸ Pause' : '▶ Play';
       }
-      
-      const fullUrl = currentUrl.toString();
-      const urlBox = document.getElementById('shareable-url-input');
-      if (urlBox) urlBox.value = fullUrl;
-
-      const boxContainer = document.getElementById('generated-url-box');
-      if (boxContainer) boxContainer.classList.remove('hidden');
-
-      return fullUrl;
-    }
-
-    bindStickerSlapper() {
-      const chips = document.querySelectorAll('.sticker-chip');
-      const container = document.getElementById('stickers-container');
-      const scoreEl = document.getElementById('aura-score-counter');
-
-      chips.forEach(chip => {
-        chip.addEventListener('click', () => {
-          const stickerText = chip.dataset.sticker || chip.textContent;
-          sounds.playSparklerCrackle();
-
-          if (container) {
-            const sticker = document.createElement('div');
-            sticker.className = 'screen-sticker';
-            sticker.textContent = stickerText;
-            
-            // Random position on viewport
-            const x = 10 + Math.random() * 70;
-            const y = 20 + Math.random() * 60;
-            sticker.style.left = `${x}vw`;
-            sticker.style.top = `${y}vh`;
-            sticker.style.transform = `rotate(${(Math.random() - 0.5) * 20}deg)`;
-
-            container.appendChild(sticker);
-            setTimeout(() => sticker.remove(), 4000);
-          }
-
-          // Bump aura score
-          this.auraPoints += 1000;
-          if (scoreEl) scoreEl.textContent = `+${this.auraPoints.toLocaleString()} ⚡`;
-          fireworks.createBurst(window.innerWidth * Math.random(), window.innerHeight * 0.4, '#ccff00');
-        });
-      });
-    }
-
-    bindSoanPapdiYeeter() {
-      const box = document.getElementById('soan-papdi-box');
-      const btn = document.getElementById('yeet-soan-papdi-btn');
-      const scoreEl = document.getElementById('soan-papdi-score');
-      const feedback = document.getElementById('soan-feedback');
-
-      const messages = [
-        "Yeeted straight to Sharma Ji's drawing room! 🚀",
-        "Sharma Ji panicked and passed it to his boss! 💀",
-        "The box is currently on a train to Kanpur! 🚂",
-        "Immortal sugar cube cycle continued successfully! 📦",
-        "Auntie received the exact box she gifted in 2021! 🏆"
-      ];
-
-      if (btn && box) {
-        btn.addEventListener('click', () => {
-          sounds.playRocketLaunch();
-          sounds.playFireworkBurst();
-
-          box.classList.add('yeeting');
-          this.soanPapdiYeets++;
-
-          if (scoreEl) scoreEl.textContent = `Relieved: ${this.soanPapdiYeets} Relatives 💀`;
-          if (feedback) {
-            feedback.textContent = messages[this.soanPapdiYeets % messages.length];
-          }
-
-          setTimeout(() => {
-            box.classList.remove('yeeting');
-          }, 850);
-        });
-      }
-    }
-
-    bindBadVibesPatakha() {
-      const btns = document.querySelectorAll('.vibe-patakha-btn');
-      const toast = document.getElementById('vibe-toast');
-
-      const roasts = {
-        'Overthinking at 2 AM': '✨ Overthinking demolished! 8 hours of peaceful uninterrupted sleep granted.',
-        "'Beta Shadi Kab Kar Rahe Ho?'": '✨ Nosy aunties silenced! Auntie suddenly started talking about weather.',
-        'Empty Bank Account': '✨ Broke era officially cancelled! 8-figure bank alerts incoming.',
-        'Monday Morning Alarms': '✨ Alarm destroyed! Long Diwali holiday mode permanently enabled.'
-      };
-
-      btns.forEach(b => {
-        b.addEventListener('click', (e) => {
-          sounds.playFireworkBurst();
-          sounds.playSparklerCrackle();
-
-          const vibe = b.dataset.vibe;
-          if (toast && roasts[vibe]) {
-            toast.textContent = roasts[vibe];
-          }
-
-          const rect = b.getBoundingClientRect();
-          fireworks.createBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, '#ff007f');
-
-          b.style.transform = 'scale(0.95)';
-          setTimeout(() => b.style.transform = '', 150);
-        });
-      });
-    }
-
-    bindFortuneCookie() {
-      const trigger = document.getElementById('cookie-click-trigger');
-      const drawBtn = document.getElementById('crack-again-btn');
-      const resultBox = document.getElementById('genz-fortune-box');
-      const textEl = document.getElementById('genz-fortune-text');
-
-      const crackCookie = () => {
-        sounds.playDiyaChime();
-        sounds.playTempleBell();
-
-        this.fortuneIndex = (this.fortuneIndex + 1) % this.fortunes.length;
-        if (textEl) textEl.textContent = `"${this.fortunes[this.fortuneIndex]}"`;
-
-        if (resultBox) {
-          resultBox.classList.remove('hidden');
-          resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-
-        fireworks.createBurst(window.innerWidth / 2, window.innerHeight * 0.45, '#ccff00');
-      };
-
-      if (trigger) trigger.addEventListener('click', crackCookie);
-      if (drawBtn) drawBtn.addEventListener('click', crackCookie);
-    }
-
-    bindSendEngine() {
-      const input = document.getElementById('custom-sender-input');
-      const whatsappBtn = document.getElementById('whatsapp-share-btn');
-      const copyBtn = document.getElementById('copy-magic-link-btn');
-      const previewBtn = document.getElementById('preview-my-wish-btn');
-      const toast = document.getElementById('wish-toast');
-
-      if (input) {
-        input.addEventListener('input', () => {
-          this.updateGeneratedUrl(input.value);
-        });
-      }
-
-      // WhatsApp Share
-      if (whatsappBtn) {
-        whatsappBtn.addEventListener('click', () => {
-          const name = (input && input.value.trim()) || 'Your Bestie';
-          const shareUrl = this.updateGeneratedUrl(name);
-          const messageText = `Bro open this before someone hands you Soan Papdi 💀🪔\n\nYour official Diwali Vibe Check from *${name}* is here! Tap to unlock +10,000 Aura points:\n${shareUrl}`;
-
-          const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(messageText)}`;
-          window.open(whatsappUrl, '_blank');
-          sounds.playTempleBell();
-        });
-      }
-
-      // Copy Magic Link
-      if (copyBtn) {
-        copyBtn.addEventListener('click', () => {
-          const name = (input && input.value.trim()) || 'Your Bestie';
-          const shareUrl = this.updateGeneratedUrl(name);
-
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(shareUrl).then(() => this.showToast());
-          } else {
-            const temp = document.createElement('textarea');
-            temp.value = shareUrl;
-            document.body.appendChild(temp);
-            temp.select();
-            document.execCommand('copy');
-            temp.remove();
-            this.showToast();
-          }
-        });
-      }
-
-      // Live Preview Button
-      if (previewBtn) {
-        previewBtn.addEventListener('click', () => {
-          const name = (input && input.value.trim()) || 'Payal';
-          this.applySenderName(name);
-
-          const newUrl = this.updateGeneratedUrl(name);
-          window.history.replaceState({ path: newUrl }, '', newUrl);
-
-          sounds.playTempleBell();
-          sounds.playDiyaChime();
-          fireworks.createBurst(window.innerWidth / 2, window.innerHeight * 0.3, '#ff007f');
-
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      }
-    }
-
-    showToast() {
-      sounds.playDiyaChime();
-      const toast = document.getElementById('wish-toast');
-      if (toast) {
-        toast.classList.remove('hidden');
-        setTimeout(() => toast.classList.add('hidden'), 3500);
+      if (this.isPlaying) {
+        this.lastTick = Date.now();
       }
     }
   }
 
-  const wishManager = new WishPageManager();
+  const cinemaReel = new CinemaReelEngine();
 
   // End of Main DOM Initialization
 });

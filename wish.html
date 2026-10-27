@@ -4,323 +4,177 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   
-  <!-- Primary Meta Tags -->
-  <title>Diwali Vibe Check 2026 💅🪔 | Bestie Edition</title>
-  <meta name="title" content="Diwali Vibe Check 2026 💅🪔 | Bestie Edition">
-  <meta name="description" content="Open this before someone passes you Soan Papdi 💀 Tap to claim your Diwali Aura Points & personalized blessings!">
-  <meta name="theme-color" content="#0a0a12">
-  
-  <!-- Open Graph / WhatsApp Preview Banner -->
+  <title>Diwali Concept Video Showcase 🎬✨ | 4 Auto-Playing Cinematic Reels</title>
+  <meta name="title" content="Diwali Concept Video Showcase 🎬✨ | 4 Auto-Playing Cinematic Reels">
+  <meta name="description" content="Auto-playing cinematic Diwali concept video reels: 90s Retro Nostalgia, 8-Bit Pixel Mohalla, Soan Papdi Chronicle, and Kinetic Molten Gold. Zero interaction required.">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/wish.html">
-  <meta property="og:title" content="Bro open your Diwali Vibe Check 💀🪔💅">
-  <meta property="og:description" content="A special Diwali surprise has arrived. Tap to claim +10,000 Aura points and unlock your blessings!">
-  <meta property="og:image" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/og-diwali-wish.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/">
+  <meta property="og:title" content="Diwali Concept Video Showcase 🎬✨">
+  <meta property="og:description" content="Watch 4 automated cinematic Diwali concept reels. Screen-record ready!">
+  <meta property="og:image" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/concept-molten-gold.jpg">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/wish.html">
-  <meta name="twitter:title" content="Bro open your Diwali Vibe Check 💀🪔💅">
-  <meta name="twitter:description" content="A special Diwali surprise has arrived. Tap to claim +10,000 Aura points and unlock your blessings!">
-  <meta name="twitter:image" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/og-diwali-wish.jpg">
-
-  <!-- Google Fonts: Space Grotesk (Neo-brutalist) & Outfit -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Outfit:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@500;700;900&family=Press+Start+2P&family=Rozha+One&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💅</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
 </head>
-<body class="is-intro genz-body">
+<body class="cinema-body">
 
-  <!-- Canvas for tap fireworks & stickers -->
+  <!-- Ambient Sound & Sparkle Canvas -->
   <canvas id="fireworks-canvas"></canvas>
-  <canvas id="sparkler-canvas"></canvas>
-  <div id="petals-container" aria-hidden="true"></div>
-  <div id="flash-overlay" class="flash-overlay"></div>
-  <div id="stickers-container" class="stickers-container"></div>
 
-  <!-- Gen Z Infinite Marquee Ticker -->
-  <div class="genz-ticker-wrap">
-    <div class="genz-ticker-move">
-      <span>✨ DIWALI VIBE CHECK 2026 • 💅 FIT CHECK: 10/10 • 🚫 NO SOAN PAPDI ALLOWED • ⚡ AURA +10,000 • 💸 SECURE THE BAG • 🪔 LAXMI JI APPROVED • 👑 CERTIFIED PATAKHA • </span>
-      <span>✨ DIWALI VIBE CHECK 2026 • 💅 FIT CHECK: 10/10 • 🚫 NO SOAN PAPDI ALLOWED • ⚡ AURA +10,000 • 💸 SECURE THE BAG • 🪔 LAXMI JI APPROVED • 👑 CERTIFIED PATAKHA • </span>
+  <!-- Cinema Stage Wrap -->
+  <div class="cinema-stage">
+
+    <!-- 9:16 Mobile Reel Frame for Screen Recording -->
+    <div class="reel-viewport" id="reel-viewport">
+
+      <!-- Top Story Progress Bar (Instagram / TikTok Style) -->
+      <div class="story-progress-bar">
+        <div class="progress-segment" data-concept="0"><div class="progress-fill" id="fill-0"></div></div>
+        <div class="progress-segment" data-concept="1"><div class="progress-fill" id="fill-1"></div></div>
+        <div class="progress-segment" data-concept="2"><div class="progress-fill" id="fill-2"></div></div>
+        <div class="progress-segment" data-concept="3"><div class="progress-fill" id="fill-3"></div></div>
+      </div>
+
+      <!-- Video Header Overlay -->
+      <div class="reel-header-overlay">
+        <div class="reel-badge">
+          <span class="live-rec-dot"></span>
+          <span class="reel-badge-title" id="reel-badge-title">CONCEPT 1 • 90s RETRO</span>
+        </div>
+        <button id="sound-btn" class="reel-sound-pill" title="Toggle Sound">
+          <span id="sound-icon">🔊</span>
+        </button>
+      </div>
+
+      <!-- ==================== CONCEPT 1: 90s RETRO NOSTALGIA ==================== -->
+      <div class="concept-scene active" id="scene-0">
+        <div class="scene-bg" style="background-image: url('concept-retro-90s.jpg');"></div>
+        <div class="crt-scanlines"></div>
+        <div class="vintage-vignette"></div>
+
+        <div class="scene-content retro-theme">
+          <div class="retro-badge animate-in delay-1">📺 DOORDARSHAN DIWALI • 1998</div>
+          <h1 class="retro-headline animate-in delay-2">Diwali Before Screens & Group Chats</h1>
+          
+          <div class="retro-subcard animate-in delay-3">
+            <p class="retro-point">✨ Hiding the Kaju Katli dabba from cousins</p>
+            <p class="retro-point">✨ Bursting bijli bombs under a steel glass</p>
+            <p class="retro-point">✨ Cold night air, warm woolens & real diyas</p>
+          </div>
+
+          <div class="retro-blessing animate-in delay-4">
+            <span class="retro-gold-text">Wishing You Pure Childhood Warmth & Endless Light 🪔</span>
+            <span class="retro-sig">Happy Deepawali • The Sharma Family</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== CONCEPT 2: 8-BIT PIXEL MOHALLA ==================== -->
+      <div class="concept-scene" id="scene-1">
+        <div class="scene-bg" style="background-image: url('concept-pixel-mohalla.jpg');"></div>
+        <div class="pixel-grid-overlay"></div>
+
+        <div class="scene-content pixel-theme">
+          <div class="pixel-badge animate-in delay-1">🎮 STAGE 1: MOHALLA NIGHT</div>
+          <h1 class="pixel-headline animate-in delay-2">LEVEL UP YOUR DIWALI! 🪔</h1>
+
+          <div class="pixel-subcard animate-in delay-3">
+            <div class="pixel-stat-row">
+              <span class="p-stat">🏮 DIYAS LIT: 108/108</span>
+              <span class="p-stat">⭐ AURA: +9999</span>
+            </div>
+            <p class="pixel-desc">Balconies glowing • Rockets ascending • Zero lag vibes</p>
+          </div>
+
+          <div class="pixel-blessing animate-in delay-4">
+            <span class="pixel-gold-title">✨ MISSION PASSED: SHUBH DEEPAWALI ✨</span>
+            <span class="pixel-sig">PRESS START FOR 365 DAYS OF PROSPERITY</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== CONCEPT 3: THE SOAN PAPDI CHRONICLE ==================== -->
+      <div class="concept-scene" id="scene-2">
+        <div class="scene-bg" style="background-image: url('concept-soan-papdi.jpg');"></div>
+        <div class="comic-halftone"></div>
+
+        <div class="scene-content comic-theme">
+          <div class="comic-badge animate-in delay-1">📦 CLASSIFIED COURIER • 2018-2026</div>
+          <h1 class="comic-headline animate-in delay-2">The Immortal Soan Papdi Box 💀</h1>
+
+          <div class="comic-subcard animate-in delay-3">
+            <div class="comic-timeline">
+              <div class="timeline-step">📍 2018: First gifted to Sharma Ji</div>
+              <div class="timeline-step">📍 2021: Re-gifted to Gupta Uncle</div>
+              <div class="timeline-step">📍 2024: Passed to Company Boss</div>
+              <div class="timeline-step current">📍 TODAY: Arrived at your door!</div>
+            </div>
+          </div>
+
+          <div class="comic-blessing animate-in delay-4">
+            <span class="comic-punch">May your Diwali be sweet... and your sweets NOT be Soan Papdi! 🪔</span>
+            <span class="comic-sig">Happy Diwali • Send it to the next relative! 🚀</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== CONCEPT 4: KINETIC MOLTEN GOLD DIYA ==================== -->
+      <div class="concept-scene" id="scene-3">
+        <div class="scene-bg" style="background-image: url('concept-molten-gold.jpg');"></div>
+        <div class="gold-shimmer-particles"></div>
+
+        <div class="scene-content luxury-theme">
+          <div class="luxury-badge animate-in delay-1">ॐ KINETIC SACRED LIGHT ॐ</div>
+          <h1 class="luxury-headline animate-in delay-2">Tamaso Ma Jyotirgamaya</h1>
+
+          <div class="luxury-quote animate-in delay-3">
+            <p class="quote-text">
+              "From darkness, lead us into Light.<br>
+              From transient shadows, into golden Eternity."
+            </p>
+          </div>
+
+          <div class="luxury-blessing animate-in delay-4">
+            <span class="luxury-gold-title">Shubh Deepawali</span>
+            <p class="luxury-gold-sub">May divine radiance illuminate your health, wealth & inner peace.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subtitle & Recording Prompt -->
+      <div class="reel-footer-hud">
+        <span class="hud-now-playing" id="hud-now-playing">Playing: Concept 1 / 4 • 90s Nostalgia</span>
+      </div>
+
     </div>
+
+    <!-- Video Navigation Controller (Clean & Minimal) -->
+    <div class="video-controller-bar">
+      <button class="nav-control-btn" id="prev-btn" title="Previous Concept">⏮ Prev</button>
+      <button class="nav-control-btn play-btn" id="play-pause-btn" title="Pause / Play">⏸ Pause</button>
+      <button class="nav-control-btn" id="next-btn" title="Next Concept">⏭ Next</button>
+      
+      <div class="concept-pills-row">
+        <button class="concept-pill-btn active" data-index="0">1. 90s Nostalgia</button>
+        <button class="concept-pill-btn" data-index="1">2. 8-Bit Pixel</button>
+        <button class="concept-pill-btn" data-index="2">3. Soan Papdi</button>
+        <button class="concept-pill-btn" data-index="3">4. Molten Gold</button>
+      </div>
+
+      <button class="nav-control-btn format-toggle" id="toggle-aspect-btn" title="Toggle Aspect Ratio">
+        📱 Reel 9:16
+      </button>
+    </div>
+
   </div>
-
-  <!-- Gen Z Navigation Bar -->
-  <header class="genz-top-nav">
-    <div class="genz-brand">
-      <span class="genz-badge-pill">🪔 VIBE CHECK '26</span>
-    </div>
-
-    <div class="genz-nav-actions">
-      <!-- Discreet Switcher -->
-      <div class="discreet-invite-menu" id="discreet-invite-dropdown">
-        <button id="invite-menu-trigger" class="genz-ghost-btn" aria-haspopup="true" aria-expanded="false" title="Switch Page">
-          <span>⚡ Templates ▾</span>
-        </button>
-        <div class="discreet-dropdown-panel hidden" id="invite-dropdown-panel" role="menu">
-          <div class="dropdown-header">Switch View:</div>
-          <a href="index.html" class="dropdown-invite-item" role="menuitem">
-            <span class="item-icon">👑</span>
-            <div class="item-info">
-              <span class="item-title">Royal Family Gala</span>
-              <span class="item-sub">Palace Lakshmi Puja & Feast</span>
-            </div>
-          </a>
-          <a href="rooftop-soiree.html" class="dropdown-invite-item" role="menuitem">
-            <span class="item-icon">🍸</span>
-            <div class="item-info">
-              <span class="item-title">Rooftop Soirée</span>
-              <span class="item-sub">Midnight Patakha & Cocktails</span>
-            </div>
-          </a>
-          <a href="corporate-gala.html" class="dropdown-invite-item" role="menuitem">
-            <span class="item-icon">💼</span>
-            <div class="item-info">
-              <span class="item-title">Corporate Executive</span>
-              <span class="item-sub">Prestige Gala & Hamper Box</span>
-            </div>
-          </a>
-          <a href="wish.html" class="dropdown-invite-item active" role="menuitem">
-            <span class="item-icon">💅</span>
-            <div class="item-info">
-              <span class="item-title">Gen-Z Vibe Check</span>
-              <span class="item-sub">Aura, Memes & Bestie Wishes</span>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <button id="sound-btn" class="genz-sound-btn" title="Toggle Sound">
-        <span id="sound-icon">🔊</span>
-      </button>
-    </div>
-  </header>
-
-  <!-- ==================== 1. THE GEN-Z VIBE UNBOXING HOOK ==================== -->
-  <section id="intro-screen" class="intro-screen genz-intro-screen">
-    <div class="genz-intro-card">
-      <div class="genz-sticker top-sticker">🚨 CERTIFIED SURPRISE</div>
-      
-      <div class="genz-avatar-holder">
-        <img id="intro-family-img" src="og-diwali-wish.jpg" alt="Diwali Surprise" class="genz-preview-img">
-        <span class="genz-floating-tag" id="intro-sender-tag">✨ Sent by Payal ✨</span>
-      </div>
-
-      <div class="genz-text-block">
-        <div class="genz-sub-badge" id="intro-badge-sender">⚡ BESTIE VIBE CHECK ENCLOSED ⚡</div>
-        <h1 class="genz-main-title" id="intro-sender-headline">
-          Open before someone passes you Soan Papdi 💀
-        </h1>
-        <p class="genz-desc" id="intro-desc-text">
-          A personalized Diwali blessing has dropped in your DM. Tap the Diya below to unlock +10,000 Aura points and claim your good vibes!
-        </p>
-      </div>
-
-      <!-- Gen-Z Big Bouncy Tap Trigger -->
-      <div class="genz-trigger-box">
-        <button id="ignite-diya-btn" class="genz-action-btn pulse-glow" aria-label="Tap to Slay Diwali">
-          <span class="btn-flame-icon">🪔</span>
-          <span class="btn-bold-label">TAP TO SLAY DIWALI</span>
-          <span class="btn-sub-label">✦ UNLEASH THE VIBES ✦</span>
-        </button>
-      </div>
-
-      <span class="genz-small-hint">👉 Turn volume up for maximum dopamine 🔊</span>
-    </div>
-  </section>
-
-  <!-- ==================== 2. MAIN GEN-Z CELEBRATION SANCTUARY ==================== -->
-  <main id="main-content" class="main-content hidden genz-main-wrap">
-
-    <!-- Hero Card: Happy Diwali Bestie -->
-    <section class="genz-hero-card">
-      <div class="genz-sticker-badge">👑 MAIN CHARACTER ENERGY</div>
-      
-      <h1 class="genz-hero-title" id="main-wish-title">
-        HAPPY DIWALI BESTIE! 🪔💅
-      </h1>
-      
-      <p class="genz-hero-subtitle" id="main-wish-subtitle">
-        From Payal with +10,000 Aura Points & Zero Toxic Vibes
-      </p>
-
-      <!-- Relatable Bestie Diwali Letter -->
-      <div class="genz-letter-box">
-        <p class="letter-punchline">
-          ✨ <strong>May your eyeliner be sharp, your Diwali fit be a verified 10/10, your relatives mind their own business, and Laxmi Ji credit your bank account with generational wealth no cap.</strong>
-        </p>
-        <p class="letter-punchline">
-          May you win every round of Teen Patti tonight, eat endless Kaju Katli without guilt, and dodge every single Soan Papdi box like a pro.
-        </p>
-        <div class="letter-sig-row">
-          <span class="sig-from">Certified with love by:</span>
-          <span class="sig-name-genz" id="letter-sender-name">Payal</span>
-        </div>
-      </div>
-
-      <!-- Live Aura Points Meter -->
-      <div class="aura-meter-box">
-        <div class="aura-header">
-          <span class="aura-label">YOUR DIWALI AURA POINTS:</span>
-          <span class="aura-score" id="aura-score-counter">+10,000 ⚡</span>
-        </div>
-        <div class="aura-progress-bar">
-          <div class="aura-progress-fill" style="width: 95%;"></div>
-        </div>
-        <div class="sticker-slap-bar">
-          <span class="slap-hint">Slap a sticker on screen:</span>
-          <button class="sticker-chip" data-sticker="💅 10/10 DRIP">💅 10/10 DRIP</button>
-          <button class="sticker-chip" data-sticker="💸 SECURE THE BAG">💸 SECURE THE BAG</button>
-          <button class="sticker-chip" data-sticker="👑 MAIN CHARACTER">👑 MAIN CHARACTER</button>
-          <button class="sticker-chip" data-sticker="🪔 CERTIFIED PATAKHA">🪔 CERTIFIED PATAKHA</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Interactive Game 1: The Immortal Soan Papdi Passer -->
-    <section class="genz-game-card">
-      <div class="game-badge-header">
-        <span class="game-tag">MINI-GAME</span>
-        <span class="game-status" id="soan-papdi-score">Relieved: 0 Relatives</span>
-      </div>
-
-      <h2 class="game-title">The Immortal Soan Papdi Yeeter 📦💀</h2>
-      <p class="game-desc">
-        A wild Soan Papdi box has entered your house! Yeet it to Sharma Ji before someone forces you to eat it:
-      </p>
-
-      <div class="soan-papdi-stage">
-        <div class="soan-papdi-box-icon" id="soan-papdi-box">
-          <span class="soan-icon">📦</span>
-          <span class="soan-label">CURSED SOAN PAPDI</span>
-        </div>
-      </div>
-
-      <button id="yeet-soan-papdi-btn" class="genz-action-btn yeet-btn">
-        <span>🚀 YEET TO NEXT RELATIVE</span>
-      </button>
-      <p class="soan-toast" id="soan-feedback">Tap button to pass the curse!</p>
-    </section>
-
-    <!-- Interactive Game 2: Burst The Bad Vibes Patakha -->
-    <section class="genz-game-card">
-      <div class="game-badge-header">
-        <span class="game-tag">STRESS BUSTER</span>
-        <span class="game-status">100% Dopamine</span>
-      </div>
-
-      <h2 class="game-title">Burst The Bad Vibes Patakhas 💥</h2>
-      <p class="game-desc">
-        Tap any bad vibe below to blow it to smithereens with festive fireworks:
-      </p>
-
-      <div class="bad-vibes-grid" id="bad-vibes-grid">
-        <button class="vibe-patakha-btn" data-vibe="Overthinking at 2 AM">
-          <span class="vibe-icon">🧠💥</span>
-          <span class="vibe-text">Overthinking</span>
-        </button>
-        <button class="vibe-patakha-btn" data-vibe="'Beta Shadi Kab Kar Rahe Ho?'">
-          <span class="vibe-icon">👵💥</span>
-          <span class="vibe-text">Nosy Relatives</span>
-        </button>
-        <button class="vibe-patakha-btn" data-vibe="Empty Bank Account">
-          <span class="vibe-icon">💸💥</span>
-          <span class="vibe-text">Broke Era</span>
-        </button>
-        <button class="vibe-patakha-btn" data-vibe="Monday Morning Alarms">
-          <span class="vibe-icon">⏰💥</span>
-          <span class="vibe-text">Monday Alarms</span>
-        </button>
-      </div>
-      <p class="patakha-toast" id="vibe-toast">Tap a cracker to destroy bad vibes ✨</p>
-    </section>
-
-    <!-- Interactive Game 3: Laxmi Ji Fortune Cookie (Gen Z Edition) -->
-    <section class="genz-game-card">
-      <div class="game-badge-header">
-        <span class="game-tag">ORACLE</span>
-        <span class="game-status">Verified True</span>
-      </div>
-
-      <h2 class="game-title">Laxmi Ji Fortune Cookie 🥠✨</h2>
-      <p class="game-desc">
-        Crack the cookie to see what the universe is manifesting for your 2026:
-      </p>
-
-      <div class="fortune-cookie-holder" id="cookie-click-trigger">
-        <div class="cookie-graphic" id="cookie-graphic">🥠</div>
-        <span class="cookie-tap-prompt">👉 Tap Cookie to Crack Open 👈</span>
-      </div>
-
-      <div class="genz-fortune-result hidden" id="genz-fortune-box">
-        <div class="fortune-flair">✨ 💅 💸 ✨</div>
-        <p class="fortune-msg" id="genz-fortune-text">
-          "Laxmi Ji saw your cart on Myntra and decided to sponsor your entire aesthetic lifestyle this year."
-        </p>
-        <button id="crack-again-btn" class="genz-ghost-btn">
-          <span>🥠 Crack Another Fortune</span>
-        </button>
-      </div>
-    </section>
-
-    <!-- ==================== 5. 1-CLICK SEND TO BESTIE ENGINE ==================== -->
-    <section class="genz-send-engine">
-      <div class="send-box-brutalist">
-        <div class="send-header-tag">💌 SEND TO YOUR GANG</div>
-        <h2 class="send-big-title">Send This Vibe Check With YOUR Name!</h2>
-        <p class="send-subtext">
-          Type your name below to instantly personalize this link and blast it to your WhatsApp groups & besties:
-        </p>
-
-        <div class="send-input-wrap">
-          <input type="text" id="custom-sender-input" class="genz-input" placeholder="Your Name / Nickname (e.g. Payal)" maxlength="30">
-        </div>
-
-        <div class="send-buttons-row">
-          <!-- WhatsApp 1-Tap Share -->
-          <button id="whatsapp-share-btn" class="genz-wa-btn">
-            <span class="wa-icon">💬</span>
-            <span class="wa-label">SEND ON WHATSAPP</span>
-          </button>
-
-          <!-- Copy Link -->
-          <button id="copy-magic-link-btn" class="genz-copy-btn">
-            <span class="copy-icon">📋</span>
-            <span class="copy-label">COPY MAGIC LINK</span>
-          </button>
-
-          <!-- Live Preview -->
-          <button id="preview-my-wish-btn" class="genz-preview-btn">
-            <span class="prev-icon">👁️</span>
-            <span class="prev-label">PREVIEW CARD</span>
-          </button>
-        </div>
-
-        <!-- Generated URL Box -->
-        <div id="generated-url-box" class="genz-url-display hidden">
-          <span class="url-hint">Your Custom Link:</span>
-          <input type="text" id="shareable-url-input" readonly class="url-input-field">
-        </div>
-
-        <!-- Toast -->
-        <div id="wish-toast" class="genz-toast hidden">
-          💅 Magic Link Copied! Send it to the group chat now! 🚀
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="genz-footer">
-      <p class="footer-tagline">✨ DIWALI 2026 • 10/10 VIBES ONLY • NO CAP ✨</p>
-    </footer>
-
-  </main>
 
   <script src="script.js"></script>
 </body>

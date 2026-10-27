@@ -4,585 +4,178 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   
-  <!-- Primary Meta Tags -->
-  <title id="meta-title">The Royal Singhania Family | Shubh Deepawali Gala & Lakshmi Puja 2026 ⚜️</title>
-  <meta name="title" content="The Royal Singhania Family | Shubh Deepawali Gala & Lakshmi Puja 2026 ⚜️">
-  <meta name="description" content="You are cordially invited to our palace residence for the auspicious Lakshmi Puja, sacred Maha Aarti, and Grand Terrace Feast. Tap to break the royal wax seal & view your invitation.">
-  <meta name="theme-color" content="#180308">
-  
-  <!-- Open Graph / Facebook / WhatsApp Preview -->
+  <title>Diwali Concept Video Showcase 🎬✨ | 4 Auto-Playing Cinematic Reels</title>
+  <meta name="title" content="Diwali Concept Video Showcase 🎬✨ | 4 Auto-Playing Cinematic Reels">
+  <meta name="description" content="Auto-playing cinematic Diwali concept video reels: 90s Retro Nostalgia, 8-Bit Pixel Mohalla, Soan Papdi Chronicle, and Kinetic Molten Gold. Zero interaction required.">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/">
-  <meta property="og:title" id="og-title" content="The Royal Singhania Family | Shubh Deepawali Gala 2026 ⚜️">
-  <meta property="og:description" id="og-desc" content="A royal invitation to our palace residence for the sacred Lakshmi Puja & feast. Tap to open your bespoke digital invite.">
-  <meta property="og:image" id="og-image-tag" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/og-family-gala.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Royal Singhania Family Diwali Gala Invitation Banner">
+  <meta property="og:title" content="Diwali Concept Video Showcase 🎬✨">
+  <meta property="og:description" content="Watch 4 automated cinematic Diwali concept reels. Screen-record ready!">
+  <meta property="og:image" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/concept-molten-gold.jpg">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/">
-  <meta name="twitter:title" id="tw-title" content="The Royal Singhania Family | Shubh Deepawali Gala 2026 ⚜️">
-  <meta name="twitter:description" id="tw-desc" content="A royal invitation to our palace residence for the sacred Lakshmi Puja & feast. Tap to open your bespoke digital invite.">
-  <meta name="twitter:image" id="tw-image-tag" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/og-family-gala.jpg">
-
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Outfit:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@500;700;900&family=Press+Start+2P&family=Rozha+One&display=swap" rel="stylesheet">
   
-  <!-- Main Stylesheet -->
   <link rel="stylesheet" href="styles.css">
-  
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪔</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
 </head>
-<body class="is-intro">
+<body class="cinema-body">
 
-  <!-- Ambient Fireworks & Sparkles Canvas Background -->
+  <!-- Ambient Sound & Sparkle Canvas -->
   <canvas id="fireworks-canvas"></canvas>
-  <canvas id="sparkler-canvas"></canvas>
-  <div id="petals-container" aria-hidden="true"></div>
 
-  <!-- Haute Burgundy & Gold Navigation Bar -->
-  <header class="top-nav burgundy-header">
-    <div class="brand-badge">
-      <span class="royal-crest">⚜️</span>
-      <div class="brand-text-col">
-        <span class="brand-title">DEEPAWALI 2026</span>
-        <span class="brand-sub">Haute Royal Invitation</span>
+  <!-- Cinema Stage Wrap -->
+  <div class="cinema-stage">
+
+    <!-- 9:16 Mobile Reel Frame for Screen Recording -->
+    <div class="reel-viewport" id="reel-viewport">
+
+      <!-- Top Story Progress Bar (Instagram / TikTok Style) -->
+      <div class="story-progress-bar">
+        <div class="progress-segment" data-concept="0"><div class="progress-fill" id="fill-0"></div></div>
+        <div class="progress-segment" data-concept="1"><div class="progress-fill" id="fill-1"></div></div>
+        <div class="progress-segment" data-concept="2"><div class="progress-fill" id="fill-2"></div></div>
+        <div class="progress-segment" data-concept="3"><div class="progress-fill" id="fill-3"></div></div>
       </div>
-    </div>
 
-    <div class="nav-actions">
-      <!-- Discreet Hidden Dropdown for 3 Invites -->
-      <div class="discreet-invite-menu" id="discreet-invite-dropdown">
-        <button id="invite-menu-trigger" class="discreet-menu-btn" aria-haspopup="true" aria-expanded="false" title="Switch Digital Invite">
-          <span class="menu-icon">⚜️</span>
-          <span class="menu-label">Invites</span>
-          <span class="menu-arrow">▾</span>
+      <!-- Video Header Overlay -->
+      <div class="reel-header-overlay">
+        <div class="reel-badge">
+          <span class="live-rec-dot"></span>
+          <span class="reel-badge-title" id="reel-badge-title">CONCEPT 1 • 90s RETRO</span>
+        </div>
+        <button id="sound-btn" class="reel-sound-pill" title="Toggle Sound">
+          <span id="sound-icon">🔊</span>
         </button>
-        <div class="discreet-dropdown-panel hidden" id="invite-dropdown-panel" role="menu">
-          <div class="dropdown-header">Switch Digital Invite:</div>
-          <a href="index.html" class="dropdown-invite-item active" role="menuitem">
-            <span class="item-icon">👑</span>
-            <div class="item-info">
-              <span class="item-title">Royal Family Gala</span>
-              <span class="item-sub">Palace Lakshmi Puja & Feast</span>
-            </div>
-          </a>
-          <a href="rooftop-soiree.html" class="dropdown-invite-item" role="menuitem">
-            <span class="item-icon">🍸</span>
-            <div class="item-info">
-              <span class="item-title">Rooftop Soirée</span>
-              <span class="item-sub">Midnight Patakha & Cocktails</span>
-            </div>
-          </a>
-          <a href="corporate-gala.html" class="dropdown-invite-item" role="menuitem">
-            <span class="item-icon">💼</span>
-            <div class="item-info">
-              <span class="item-title">Corporate Executive</span>
-              <span class="item-sub">Prestige Gala & Hamper Box</span>
-            </div>
-          </a>
-          <a href="wish.html" class="dropdown-invite-item" role="menuitem">
-            <span class="item-icon">🪔</span>
-            <div class="item-info">
-              <span class="item-title">Sacred Diwali Wish</span>
-              <span class="item-sub">Blessings, Diyas & Pure Wishes</span>
-            </div>
-          </a>
+      </div>
+
+      <!-- ==================== CONCEPT 1: 90s RETRO NOSTALGIA ==================== -->
+      <div class="concept-scene active" id="scene-0">
+        <div class="scene-bg" style="background-image: url('concept-retro-90s.jpg');"></div>
+        <div class="crt-scanlines"></div>
+        <div class="vintage-vignette"></div>
+
+        <div class="scene-content retro-theme">
+          <div class="retro-badge animate-in delay-1">📺 DOORDARSHAN DIWALI • 1998</div>
+          <h1 class="retro-headline animate-in delay-2">Diwali Before Screens & Group Chats</h1>
+          
+          <div class="retro-subcard animate-in delay-3">
+            <p class="retro-point">✨ Hiding the Kaju Katli dabba from cousins</p>
+            <p class="retro-point">✨ Bursting bijli bombs under a steel glass</p>
+            <p class="retro-point">✨ Cold night air, warm woolens & real diyas</p>
+          </div>
+
+          <div class="retro-blessing animate-in delay-4">
+            <span class="retro-gold-text">Wishing You Pure Childhood Warmth & Endless Light 🪔</span>
+            <span class="retro-sig">Happy Deepawali • The Sharma Family</span>
+          </div>
         </div>
       </div>
 
-      <button id="sound-btn" class="nav-btn audio-pill" title="Toggle Sound">
-        <span class="icon" id="sound-icon">🔊</span>
+      <!-- ==================== CONCEPT 2: 8-BIT PIXEL MOHALLA ==================== -->
+      <div class="concept-scene" id="scene-1">
+        <div class="scene-bg" style="background-image: url('concept-pixel-mohalla.jpg');"></div>
+        <div class="pixel-grid-overlay"></div>
+
+        <div class="scene-content pixel-theme">
+          <div class="pixel-badge animate-in delay-1">🎮 STAGE 1: MOHALLA NIGHT</div>
+          <h1 class="pixel-headline animate-in delay-2">LEVEL UP YOUR DIWALI! 🪔</h1>
+
+          <div class="pixel-subcard animate-in delay-3">
+            <div class="pixel-stat-row">
+              <span class="p-stat">🏮 DIYAS LIT: 108/108</span>
+              <span class="p-stat">⭐ AURA: +9999</span>
+            </div>
+            <p class="pixel-desc">Balconies glowing • Rockets ascending • Zero lag vibes</p>
+          </div>
+
+          <div class="pixel-blessing animate-in delay-4">
+            <span class="pixel-gold-title">✨ MISSION PASSED: SHUBH DEEPAWALI ✨</span>
+            <span class="pixel-sig">PRESS START FOR 365 DAYS OF PROSPERITY</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== CONCEPT 3: THE SOAN PAPDI CHRONICLE ==================== -->
+      <div class="concept-scene" id="scene-2">
+        <div class="scene-bg" style="background-image: url('concept-soan-papdi.jpg');"></div>
+        <div class="comic-halftone"></div>
+
+        <div class="scene-content comic-theme">
+          <div class="comic-badge animate-in delay-1">📦 CLASSIFIED COURIER • 2018-2026</div>
+          <h1 class="comic-headline animate-in delay-2">The Immortal Soan Papdi Box 💀</h1>
+
+          <div class="comic-subcard animate-in delay-3">
+            <div class="comic-timeline">
+              <div class="timeline-step">📍 2018: First gifted to Sharma Ji</div>
+              <div class="timeline-step">📍 2021: Re-gifted to Gupta Uncle</div>
+              <div class="timeline-step">📍 2024: Passed to Company Boss</div>
+              <div class="timeline-step current">📍 TODAY: Arrived at your door!</div>
+            </div>
+          </div>
+
+          <div class="comic-blessing animate-in delay-4">
+            <span class="comic-punch">May your Diwali be sweet... and your sweets NOT be Soan Papdi! 🪔</span>
+            <span class="comic-sig">Happy Diwali • Send it to the next relative! 🚀</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== CONCEPT 4: KINETIC MOLTEN GOLD DIYA ==================== -->
+      <div class="concept-scene" id="scene-3">
+        <div class="scene-bg" style="background-image: url('concept-molten-gold.jpg');"></div>
+        <div class="gold-shimmer-particles"></div>
+
+        <div class="scene-content luxury-theme">
+          <div class="luxury-badge animate-in delay-1">ॐ KINETIC SACRED LIGHT ॐ</div>
+          <h1 class="luxury-headline animate-in delay-2">Tamaso Ma Jyotirgamaya</h1>
+
+          <div class="luxury-quote animate-in delay-3">
+            <p class="quote-text">
+              "From darkness, lead us into Light.<br>
+              From transient shadows, into golden Eternity."
+            </p>
+          </div>
+
+          <div class="luxury-blessing animate-in delay-4">
+            <span class="luxury-gold-title">Shubh Deepawali</span>
+            <p class="luxury-gold-sub">May divine radiance illuminate your health, wealth & inner peace.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subtitle & Recording Prompt -->
+      <div class="reel-footer-hud">
+        <span class="hud-now-playing" id="hud-now-playing">Playing: Concept 1 / 4 • 90s Nostalgia</span>
+      </div>
+
+    </div>
+
+    <!-- Video Navigation Controller (Clean & Minimal) -->
+    <div class="video-controller-bar">
+      <button class="nav-control-btn" id="prev-btn" title="Previous Concept">⏮ Prev</button>
+      <button class="nav-control-btn play-btn" id="play-pause-btn" title="Pause / Play">⏸ Pause</button>
+      <button class="nav-control-btn" id="next-btn" title="Next Concept">⏭ Next</button>
+      
+      <div class="concept-pills-row">
+        <button class="concept-pill-btn active" data-index="0">1. 90s Nostalgia</button>
+        <button class="concept-pill-btn" data-index="1">2. 8-Bit Pixel</button>
+        <button class="concept-pill-btn" data-index="2">3. Soan Papdi</button>
+        <button class="concept-pill-btn" data-index="3">4. Molten Gold</button>
+      </div>
+
+      <button class="nav-control-btn format-toggle" id="toggle-aspect-btn" title="Toggle Aspect Ratio">
+        📱 Reel 9:16
       </button>
     </div>
-  </header>
 
-  <!-- ==================== 1. STUNNING INTRO / THE REVEAL HOOK ==================== -->
-  <section id="intro-screen" class="intro-screen">
-    <div class="intro-overlay"></div>
-    <div class="intro-card">
-      <div class="meta-tag-badge">
-        <span class="pulse-dot"></span> Private Family Greeting
-      </div>
-      
-      <!-- Innocent Photo Thumbnail that matches the Meta Image preview -->
-      <div class="family-thumbnail-container" id="intro-thumb-container">
-        <img id="intro-family-img" src="family-diwali.png" alt="Our Family Diwali Celebration" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'350\' viewBox=\'0 0 600 350\'%3E%3Crect fill=\'%232d1202\' width=\'600\' height=\'350\'/%3E%3Ccircle cx=\'300\' cy=\'160\' r=\'80\' fill=\'%23f59e0b\' opacity=\'0.2\'/%3E%3Ctext x=\'50%25\' y=\'45%25\' text-anchor=\'middle\' fill=\'%23fef3c7\' font-family=\'sans-serif\' font-size=\'38\' font-weight=\'bold\'%3E🪔 Shubh Deepawali 🪔%3C/text%3E%3Ctext x=\'50%25\' y=\'65%25\' text-anchor=\'middle\' fill=\'%23fde68a\' font-family=\'sans-serif\' font-size=\'20\'%3EThe Sharma Family Diwali Celebration 2026%3C/text%3E%3C/svg%3E';">
-        <div class="photo-shimmer"></div>
-        <div class="family-tag" id="intro-family-caption">✨ From: The Sharma Family ✨</div>
-      </div>
+  </div>
 
-      <div class="intro-text-block">
-        <h2 class="sub-intro" id="intro-to-greeting">A Festive Blessing for You</h2>
-        <h1 class="main-intro">The house is quiet in the dark...</h1>
-        <p class="intro-instruction">Touch the sacred Diya below to light up our Diwali celebration & reveal the magic!</p>
-      </div>
-
-      <!-- Interactive Diya to ignite the surprise -->
-      <div class="diya-igniter-wrapper">
-        <button id="ignite-diya-btn" class="diya-igniter" aria-label="Light the Diya to unlock celebration">
-          <div class="flame-glow"></div>
-          <div class="flame-flicker"></div>
-          <div class="earthen-lamp">
-            <svg viewBox="0 0 120 70" class="diya-svg">
-              <path d="M10,40 Q60,75 110,40 Q115,30 100,32 Q60,45 20,32 Q5,30 10,40 Z" fill="#b45309" stroke="#78350f" stroke-width="2"/>
-              <path d="M18,34 Q60,46 102,34 Q60,54 18,34 Z" fill="#d97706"/>
-              <ellipse cx="60" cy="38" rx="35" ry="5" fill="#f59e0b"/>
-              <path d="M92,33 Q85,28 88,24" stroke="#451a03" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <span class="click-indicator">👆 Tap to Light the Diya</span>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== 2. MAIN GRAND CELEBRATION HUB ==================== -->
-  <main id="main-content" class="main-content hidden">
-
-    <!-- ======================================================================
-         INVITE 1: ROYAL FAMILY GALA & LAKSHMI PUJA INVITATION
-         ====================================================================== -->
-    <div id="invite-view-1" class="invite-view active">
-      <div class="hero-decorative-arch"></div>
-      <div class="royal-invite-crest">⚜️</div>
-      <div class="hero-badge luxury-invitation-badge">
-        <span class="rangoli-bullet">✦</span> 
-        <span id="hero-greeting-to">The Royal Singhania Family Cordially Invites You</span> 
-        <span class="rangoli-bullet">✦</span>
-      </div>
-
-      <h1 class="celebration-title">
-        <span class="gradient-text glow">SHUBH DEEPAWALI</span>
-        <span class="celebration-year">ROYAL GALA & LAKSHMI PUJA</span>
-      </h1>
-
-      <p class="celebration-blessing" id="hero-custom-message">
-        "May the supreme light of diyas illuminate your minds, enlighten your hearts, and strengthen the sacred bonds of love in your homes."
-      </p>
-
-      <div class="gala-info-pills">
-        <span class="info-pill">📅 Kartik Amavasya • 7:00 PM</span>
-        <span class="info-pill">📍 The Imperial Heritage Palace</span>
-        <span class="info-pill">👗 Dress Code: Regal Silk & Velvet</span>
-      </div>
-
-      <div class="hero-stats-bar">
-        <div class="stat-item">
-          <span class="stat-number" id="crackers-burst-count">0</span>
-          <span class="stat-label">Fireworks Burst</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" id="diyas-lit-count">1</span>
-          <span class="stat-label">Diyas Glowing</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">100%</span>
-          <span class="stat-label">Love & Warmth</span>
-        </div>
-      </div>
-
-      <!-- Quick Action Floating Dock -->
-      <div class="quick-action-dock">
-        <button class="dock-btn" id="launch-sky-rocket">
-          <span class="btn-emoji">🚀</span> Launch Sky Rocket
-        </button>
-        <button class="dock-btn" id="light-anar-btn">
-          <span class="btn-emoji">🌋</span> Spark Anar (Flowerpot)
-        </button>
-        <button class="dock-btn" id="spin-chakri-btn">
-          <span class="btn-emoji">🌀</span> Spin Chakri
-        </button>
-        <button class="dock-btn" id="play-temple-bell">
-          <span class="btn-emoji">🔔</span> Ring Temple Bell
-        </button>
-      </div>
-    </section>
-
-    <!-- ==================== 3. "HOW WE CELEBRATED" STORY TIMELINE ==================== -->
-    <section class="story-section">
-      <div class="section-heading">
-        <span class="sub-label">A Glimpse Into Our Home</span>
-        <h2>How We Celebrated Our Diwali</h2>
-        <div class="decorative-divider">
-          <span>🪔</span><span>✨</span><span>🪔</span>
-        </div>
-        <p class="section-desc">
-          From the chaotic Dhanteras cleaning to midnight sparklers and devouring boxes of Kaju Katli — take a walk through our festivities!
-        </p>
-      </div>
-
-      <div class="timeline-container">
-
-        <!-- Day 1: Dhanteras -->
-        <article class="timeline-card left">
-          <div class="timeline-dot luxury-dot">🪙</div>
-          <div class="card-inner luxury-card">
-            <div class="card-media luxury-media">
-              <div class="media-badge luxury-badge">✦ Day 1 • Dhanteras & Prosperity ✦</div>
-              <img src="timeline-dhanteras.jpg" alt="Dhanteras Luxury Gold and Brass Utensils" class="timeline-real-photo" loading="lazy">
-              <div class="photo-luxury-vignette"></div>
-            </div>
-            <div class="card-body">
-              <span class="card-sub-tag">AUSPICIOUS BEGINNINGS</span>
-              <h3>The Great Deep-Cleaning & Royal Gold Shopping</h3>
-              <p>Mom inspected every corner of the house with a laser eye! We welcomed Goddess Lakshmi with glowing brass Kalash, 24K gold ornaments, and consecrated silver coins, followed by a hearty feast of hot samosas and saffron jalebis.</p>
-              <div class="card-quote">“When the house is clean and hearts are pure, Lakshmi resides forever.” — Dadi</div>
-              <div class="card-cta-wrapper">
-                <button class="luxury-gold-cta" id="cta-dhanteras-blessing">
-                  <span class="cta-shine"></span>
-                  <span class="cta-icon">🪙</span>
-                  <span class="cta-text">Claim Dhanteras Wealth Blessing</span>
-                  <span class="cta-arrow">→</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Day 2: Choti Diwali & Rangoli -->
-        <article class="timeline-card right">
-          <div class="timeline-dot luxury-dot">🎨</div>
-          <div class="card-inner luxury-card">
-            <div class="card-media luxury-media">
-              <div class="media-badge luxury-badge">✦ Day 2 • Choti Diwali & Rangoli ✦</div>
-              <img src="timeline-rangoli.jpg" alt="Exquisite Peacock Rangoli and Glowing Diyas" class="timeline-real-photo" loading="lazy">
-              <div class="photo-luxury-vignette"></div>
-            </div>
-            <div class="card-body">
-              <span class="card-sub-tag">SACRED ARTISTRY</span>
-              <h3>Courtyard Peacock Rangoli & 14 Diyas</h3>
-              <p>Three hours of bent backs, seven vibrant mineral colors, and an accidental footprint from the neighbor's cat! Our grand Peacock & Lotus Mandala surrounded by 14 glowing mustard-oil diyas became the showstopper of the entire street.</p>
-              <div class="card-quote">“Every flower and color is a prayer of welcome.” — Maa</div>
-              <div class="card-cta-wrapper">
-                <button class="luxury-gold-cta" id="jump-to-rangoli">
-                  <span class="cta-shine"></span>
-                  <span class="cta-icon">🪷</span>
-                  <span class="cta-text">Paint Your Own Royal Rangoli</span>
-                  <span class="cta-arrow">→</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Day 3: Badi Diwali (Lakshmi Puja) -->
-        <article class="timeline-card left highlight-card">
-          <div class="timeline-dot luxury-dot pulse">🪔</div>
-          <div class="card-inner luxury-card royal-highlight">
-            <div class="card-media luxury-media">
-              <div class="media-badge luxury-badge royal">✦ Day 3 • The Sacred Lakshmi Puja ✦</div>
-              <img src="timeline-puja.jpg" alt="Sacred Lakshmi Ganesh Puja Thali and Camphor Flame" class="timeline-real-photo" loading="lazy">
-              <div class="photo-luxury-vignette"></div>
-            </div>
-            <div class="card-body">
-              <span class="card-sub-tag">THE HOLY NIGHT</span>
-              <h3>Sacred Lakshmi-Ganesh Aarti & Royal Feast</h3>
-              <p>Draped in pure Banarasi silk sarees and brocade kurtas, our three generations gathered for the evening Aarti. We consecrated 101 clay diyas along every terrace parapet and windowsill, filling the home with celestial light.</p>
-              <p class="feast-detail">✨ <strong>The Royal Feast:</strong> Shahi paneer makhani, fragrant saffron puris, dry fruit rabdi, and piping hot gulab jamuns.</p>
-              <div class="card-cta-wrapper">
-                <button class="luxury-gold-cta royal-cta" id="cta-open-maha-aarti">
-                  <span class="cta-shine"></span>
-                  <span class="cta-icon">🪔</span>
-                  <span class="cta-text">Experience Royal Maha Aarti</span>
-                  <span class="cta-arrow">→</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Day 4: The Crackers & Sparkler Night -->
-        <article class="timeline-card right">
-          <div class="timeline-dot luxury-dot">🎆</div>
-          <div class="card-inner luxury-card">
-            <div class="card-media luxury-media">
-              <div class="media-badge luxury-badge">✦ Day 4 • Midnight Terrace Celebration ✦</div>
-              <img src="timeline-fireworks.jpg" alt="Midnight Rooftop Sparkler Celebration" class="timeline-real-photo" loading="lazy">
-              <div class="photo-luxury-vignette"></div>
-            </div>
-            <div class="card-body">
-              <span class="card-sub-tag">NIGHT OF A THOUSAND STARS</span>
-              <h3>Terrace Sparklers, Green Crackers & Joy</h3>
-              <p>The night sky erupted into cascades of gold and amethyst! Grandparents cheered from wicker chairs while kids painted glowing light spirals with burning phuljhadis, creating memories etched forever.</p>
-              <div class="card-tags luxury-tags">
-                <span>#TerraceNights</span><span>#PhuljhadiMagic</span><span>#FamilyTogether</span>
-              </div>
-              <div class="card-cta-wrapper">
-                <button class="luxury-gold-cta" id="cta-sparkler-ignite">
-                  <span class="cta-shine"></span>
-                  <span class="cta-icon">✨</span>
-                  <span class="cta-text">Ignite Virtual Phuljhadi Wand</span>
-                  <span class="cta-arrow">→</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Day 5: Bhai Dooj & Sweet Gifting -->
-        <article class="timeline-card left">
-          <div class="timeline-dot luxury-dot">🍬</div>
-          <div class="card-inner luxury-card">
-            <div class="card-media luxury-media">
-              <div class="media-badge luxury-badge">✦ Day 5 • Bhai Dooj & Sweet Gifting ✦</div>
-              <img src="timeline-sweets.jpg" alt="Royal Silver Thali Mithai Platter" class="timeline-real-photo" loading="lazy">
-              <div class="photo-luxury-vignette"></div>
-            </div>
-            <div class="card-body">
-              <span class="card-sub-tag">SWEET BONDS OF LOVE</span>
-              <h3>Bhai Dooj Tikka & The Royal Mithai Exchange</h3>
-              <p>Brother-sister blessings, sacred roli tikka rituals, playful teasing, and trading silver-leafed Kaju Katli boxes (along with the legendary Soan Papdi pass-around!). A sweet culmination of five magical festive days.</p>
-              <div class="card-quote">“May the sweetness of this Diwali stay with us all year round.” — Papa</div>
-              <div class="card-cta-wrapper">
-                <button class="luxury-gold-cta" id="jump-to-mithai">
-                  <span class="cta-shine"></span>
-                  <span class="cta-icon">🎁</span>
-                  <span class="cta-text">Gift a Royal Virtual Mithai Thali</span>
-                  <span class="cta-arrow">→</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ==================== 4. INTERACTIVE VIRTUAL MITHAI (SWEETS) PLATTER ==================== -->
-    <section class="mithai-section" id="mithai-hub">
-      <div class="section-heading">
-        <span class="sub-label">Kuch Meetha Ho Jaye!</span>
-        <h2>Serve & Share Virtual Diwali Mithai</h2>
-        <div class="decorative-divider"><span>🍬</span><span>🥮</span><span>✨</span></div>
-        <p class="section-desc">Tap your favorite traditional Indian sweets to add them to your personalized festive thali!</p>
-      </div>
-
-      <div class="mithai-box-grid">
-        <div class="mithai-tray-card" data-sweet="Kaju Katli">
-          <div class="sweet-render silver-leaf">💎</div>
-          <div class="sweet-info">
-            <h4>Kaju Katli</h4>
-            <p>Diamond of cashew perfection with silver vark</p>
-          </div>
-          <button class="add-sweet-btn">+ Add to Thali</button>
-        </div>
-
-        <div class="mithai-tray-card" data-sweet="Motichoor Ladoo">
-          <div class="sweet-render ladoo-glow">🟠</div>
-          <div class="sweet-info">
-            <h4>Motichoor Ladoo</h4>
-            <p>Golden saffron pearls bound with pure desi ghee</p>
-          </div>
-          <button class="add-sweet-btn">+ Add to Thali</button>
-        </div>
-
-        <div class="mithai-tray-card" data-sweet="Warm Gulab Jamun">
-          <div class="sweet-render jamun-glow">🟤</div>
-          <div class="sweet-info">
-            <h4>Warm Gulab Jamun</h4>
-            <p>Melt-in-mouth milk dumplings drenched in rose syrup</p>
-          </div>
-          <button class="add-sweet-btn">+ Add to Thali</button>
-        </div>
-
-        <div class="mithai-tray-card" data-sweet="Crispy Jalebi">
-          <div class="sweet-render jalebi-glow">🌀</div>
-          <div class="sweet-info">
-            <h4>Crispy Saffron Jalebi</h4>
-            <p>Deep-fried golden spirals bursting with hot sugar syrup</p>
-          </div>
-          <button class="add-sweet-btn">+ Add to Thali</button>
-        </div>
-
-        <div class="mithai-tray-card" data-sweet="Soan Papdi">
-          <div class="sweet-render soan-glow">📦</div>
-          <div class="sweet-info">
-            <h4>The Immortal Soan Papdi</h4>
-            <p>The legendary box that travels across 5 households!</p>
-          </div>
-          <button class="add-sweet-btn">+ Add to Thali</button>
-        </div>
-
-        <div class="mithai-tray-card" data-sweet="Rasgulla">
-          <div class="sweet-render rasgulla-glow">⚪</div>
-          <div class="sweet-info">
-            <h4>Spongy Rasgulla</h4>
-            <p>Delicate cottage-cheese orbs in cardamom nectar</p>
-          </div>
-          <button class="add-sweet-btn">+ Add to Thali</button>
-        </div>
-      </div>
-
-      <!-- The Live Festive Thali Display -->
-      <div class="thali-display-container">
-        <div class="brass-thali">
-          <div class="thali-rim"></div>
-          <div class="thali-center-diya">🪔</div>
-          <div class="thali-items" id="thali-items-tray">
-            <!-- Dynamically populated sweets -->
-            <span class="empty-thali-hint">Your Thali is empty! Tap sweets above to load it up.</span>
-          </div>
-        </div>
-        <div class="thali-actions">
-          <button id="reserve-thali-btn" class="primary-festive-btn luxury-thali-btn">
-            <span>✨</span> Add Sweets to Royal RSVP Thali
-          </button>
-          <button id="clear-thali-btn" class="secondary-btn">Reset Thali</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== 5. INTERACTIVE RANGOLI CANVAS STUDIO ==================== -->
-    <section class="rangoli-studio-section" id="rangoli-studio">
-      <div class="section-heading">
-        <span class="sub-label">Express Your Creativity</span>
-        <h2>Interactive Rangoli Studio</h2>
-        <div class="decorative-divider"><span>🪷</span><span>✨</span><span>🪷</span></div>
-        <p class="section-desc">Choose vibrant festive colors and drag on the floor canvas to draw symmetric 8-fold mandala patterns!</p>
-      </div>
-
-      <div class="rangoli-studio-container">
-        <div class="rangoli-toolbar">
-          <div class="color-palette">
-            <button class="color-dot active" data-color="#f59e0b" style="background: #f59e0b;" title="Marigold Orange"></button>
-            <button class="color-dot" data-color="#ef4444" style="background: #ef4444;" title="Kumkum Red"></button>
-            <button class="color-dot" data-color="#ec4899" style="background: #ec4899;" title="Gulab Pink"></button>
-            <button class="color-dot" data-color="#10b981" style="background: #10b981;" title="Emerald Green"></button>
-            <button class="color-dot" data-color="#3b82f6" style="background: #3b82f6;" title="Krishna Peacock Blue"></button>
-            <button class="color-dot" data-color="#fef08a" style="background: #fef08a;" title="Haldi Yellow"></button>
-            <button class="color-dot" data-color="#ffffff" style="background: #ffffff;" title="Rice White"></button>
-          </div>
-          <div class="brush-controls">
-            <label>Symmetry: 
-              <select id="rangoli-symmetry">
-                <option value="8" selected>8-Fold Flower</option>
-                <option value="12">12-Fold Star</option>
-                <option value="4">4-Fold Swastik</option>
-                <option value="1">Freehand</option>
-              </select>
-            </label>
-            <button id="clear-rangoli-btn" class="small-btn">Clear Canvas</button>
-            <button id="preset-rangoli-btn" class="small-btn highlight">Magic Blossom</button>
-          </div>
-        </div>
-
-        <div class="rangoli-canvas-wrapper">
-          <canvas id="rangoli-canvas" width="600" height="600"></canvas>
-          <div class="canvas-hint">Touch & drag across the circle to paint glowing sand powder!</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== 6. ROYAL BURGUNDY RSVP & DIGITAL PASS CONCIERGE ==================== -->
-    <section class="rsvp-concierge-section" id="rsvp-hub">
-      <div class="customizer-card luxury-rsvp-card">
-        <div class="card-sparkle-decor">⚜️</div>
-        <div class="section-heading">
-          <span class="sub-label">Royal Guest Concierge</span>
-          <h2>Confirm Your Royal Attendance</h2>
-          <div class="decorative-divider"><span>⚜️</span><span>🪔</span><span>⚜️</span></div>
-          <p class="section-desc">
-            Kindly confirm your presence for the auspicious Lakshmi Puja, sacred Aarti, and the Grand Terrace Feast.
-          </p>
-        </div>
-
-        <form id="rsvp-form" class="customizer-grid" onsubmit="return false;">
-          <div class="form-group">
-            <label for="input-guest-name">Honored Guest Name(s):</label>
-            <input type="text" id="input-guest-name" value="Lord & Lady Kapoor" placeholder="e.g. Mr. & Mrs. Sharma">
-          </div>
-
-          <div class="form-group">
-            <label for="input-guest-count">Number of Attendees:</label>
-            <select id="input-guest-count" class="luxury-select">
-              <option value="2" selected>2 Guests (Royal Couple)</option>
-              <option value="1">1 Guest</option>
-              <option value="4">4 Guests (Family)</option>
-              <option value="6">6+ Guests (VIP Table)</option>
-            </select>
-          </div>
-
-          <div class="form-group full-width">
-            <label for="input-diet-pref">Feast & Dietary Preference:</label>
-            <select id="input-diet-pref" class="luxury-select">
-              <option value="Royal Shahi Saffron Feast" selected>Royal Shahi Saffron Feast (Traditional Vegetarian)</option>
-              <option value="Pure Jain Satvik Feast">Pure Jain Satvik Feast (Without Onion & Garlic)</option>
-              <option value="Vegan & Gluten-Free Delicacies">Vegan & Gluten-Free Festive Delicacies</option>
-            </select>
-          </div>
-
-          <div class="form-actions full-width rsvp-actions-row">
-            <button type="button" id="confirm-rsvp-btn" class="luxury-gold-cta large-cta">
-              <span class="cta-shine"></span>
-              <span class="cta-icon">👑</span>
-              <span class="cta-text">Confirm Royal RSVP & Receive Pass</span>
-              <span class="cta-arrow">→</span>
-            </button>
-          </div>
-        </form>
-
-        <!-- Live Generated Royal Invitation Pass -->
-        <div id="rsvp-confirmed-pass" class="royal-pass-container hidden">
-          <div class="pass-ribbon">CONFIRMED ROYAL GUEST</div>
-          <div class="pass-inner">
-            <div class="pass-header">
-              <span class="pass-crest">⚜️</span>
-              <div class="pass-title-group">
-                <h3>ROYAL DEEPAWALI GALA 2026</h3>
-                <span class="pass-serial">INVITE PASS #DIW-8892</span>
-              </div>
-            </div>
-
-            <div class="pass-details-grid">
-              <div class="pass-field">
-                <span class="field-label">HONORED GUEST</span>
-                <span class="field-val" id="pass-guest-name">Lord & Lady Kapoor</span>
-              </div>
-              <div class="pass-field">
-                <span class="field-label">DATE & TIME</span>
-                <span class="field-val">Kartik Amavasya • 7:00 PM</span>
-              </div>
-              <div class="pass-field">
-                <span class="field-label">TABLE RESERVATION</span>
-                <span class="field-val" id="pass-table-val">Heritage Pavilion #4</span>
-              </div>
-              <div class="pass-field">
-                <span class="field-label">VENUE</span>
-                <span class="field-val">The Grand Palace, Umaid Gardens</span>
-              </div>
-            </div>
-
-            <div class="pass-cta-row">
-              <button class="pass-action-btn" id="calendar-btn">
-                <span>📅</span> Add to Calendar
-              </button>
-              <button class="pass-action-btn" id="directions-btn">
-                <span>📍</span> Palace Directions
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-    </div><!-- End of Invite 1 -->
-
-    <!-- Footer -->
-    <footer class="festive-footer">
-      <div class="footer-lanterns">🏮 🪔 🏮</div>
-      <p>Haute Digital Invitations • Crafted with love & light for Deepawali 2026</p>
-      <p class="copyright">Shubh Deepawali • May Darkness Turn Into Light</p>
-    </footer>
-
-  </main>
-
-  <!-- Audio Synthesizer & Main Script -->
   <script src="script.js"></script>
 </body>
 </html>
