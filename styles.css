@@ -5659,7 +5659,7 @@ body.reel-mode-active .main-content {
   height: 100%;
   background: #ffffff;
   border-radius: 9999px;
-  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
 }
 
 .progress-segment.completed .progress-fill {
@@ -5740,17 +5740,28 @@ body.reel-mode-active .main-content {
   pointer-events: auto;
 }
 
+@keyframes reelKenBurns {
+  0% {
+    transform: scale(1.02) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.10) translate(-1.5%, -1%);
+  }
+  100% {
+    transform: scale(1.16) translate(1.2%, 1%);
+  }
+}
+
 .scene-bg {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
   transform: scale(1);
-  transition: transform 12s ease-out;
 }
 
 .concept-scene.active .scene-bg {
-  transform: scale(1.12);
+  animation: reelKenBurns 12s ease-in-out infinite alternate;
 }
 
 .scene-content {
@@ -5780,10 +5791,62 @@ body.reel-mode-active .main-content {
 .crt-scanlines {
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
   background-size: 100% 4px;
   pointer-events: none;
   z-index: 4;
+}
+
+@keyframes crtBeamMove {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(600%); }
+}
+
+.crt-scanlines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 25%;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.08), transparent);
+  animation: crtBeamMove 5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes pixelBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0.3; }
+}
+
+@keyframes comicFloat {
+  0% { transform: rotate(0deg) translateY(0); }
+  50% { transform: rotate(-1.5deg) translateY(-4px); }
+  100% { transform: rotate(1.5deg) translateY(2px); }
+}
+
+@keyframes luxuryAuraPulse {
+  0% {
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 35px rgba(254, 240, 138, 0.9), 0 0 15px rgba(245, 158, 11, 0.7);
+  }
+  100% {
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+  }
+}
+
+.pixel-badge {
+  animation: pixelBlink 1.2s steps(2, start) infinite;
+}
+
+.comic-subcard {
+  animation: comicFloat 4s ease-in-out infinite alternate;
+}
+
+.luxury-gold-title {
+  animation: luxuryAuraPulse 3s ease-in-out infinite;
 }
 
 .vintage-vignette {

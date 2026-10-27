@@ -1,24 +1,25 @@
 /**
- * SHUBH DEEPAWALI 2026 - Interactive Celebration Experience
- * Full interactive fireworks, sparkler cursor, sound engine, rangoli studio,
- * mithai platter, and custom meta preview card generator.
+ * DIWALI CONCEPT VIDEO SHOWCASE 🎬✨
+ * Automated 9:16 Cinema Reel Engine with Web Audio & Particle Motion
  */
 
-// ==================== 1. PROCEDURAL WEB AUDIO SYNTHESIZER ====================
-class SoundEngine {
+// ==================== 1. PROCEDURAL AUDIO SYNTHESIZER ====================
+class ReelAudioEngine {
   constructor() {
     this.ctx = null;
     this.enabled = true;
-    this.isInitialized = false;
+    this.isUnlocked = false;
   }
 
-  init() {
+  unlock() {
     if (!this.ctx) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      this.ctx = new AudioContext();
-      this.isInitialized = true;
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) {
+        this.ctx = new AudioCtx();
+        this.isUnlocked = true;
+      }
     }
-    if (this.ctx.state === 'suspended') {
+    if (this.ctx && this.ctx.state === 'suspended') {
       this.ctx.resume();
     }
   }
@@ -28,435 +29,197 @@ class SoundEngine {
     return this.enabled;
   }
 
-  // Realistic Temple Brass Bell (Ghanti)
-  playTempleBell() {
+  // Concept 1: 90s Nostalgic Warm Chime & Sparkler Sizzle
+  play90sRetroChime() {
     if (!this.enabled) return;
-    this.init();
+    this.unlock();
+    if (!this.ctx) return;
     const now = this.ctx.currentTime;
-    const freqs = [587.33, 1174.66, 1760.00, 2349.32, 3520.00]; // D5 and bright metallic harmonics
-    const weights = [1, 0.6, 0.4, 0.25, 0.1];
+    
+    // Warm vintage chords (FM-style retro vibe)
+    const notes = [329.63, 392.00, 493.88, 587.33]; // E minor / warm nostalgic
+    notes.forEach((freq, idx) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, now + idx * 0.08);
 
-    freqs.forEach((freq, idx) => {
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(0.12, now + idx * 0.08 + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.08 + 1.8);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start(now + idx * 0.08);
+      osc.stop(now + idx * 0.08 + 1.9);
+    });
+  }
+
+  // Concept 2: 8-Bit Pixel Game Power-Up & Chiptune Chime
+  play8BitPixelJingle() {
+    if (!this.enabled) return;
+    this.unlock();
+    if (!this.ctx) return;
+    const now = this.ctx.currentTime;
+
+    // Fast 8-bit arpeggio
+    const arpNotes = [440, 554.37, 659.25, 880, 1108.73, 1318.51];
+    arpNotes.forEach((freq, i) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(freq, now + i * 0.06);
+
+      gain.gain.setValueAtTime(0.08, now + i * 0.06);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.06 + 0.12);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start(now + i * 0.06);
+      osc.stop(now + i * 0.06 + 0.13);
+    });
+  }
+
+  // Concept 3: Comic Pop-Art Cartoon Whoosh & Bounce
+  playComicPop() {
+    if (!this.enabled) return;
+    this.unlock();
+    if (!this.ctx) return;
+    const now = this.ctx.currentTime;
+
+    // Fun slide whistle / comic pop
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(220, now);
+    osc.frequency.exponentialRampToValueAtTime(880, now + 0.25);
+
+    gain.gain.setValueAtTime(0.15, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.3);
+
+    // Followed by a cheerful chime
+    setTimeout(() => {
+      if (!this.enabled || !this.ctx) return;
+      const t = this.ctx.currentTime;
+      const chime = this.ctx.createOscillator();
+      const chimeGain = this.ctx.createGain();
+      chime.type = 'sine';
+      chime.frequency.setValueAtTime(1046.5, t); // C6
+      chimeGain.gain.setValueAtTime(0.1, t);
+      chimeGain.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
+      chime.connect(chimeGain);
+      chimeGain.connect(this.ctx.destination);
+      chime.start(t);
+      chime.stop(t + 0.45);
+    }, 240);
+  }
+
+  // Concept 4: Sacred Temple Brass Bell & Resonant Diya Chime
+  playSacredGoldBell() {
+    if (!this.enabled) return;
+    this.unlock();
+    if (!this.ctx) return;
+    const now = this.ctx.currentTime;
+
+    // Resonant brass bell harmonics
+    const harmonics = [587.33, 1174.66, 1760.00, 2349.32, 2936.65];
+    const weights = [0.25, 0.15, 0.1, 0.06, 0.03];
+
+    harmonics.forEach((freq, idx) => {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = idx === 0 ? 'sine' : 'triangle';
       osc.frequency.setValueAtTime(freq, now);
 
-      gain.gain.setValueAtTime(weights[idx] * 0.25, now);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 3.2);
+      gain.gain.setValueAtTime(weights[idx], now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 3.0);
 
       osc.connect(gain);
       gain.connect(this.ctx.destination);
       osc.start(now);
-      osc.stop(now + 3.3);
+      osc.stop(now + 3.1);
     });
   }
 
-  // Firework Launch Whoosh
-  playRocketLaunch() {
+  // Soft sparkle crackle
+  playSparkleCrackle() {
     if (!this.enabled) return;
-    this.init();
+    this.unlock();
+    if (!this.ctx) return;
     const now = this.ctx.currentTime;
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-
-    osc.type = 'sawtooth';
-    osc.frequency.setValueAtTime(160, now);
-    osc.frequency.exponentialRampToValueAtTime(800, now + 0.6);
-
-    gain.gain.setValueAtTime(0.12, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.65);
-
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
-    osc.start(now);
-    osc.stop(now + 0.7);
-  }
-
-  // Firework Explosion Boom & Crackle
-  playFireworkBurst() {
-    if (!this.enabled) return;
-    this.init();
-    const now = this.ctx.currentTime;
-
-    // 1. Low Thud / Boom
-    const osc = this.ctx.createOscillator();
-    const boomGain = this.ctx.createGain();
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(140, now);
-    osc.frequency.exponentialRampToValueAtTime(30, now + 0.5);
-
-    boomGain.gain.setValueAtTime(0.4, now);
-    boomGain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
-
-    osc.connect(boomGain);
-    boomGain.connect(this.ctx.destination);
-    osc.start(now);
-    osc.stop(now + 0.65);
-
-    // 2. High Frequency Sparkling Crackles
-    const bufferSize = this.ctx.sampleRate * 0.4;
-    const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
-    const output = noiseBuffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) {
-      output[i] = Math.random() * 2 - 1;
+    for (let i = 0; i < 3; i++) {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(1400 + Math.random() * 800, now + i * 0.04);
+      gain.gain.setValueAtTime(0.04, now + i * 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.04 + 0.06);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start(now + i * 0.04);
+      osc.stop(now + i * 0.04 + 0.07);
     }
-
-    const whiteNoise = this.ctx.createBufferSource();
-    whiteNoise.buffer = noiseBuffer;
-
-    const filter = this.ctx.createBiquadFilter();
-    filter.type = 'bandpass';
-    filter.frequency.setValueAtTime(1800, now);
-    filter.Q.setValueAtTime(2.0, now);
-
-    const noiseGain = this.ctx.createGain();
-    noiseGain.gain.setValueAtTime(0.25, now + 0.05);
-    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
-
-    whiteNoise.connect(filter);
-    filter.connect(noiseGain);
-    noiseGain.connect(this.ctx.destination);
-    whiteNoise.start(now + 0.05);
-    whiteNoise.stop(now + 0.5);
-  }
-
-  // Sparkler / Phuljhadi Burning Sizzle
-  playSparklerCrackle() {
-    if (!this.enabled) return;
-    this.init();
-    const now = this.ctx.currentTime;
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(1200 + Math.random() * 800, now);
-    gain.gain.setValueAtTime(0.04, now);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.08);
-
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
-    osc.start(now);
-    osc.stop(now + 0.09);
-  }
-
-  // Sacred Diya Lighting Harmonious Chime
-  playDiyaChime() {
-    if (!this.enabled) return;
-    this.init();
-    const notes = [440, 554.37, 659.25, 830.61, 880]; // A Major pentatonic sparkle
-    notes.forEach((freq, idx) => {
-      setTimeout(() => {
-        if (!this.enabled) return;
-        const now = this.ctx.currentTime;
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now);
-        gain.gain.setValueAtTime(0.2, now);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-        osc.start(now);
-        osc.stop(now + 1.9);
-      }, idx * 120);
-    });
   }
 }
 
-const sounds = new SoundEngine();
-
-// ==================== 2. FIREWORKS SIMULATION ENGINE ====================
-class FireworksEngine {
-  constructor(canvas) {
-    this.canvas = canvas;
-    this.ctx = canvas.getContext('2d');
-    this.rockets = [];
+// ==================== 2. AMBIENT PARTICLES & FIREWORKS ENGINE ====================
+class CanvasParticleEngine {
+  constructor(canvasId) {
+    this.canvas = document.getElementById(canvasId);
+    if (!this.canvas) return;
+    this.ctx = this.canvas.getContext('2d');
     this.particles = [];
-    this.textParticles = [];
-    this.anars = [];
-    this.chakris = [];
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
+    this.fireworks = [];
+    this.init();
+  }
+
+  init() {
     this.resize();
     window.addEventListener('resize', () => this.resize());
-    this.burstCount = 0;
+    this.loop();
   }
 
   resize() {
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
-    this.canvas.width = this.width;
-    this.canvas.height = this.height;
+    if (!this.canvas) return;
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
   }
 
-  launchRocket(targetX = null, targetY = null, customColor = null) {
-    const startX = this.width * (0.2 + Math.random() * 0.6);
-    const destX = targetX !== null ? targetX : this.width * (0.15 + Math.random() * 0.7);
-    const destY = targetY !== null ? targetY : this.height * (0.12 + Math.random() * 0.4);
-
-    const colors = [
-      '#f59e0b', '#fbbf24', '#ef4444', '#ec4899', '#10b981', '#3b82f6', '#a855f7', '#f43f5e'
-    ];
-    const color = customColor || colors[Math.floor(Math.random() * colors.length)];
-
-    this.rockets.push({
-      x: startX,
-      y: this.height,
-      startX,
-      startY: this.height,
-      destX,
-      destY,
-      color,
-      progress: 0,
-      speed: 0.025 + Math.random() * 0.012,
-      trail: []
-    });
-
-    sounds.playRocketLaunch();
-  }
-
-  sparkAnar(x = this.width / 2, y = this.height - 20) {
-    for (let i = 0; i < 90; i++) {
-      const angle = -Math.PI / 2 + (Math.random() - 0.5) * 0.8;
-      const speed = 7 + Math.random() * 11;
-      this.particles.push({
-        x,
-        y,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        color: Math.random() > 0.3 ? '#fbbf24' : '#f59e0b',
-        alpha: 1,
-        decay: 0.02 + Math.random() * 0.025,
-        size: 2 + Math.random() * 3,
-        gravity: 0.3
-      });
-    }
-    sounds.playFireworkBurst();
-    this.incrementCounter();
-  }
-
-  spinChakri(x = this.width / 2, y = this.height / 2) {
-    for (let i = 0; i < 80; i++) {
-      const angle = (i / 80) * Math.PI * 2 + Math.random() * 0.2;
-      const speed = 4 + Math.random() * 6;
-      this.particles.push({
-        x,
-        y,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        color: i % 2 === 0 ? '#fbbf24' : '#ec4899',
-        alpha: 1,
-        decay: 0.02 + Math.random() * 0.02,
-        size: 3,
-        gravity: 0.05
-      });
-    }
-    sounds.playFireworkBurst();
-    this.incrementCounter();
-  }
-
-  createBurst(x, y, color) {
-    const particleCount = 80 + Math.floor(Math.random() * 40);
-    for (let i = 0; i < particleCount; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = 2 + Math.random() * 6.5;
+  createBurst(x, y, color = '#fbbf24') {
+    const count = 35;
+    for (let i = 0; i < count; i++) {
+      const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.3;
+      const speed = 2 + Math.random() * 5;
       this.particles.push({
         x,
         y,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         color,
-        alpha: 1,
-        decay: 0.012 + Math.random() * 0.018,
         size: 2 + Math.random() * 2.5,
-        gravity: 0.08
+        alpha: 1,
+        decay: 0.015 + Math.random() * 0.02
       });
     }
-    sounds.playFireworkBurst();
-    this.incrementCounter();
   }
 
-  incrementCounter() {
-    this.burstCount++;
-    const counterEl = document.getElementById('crackers-burst-count');
-    if (counterEl) counterEl.textContent = this.burstCount;
-  }
+  loop() {
+    requestAnimationFrame(() => this.loop());
+    if (!this.ctx || !this.canvas) return;
 
-  explodeText(text, targetY = null) {
-    if (!text || !text.trim()) return;
-    const cleanText = text.trim().toUpperCase().slice(0, 18);
-    const offCanvas = document.createElement('canvas');
-    offCanvas.width = 1100;
-    offCanvas.height = 240;
-    const offCtx = offCanvas.getContext('2d');
-    
-    const fontSize = cleanText.length > 10 ? 52 : 72;
-    offCtx.font = `900 ${fontSize}px "Outfit", sans-serif`;
-    offCtx.textAlign = 'center';
-    offCtx.textBaseline = 'middle';
-    offCtx.fillStyle = '#ffffff';
-    offCtx.fillText(cleanText, 550, 120);
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    const imgData = offCtx.getImageData(0, 0, 1100, 240).data;
-    const targets = [];
-    const step = cleanText.length > 10 ? 8 : 6;
-    const centerY = targetY !== null ? targetY : (this.height * 0.36);
-    const centerX = this.width / 2;
-    
-    const maxTextWidth = Math.min(this.width * 0.9, 900);
-    const scale = maxTextWidth / 1100;
-
-    for (let y = 0; y < 240; y += step) {
-      for (let x = 0; x < 1100; x += step) {
-        const idx = (y * 1100 + x) * 4;
-        if (imgData[idx + 3] > 160) {
-          targets.push({
-            tx: (x - 550) * scale + centerX,
-            ty: (y - 120) * scale + centerY
-          });
-        }
-      }
-    }
-
-    if (targets.length === 0) return;
-
-    sounds.playRocketLaunch();
-    this.rockets.push({
-      x: centerX,
-      y: this.height,
-      startX: centerX,
-      startY: this.height,
-      destX: centerX,
-      destY: centerY,
-      color: '#f59e0b',
-      progress: 0,
-      speed: 0.038,
-      trail: [],
-      onExplode: () => {
-        sounds.playFireworkBurst();
-        sounds.playTempleBell();
-        
-        const flash = document.getElementById('flash-overlay');
-        if (flash) {
-          flash.classList.add('active');
-          setTimeout(() => flash.classList.remove('active'), 140);
-        }
-
-        const colors = ['#fde047', '#fbbf24', '#f59e0b', '#ec4899', '#38bdf8', '#a855f7', '#4ade80'];
-        targets.forEach((tgt, idx) => {
-          const col = colors[idx % colors.length];
-          this.textParticles.push({
-            x: centerX + (Math.random() - 0.5) * 40,
-            y: centerY + (Math.random() - 0.5) * 40,
-            tx: tgt.tx,
-            ty: tgt.ty,
-            vx: (Math.random() - 0.5) * 10,
-            vy: (Math.random() - 0.5) * 10,
-            color: col,
-            alpha: 1,
-            size: 2.5 + Math.random() * 2,
-            stage: 'forming',
-            holdTime: 200 + Math.random() * 50,
-            life: 0
-          });
-        });
-        this.incrementCounter();
-      }
-    });
-  }
-
-  updateAndDraw() {
-    this.ctx.clearRect(0, 0, this.width, this.height);
-
-    // Update and draw rockets
-    for (let i = this.rockets.length - 1; i >= 0; i--) {
-      const r = this.rockets[i];
-      r.progress += r.speed;
-
-      r.x = r.startX + (r.destX - r.startX) * r.progress;
-      r.y = r.startY + (r.destY - r.startY) * r.progress;
-
-      // Rocket trail
-      this.ctx.beginPath();
-      this.ctx.arc(r.x, r.y, 3.5, 0, Math.PI * 2);
-      this.ctx.fillStyle = '#fff';
-      this.ctx.shadowBlur = 10;
-      this.ctx.shadowColor = '#fbbf24';
-      this.ctx.fill();
-
-      // Spark trail
-      this.particles.push({
-        x: r.x,
-        y: r.y,
-        vx: (Math.random() - 0.5) * 1.5,
-        vy: (Math.random() - 0.5) * 1.5 + 1,
-        color: '#f59e0b',
-        alpha: 0.7,
-        decay: 0.05,
-        size: 1.5,
-        gravity: 0.05
-      });
-
-      if (r.progress >= 1) {
-        if (r.onExplode) {
-          r.onExplode();
-        } else {
-          this.createBurst(r.destX, r.destY, r.color);
-        }
-        this.rockets.splice(i, 1);
-      }
-    }
-
-    // Update and draw sky text particles
-    for (let i = this.textParticles.length - 1; i >= 0; i--) {
-      const tp = this.textParticles[i];
-      if (tp.stage === 'forming') {
-        tp.x += (tp.tx - tp.x) * 0.14;
-        tp.y += (tp.ty - tp.y) * 0.14;
-        if (Math.abs(tp.x - tp.tx) < 2 && Math.abs(tp.y - tp.ty) < 2) {
-          tp.stage = 'holding';
-        }
-      } else if (tp.stage === 'holding') {
-        tp.life++;
-        // Subtle sparkler shimmer vibration
-        tp.x = tp.tx + (Math.random() - 0.5) * 2;
-        tp.y = tp.ty + (Math.random() - 0.5) * 2;
-        if (tp.life > tp.holdTime) {
-          tp.stage = 'falling';
-          tp.vx = (Math.random() - 0.5) * 3;
-          tp.vy = 1 + Math.random() * 3;
-        }
-      } else if (tp.stage === 'falling') {
-        tp.x += tp.vx;
-        tp.y += tp.vy;
-        tp.vy += 0.06;
-        tp.alpha -= 0.015;
-      }
-
-      if (tp.alpha <= 0) {
-        this.textParticles.splice(i, 1);
-        continue;
-      }
-
-      this.ctx.save();
-      this.ctx.globalAlpha = Math.max(0, tp.alpha);
-      this.ctx.beginPath();
-      this.ctx.arc(tp.x, tp.y, tp.size, 0, Math.PI * 2);
-      this.ctx.fillStyle = tp.color;
-      this.ctx.shadowBlur = 12;
-      this.ctx.shadowColor = tp.color;
-      this.ctx.fill();
-      this.ctx.restore();
-    }
-
-    // Update and draw particles
+    // Update and draw floating particles
     for (let i = this.particles.length - 1; i >= 0; i--) {
       const p = this.particles[i];
       p.x += p.vx;
       p.y += p.vy;
-      p.vy += p.gravity;
-      p.vx *= 0.98;
+      p.vy += 0.06; // gravity
       p.alpha -= p.decay;
 
       if (p.alpha <= 0) {
@@ -466,1344 +229,301 @@ class FireworksEngine {
 
       this.ctx.save();
       this.ctx.globalAlpha = Math.max(0, p.alpha);
-      this.ctx.beginPath();
-      this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       this.ctx.fillStyle = p.color;
       this.ctx.shadowBlur = 8;
       this.ctx.shadowColor = p.color;
+      this.ctx.beginPath();
+      this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       this.ctx.fill();
       this.ctx.restore();
     }
   }
 }
 
-// ==================== 3. SPARKLER (PHULJHADI) INTERACTIVE WAND ====================
-class SparklerWand {
-  constructor(canvas) {
-    this.canvas = canvas;
-    this.ctx = canvas.getContext('2d');
-    this.isActive = false;
-    this.sparks = [];
-    this.mouseX = -100;
-    this.mouseY = -100;
-    this.resize();
-    window.addEventListener('resize', () => this.resize());
-    this.bindEvents();
-  }
+// ==================== 3. CINEMA REEL ENGINE (AUTO-PLAYING 4 CONCEPTS) ====================
+class CinemaReelEngine {
+  constructor(audio, particles) {
+    this.audio = audio;
+    this.particles = particles;
+    this.currentIndex = 0;
+    this.totalConcepts = 4;
+    this.durationPerConcept = 8500; // 8.5 seconds per scene (ideal reel timing)
+    this.elapsedTime = 0;
+    this.isPlaying = true;
+    this.lastTimestamp = null;
 
-  resize() {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
-  }
+    // Elements
+    this.scenes = [
+      document.getElementById('scene-0'),
+      document.getElementById('scene-1'),
+      document.getElementById('scene-2'),
+      document.getElementById('scene-3')
+    ];
 
-  toggle(forceState = null) {
-    this.isActive = forceState !== null ? forceState : !this.isActive;
-    return this.isActive;
-  }
+    this.fills = [
+      document.getElementById('fill-0'),
+      document.getElementById('fill-1'),
+      document.getElementById('fill-2'),
+      document.getElementById('fill-3')
+    ];
 
-  bindEvents() {
-    const updatePos = (clientX, clientY) => {
-      this.mouseX = clientX;
-      this.mouseY = clientY;
-      if (this.isActive) {
-        this.spawnEmbers(clientX, clientY);
-        if (Math.random() > 0.6) sounds.playSparklerCrackle();
-      }
-    };
+    this.segments = Array.from(document.querySelectorAll('.progress-segment'));
+    this.pills = Array.from(document.querySelectorAll('.concept-pill-btn'));
+    this.badgeTitle = document.getElementById('reel-badge-title');
+    this.hudNowPlaying = document.getElementById('hud-now-playing');
+    this.playPauseBtn = document.getElementById('play-pause-btn');
+    this.prevBtn = document.getElementById('prev-btn');
+    this.nextBtn = document.getElementById('next-btn');
+    this.soundBtn = document.getElementById('sound-btn');
+    this.soundIcon = document.getElementById('sound-icon');
+    this.toggleAspectBtn = document.getElementById('toggle-aspect-btn');
+    this.reelViewport = document.getElementById('reel-viewport');
 
-    window.addEventListener('mousemove', (e) => updatePos(e.clientX, e.clientY));
-    window.addEventListener('touchmove', (e) => {
-      if (e.touches.length > 0) {
-        updatePos(e.touches[0].clientX, e.touches[0].clientY);
-      }
-    }, { passive: true });
-  }
+    this.conceptTitles = [
+      "CONCEPT 1 • 90s RETRO",
+      "CONCEPT 2 • 8-BIT PIXEL",
+      "CONCEPT 3 • SOAN PAPDI",
+      "CONCEPT 4 • KINETIC GOLD"
+    ];
 
-  spawnEmbers(x, y) {
-    for (let i = 0; i < 8; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = 1.5 + Math.random() * 4.5;
-      this.sparks.push({
-        x,
-        y,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        alpha: 1,
-        decay: 0.03 + Math.random() * 0.04,
-        size: 1.5 + Math.random() * 2,
-        color: Math.random() > 0.4 ? '#fbbf24' : '#fff'
-      });
-    }
-  }
+    this.hudDescriptions = [
+      "Playing: Concept 1 / 4 • 90s Childhood Memories",
+      "Playing: Concept 2 / 4 • 8-Bit Pixel Mohalla",
+      "Playing: Concept 3 / 4 • The Soan Papdi Chronicle",
+      "Playing: Concept 4 / 4 • Kinetic Molten Gold"
+    ];
 
-  updateAndDraw() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    if (!this.isActive && this.sparks.length === 0) return;
+    this.conceptColors = [
+      '#f59e0b', // warm gold amber
+      '#38bdf8', // pixel cyan/sky
+      '#fbbf24', // bright comic yellow
+      '#eab308'  // radiant molten gold
+    ];
 
-    // Draw sparkler tip at mouse
-    if (this.isActive && this.mouseX > 0) {
-      this.ctx.save();
-      this.ctx.beginPath();
-      this.ctx.arc(this.mouseX, this.mouseY, 4, 0, Math.PI * 2);
-      this.ctx.fillStyle = '#fff';
-      this.ctx.shadowBlur = 15;
-      this.ctx.shadowColor = '#f59e0b';
-      this.ctx.fill();
-
-      // Sparkler stick
-      this.ctx.beginPath();
-      this.ctx.moveTo(this.mouseX, this.mouseY);
-      this.ctx.lineTo(this.mouseX - 20, this.mouseY + 40);
-      this.ctx.strokeStyle = '#9ca3af';
-      this.ctx.lineWidth = 3;
-      this.ctx.lineCap = 'round';
-      this.ctx.stroke();
-      this.ctx.restore();
-    }
-
-    // Draw embers
-    for (let i = this.sparks.length - 1; i >= 0; i--) {
-      const s = this.sparks[i];
-      s.x += s.vx;
-      s.y += s.vy;
-      s.vy += 0.1; // gravity
-      s.alpha -= s.decay;
-
-      if (s.alpha <= 0) {
-        this.sparks.splice(i, 1);
-        continue;
-      }
-
-      this.ctx.save();
-      this.ctx.globalAlpha = s.alpha;
-      this.ctx.beginPath();
-      this.ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-      this.ctx.fillStyle = s.color;
-      this.ctx.shadowBlur = 6;
-      this.ctx.shadowColor = s.color;
-      this.ctx.fill();
-      this.ctx.restore();
-    }
-  }
-}
-
-// ==================== 4. PETALS GENERATOR ====================
-function initPetalShower() {
-  const container = document.getElementById('petals-container');
-  if (!container) return;
-
-  const createPetal = () => {
-    const petal = document.createElement('div');
-    petal.className = 'falling-petal';
-    const isMarigold = Math.random() > 0.4;
-    petal.style.background = isMarigold 
-      ? 'radial-gradient(circle, #fbbf24 30%, #ea580c 90%)' 
-      : 'radial-gradient(circle, #f43f5e 30%, #991b1b 90%)';
-
-    const size = 12 + Math.random() * 14;
-    petal.style.width = `${size}px`;
-    petal.style.height = `${size * 1.3}px`;
-    petal.style.left = `${Math.random() * 100}vw`;
-    petal.style.animationDuration = `${6 + Math.random() * 8}s`;
-    petal.style.animationDelay = `${Math.random() * 4}s`;
-
-    container.appendChild(petal);
-
-    setTimeout(() => {
-      petal.remove();
-    }, 14000);
-  };
-
-  for (let i = 0; i < 20; i++) {
-    createPetal();
-  }
-  setInterval(createPetal, 1200);
-}
-
-// ==================== 5. RANGOLI STUDIO CANVAS ====================
-class RangoliStudio {
-  constructor(canvas) {
-    this.canvas = canvas;
-    this.ctx = canvas.getContext('2d');
-    this.currentColor = '#f59e0b';
-    this.symmetry = 8;
-    this.isDrawing = false;
-    this.lastX = 0;
-    this.lastY = 0;
-    this.centerX = canvas.width / 2;
-    this.centerY = canvas.height / 2;
     this.init();
   }
 
   init() {
-    this.drawBackgroundGuide();
-    this.bindEvents();
-  }
+    this.bindControls();
+    this.loadConcept(0);
+    
+    // Start continuous requestAnimationFrame animation loop
+    requestAnimationFrame((ts) => this.tick(ts));
 
-  drawBackgroundGuide() {
-    this.ctx.save();
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-    // Subtle guide circles
-    this.ctx.strokeStyle = 'rgba(245, 158, 11, 0.15)';
-    this.ctx.lineWidth = 1;
-    [60, 120, 180, 240].forEach((radius) => {
-      this.ctx.beginPath();
-      this.ctx.arc(this.centerX, this.centerY, radius, 0, Math.PI * 2);
-      this.ctx.stroke();
-    });
-
-    // Central floral core
-    this.ctx.beginPath();
-    this.ctx.arc(this.centerX, this.centerY, 12, 0, Math.PI * 2);
-    this.ctx.fillStyle = '#f59e0b';
-    this.ctx.fill();
-    this.ctx.restore();
-  }
-
-  bindEvents() {
-    const getPos = (e) => {
-      const rect = this.canvas.getBoundingClientRect();
-      const scaleX = this.canvas.width / rect.width;
-      const scaleY = this.canvas.height / rect.height;
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      return {
-        x: (clientX - rect.left) * scaleX,
-        y: (clientY - rect.top) * scaleY
-      };
+    // Unlock WebAudio on any first tap
+    const unlockAudio = () => {
+      this.audio.unlock();
+      window.removeEventListener('click', unlockAudio);
+      window.removeEventListener('touchstart', unlockAudio);
     };
-
-    const startDraw = (e) => {
-      this.isDrawing = true;
-      const pos = getPos(e);
-      this.lastX = pos.x;
-      this.lastY = pos.y;
-    };
-
-    const draw = (e) => {
-      if (!this.isDrawing) return;
-      e.preventDefault();
-      const pos = getPos(e);
-      this.drawSymmetricSegment(this.lastX, this.lastY, pos.x, pos.y);
-      this.lastX = pos.x;
-      this.lastY = pos.y;
-    };
-
-    const stopDraw = () => {
-      this.isDrawing = false;
-    };
-
-    this.canvas.addEventListener('mousedown', startDraw);
-    this.canvas.addEventListener('mousemove', draw);
-    window.addEventListener('mouseup', stopDraw);
-
-    this.canvas.addEventListener('touchstart', startDraw, { passive: false });
-    this.canvas.addEventListener('touchmove', draw, { passive: false });
-    window.addEventListener('touchend', stopDraw);
+    window.addEventListener('click', unlockAudio, { passive: true });
+    window.addEventListener('touchstart', unlockAudio, { passive: true });
   }
 
-  drawSymmetricSegment(x1, y1, x2, y2) {
-    const angleStep = (Math.PI * 2) / this.symmetry;
-    const relX1 = x1 - this.centerX;
-    const relY1 = y1 - this.centerY;
-    const relX2 = x2 - this.centerX;
-    const relY2 = y2 - this.centerY;
-
-    this.ctx.save();
-    this.ctx.strokeStyle = this.currentColor;
-    this.ctx.fillStyle = this.currentColor;
-    this.ctx.lineWidth = 4;
-    this.ctx.lineCap = 'round';
-    this.ctx.shadowBlur = 8;
-    this.ctx.shadowColor = this.currentColor;
-
-    for (let i = 0; i < this.symmetry; i++) {
-      const angle = i * angleStep;
-      const cos = Math.cos(angle);
-      const sin = Math.sin(angle);
-
-      // Rotate coordinates
-      const rx1 = relX1 * cos - relY1 * sin + this.centerX;
-      const ry1 = relX1 * sin + relY1 * cos + this.centerY;
-      const rx2 = relX2 * cos - relY2 * sin + this.centerX;
-      const ry2 = relX2 * sin + relY2 * cos + this.centerY;
-
-      this.ctx.beginPath();
-      this.ctx.moveTo(rx1, ry1);
-      this.ctx.lineTo(rx2, ry2);
-      this.ctx.stroke();
-
-      // Sand droplet effect
-      this.ctx.beginPath();
-      this.ctx.arc(rx2, ry2, 2.5, 0, Math.PI * 2);
-      this.ctx.fill();
-    }
-    this.ctx.restore();
-  }
-
-  drawMagicBlossom() {
-    this.drawBackgroundGuide();
-    const colors = ['#f59e0b', '#ef4444', '#ec4899', '#3b82f6', '#10b981', '#fef08a'];
-    const petals = 8;
-    const step = (Math.PI * 2) / petals;
-
-    colors.forEach((col, cIdx) => {
-      this.ctx.save();
-      this.ctx.strokeStyle = col;
-      this.ctx.fillStyle = col;
-      this.ctx.lineWidth = 3;
-      this.ctx.shadowBlur = 10;
-      this.ctx.shadowColor = col;
-
-      const r = 40 + cIdx * 32;
-      for (let i = 0; i < petals; i++) {
-        const theta = i * step;
-        const x = this.centerX + Math.cos(theta) * r;
-        const y = this.centerY + Math.sin(theta) * r;
-
-        this.ctx.beginPath();
-        this.ctx.arc(x, y, 14, 0, Math.PI * 2);
-        this.ctx.stroke();
-
-        this.ctx.beginPath();
-        this.ctx.arc(x, y, 6, 0, Math.PI * 2);
-        this.ctx.fill();
-      }
-      this.ctx.restore();
-    });
-  }
-}
-
-// ==================== 6. VIRTUAL MITHAI THALI ====================
-class MithaiThali {
-  constructor() {
-    this.items = [];
-    this.container = document.getElementById('thali-items-tray');
-    this.sweetIcons = {
-      'Kaju Katli': '💎',
-      'Motichoor Ladoo': '🟠',
-      'Warm Gulab Jamun': '🟤',
-      'Crispy Jalebi': '🌀',
-      'The Immortal Soan Papdi': '📦',
-      'Rasgulla': '⚪'
-    };
-    this.bindEvents();
-  }
-
-  bindEvents() {
-    const addButtons = document.querySelectorAll('.add-sweet-btn');
-    addButtons.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        const card = e.target.closest('.mithai-tray-card');
-        const sweetName = card.dataset.sweet;
-        this.addSweet(sweetName);
-      });
-    });
-
-    const clearBtn = document.getElementById('clear-thali-btn');
-    if (clearBtn) {
-      clearBtn.addEventListener('click', () => this.clear());
-    }
-
-    const shareBtn = document.getElementById('send-thali-whatsapp');
-    if (shareBtn) {
-      shareBtn.addEventListener('click', () => this.shareOnWhatsApp());
-    }
-  }
-
-  addSweet(name) {
-    if (this.items.length >= 12) {
-      alert("Your festive Thali is overflowing with sweetness! 🪔 Send it or reset.");
-      return;
-    }
-    this.items.push(name);
-    sounds.playTempleBell();
-    this.render();
-  }
-
-  clear() {
-    this.items = [];
-    this.render();
-  }
-
-  render() {
-    if (!this.container) return;
-    this.container.innerHTML = '';
-
-    if (this.items.length === 0) {
-      this.container.innerHTML = '<span class="empty-thali-hint">Your Thali is empty! Tap sweets above to load it up.</span>';
-      return;
-    }
-
-    const total = this.items.length;
-    const radius = 135; // Radius around center diya
-
-    this.items.forEach((item, idx) => {
-      const angle = (idx / total) * Math.PI * 2;
-      const x = Math.cos(angle) * radius;
-      const y = Math.sin(angle) * radius;
-
-      const pill = document.createElement('div');
-      pill.className = 'thali-sweet-pill';
-      const icon = this.sweetIcons[item] || '🍬';
-      pill.innerHTML = `${icon} ${item}`;
-      pill.style.transform = `translate(${x}px, ${y}px)`;
-
-      this.container.appendChild(pill);
-    });
-  }
-
-  shareOnWhatsApp() {
-    if (this.items.length === 0) {
-      alert("Please add at least one sweet to your festive thali before sending! 🍬");
-      return;
-    }
-    const sweetCounts = {};
-    this.items.forEach(x => { sweetCounts[x] = (sweetCounts[x] || 0) + 1; });
-    const sweetSummary = Object.entries(sweetCounts)
-      .map(([name, count]) => `${this.sweetIcons[name] || '🍬'} ${count}x ${name}`)
-      .join(', ');
-
-    const text = encodeURIComponent(
-      `🪔 *Shubh Deepawali 2026!* ✨\n\nI just prepared a special festive Diwali Mithai Thali for you with: ${sweetSummary}!\n\nOpen our family celebration surprise link to burst crackers and view our memories:\n${window.location.href}`
-    );
-    window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
-  }
-}
-
-// ==================== 7. META IMAGE & GREETING LINK GENERATOR ====================
-class GreetingCustomizer {
-  constructor() {
-    this.familyNameInput = document.getElementById('input-family-name');
-    this.recipientInput = document.getElementById('input-recipient-name');
-    this.customWishInput = document.getElementById('input-custom-wish');
-    this.generateBtn = document.getElementById('generate-link-btn');
-    this.previewMetaBtn = document.getElementById('preview-meta-btn');
-    this.linkBox = document.getElementById('generated-link-box');
-    this.urlInput = document.getElementById('shareable-url-input');
-    this.copyBtn = document.getElementById('copy-link-btn');
-
-    this.modal = document.getElementById('meta-modal');
-    this.closeModalBtn = document.getElementById('close-modal-btn');
-    this.metaCanvas = document.getElementById('meta-canvas-preview');
-    this.downloadBtn = document.getElementById('download-og-image-btn');
-
-    this.bindEvents();
-    this.parseUrlParameters();
-  }
-
-  bindEvents() {
-    if (this.generateBtn) {
-      this.generateBtn.addEventListener('click', () => this.generateLink());
-    }
-
-    if (this.copyBtn) {
-      this.copyBtn.addEventListener('click', () => {
-        this.urlInput.select();
-        navigator.clipboard.writeText(this.urlInput.value);
-        this.copyBtn.textContent = '✓ Copied!';
-        setTimeout(() => { this.copyBtn.textContent = '📋 Copy'; }, 2000);
+  bindControls() {
+    // Play / Pause Button
+    if (this.playPauseBtn) {
+      this.playPauseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.togglePlayPause();
       });
     }
 
-    if (this.previewMetaBtn) {
-      this.previewMetaBtn.addEventListener('click', () => this.openMetaModal());
-    }
-
-    if (this.closeModalBtn) {
-      this.closeModalBtn.addEventListener('click', () => this.closeMetaModal());
-    }
-
-    if (this.downloadBtn) {
-      this.downloadBtn.addEventListener('click', () => this.downloadHighResMetaImage());
-    }
-
-    // Photo choices
-    const photoRadios = document.querySelectorAll('input[name="photo-choice"]');
-    photoRadios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        document.querySelectorAll('.preset-img-option').forEach(el => el.classList.remove('active'));
-        radio.closest('.preset-img-option').classList.add('active');
-        this.renderMetaCanvas();
-      });
-    });
-  }
-
-  parseUrlParameters() {
-    const params = new URLSearchParams(window.location.search);
-    const family = params.get('family');
-    const to = params.get('to');
-    const msg = params.get('msg');
-
-    if (family) {
-      document.getElementById('meta-title').textContent = `${family} Diwali Celebration 2026 ✨ | A Surprise Inside`;
-      document.getElementById('intro-family-caption').textContent = `✨ From: ${family} ✨`;
-      if (this.familyNameInput) this.familyNameInput.value = family;
-    }
-
-    if (to) {
-      document.getElementById('intro-to-greeting').textContent = `Dear ${to}, A Festive Blessing for You`;
-      document.getElementById('hero-greeting-to').textContent = `Happy Diwali to ${to} & Your Loved Ones`;
-      if (this.recipientInput) this.recipientInput.value = to;
-    }
-
-    if (msg) {
-      document.getElementById('hero-custom-message').textContent = `"${msg}"`;
-      if (this.customWishInput) this.customWishInput.value = msg;
-    }
-  }
-
-  generateLink() {
-    const family = encodeURIComponent(this.familyNameInput.value.trim() || 'The Sharma Family');
-    const to = encodeURIComponent(this.recipientInput.value.trim() || '');
-    const msg = encodeURIComponent(this.customWishInput.value.trim() || '');
-
-    const baseUrl = window.location.origin + window.location.pathname;
-    const shareUrl = `${baseUrl}?family=${family}${to ? '&to=' + to : ''}${msg ? '&msg=' + msg : ''}`;
-
-    this.urlInput.value = shareUrl;
-    this.linkBox.classList.remove('hidden');
-
-    // Update social share buttons
-    const whatsappText = encodeURIComponent(
-      `🪔 *${decodeURIComponent(family)}* sent you a warm Diwali surprise! ✨\nTap to light the Diya and see our festive celebration:\n${shareUrl}`
-    );
-    document.getElementById('share-whatsapp-btn').href = `https://api.whatsapp.com/send?text=${whatsappText}`;
-    document.getElementById('share-twitter-btn').href = `https://twitter.com/intent/tweet?text=${whatsappText}`;
-    document.getElementById('share-facebook-btn').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
-
-    sounds.playTempleBell();
-    this.linkBox.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  openMetaModal() {
-    const family = this.familyNameInput.value.trim() || 'The Sharma Family';
-    document.getElementById('modal-meta-title').textContent = `${family} Diwali Celebration 2026 ✨`;
-    document.getElementById('modal-meta-desc').textContent = `A warm Diwali surprise from our home to yours! Tap to light the golden diya and experience our family's celebration.`;
-    document.getElementById('mockup-contact-name').textContent = `${family} Group`;
-
-    this.modal.classList.remove('hidden');
-    this.renderMetaCanvas();
-  }
-
-  closeMetaModal() {
-    this.modal.classList.add('hidden');
-  }
-
-  renderMetaCanvas(targetCanvas = this.metaCanvas) {
-    if (!targetCanvas) return;
-    const ctx = targetCanvas.getContext('2d');
-    const w = targetCanvas.width;
-    const h = targetCanvas.height;
-
-    // Draw dark regal background
-    const grad = ctx.createRadialGradient(w / 2, h / 2, 50, w / 2, h / 2, w * 0.7);
-    grad.addColorStop(0, '#2d1202');
-    grad.addColorStop(0.5, '#190a02');
-    grad.addColorStop(1, '#080312');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, w, h);
-
-    // Try to draw family image if available
-    const imgEl = document.getElementById('intro-family-img');
-    if (imgEl && imgEl.complete && imgEl.naturalWidth > 0) {
-      try {
-        ctx.save();
-        ctx.globalAlpha = 0.88;
-        ctx.drawImage(imgEl, 0, 0, w, h);
-
-        // Dark gradient overlay on bottom for text readability
-        const overlay = ctx.createLinearGradient(0, h * 0.35, 0, h);
-        overlay.addColorStop(0, 'rgba(8, 3, 18, 0)');
-        overlay.addColorStop(0.7, 'rgba(8, 3, 18, 0.75)');
-        overlay.addColorStop(1, 'rgba(8, 3, 18, 0.95)');
-        ctx.fillStyle = overlay;
-        ctx.fillRect(0, 0, w, h);
-        ctx.restore();
-      } catch (err) {
-        // Fallback gracefully
-      }
-    }
-
-    // Golden Royal Frame
-    ctx.save();
-    ctx.strokeStyle = '#ca8a04';
-    ctx.lineWidth = 10;
-    ctx.strokeRect(10, 10, w - 20, h - 20);
-
-    ctx.strokeStyle = '#f59e0b';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(20, 20, w - 40, h - 40);
-
-    // Corner decorative rosettes
-    const corners = [
-      [20, 20], [w - 20, 20], [20, h - 20], [w - 20, h - 20]
-    ];
-    ctx.fillStyle = '#f59e0b';
-    corners.forEach(([cx, cy]) => {
-      ctx.beginPath();
-      ctx.arc(cx, cy, 8, 0, Math.PI * 2);
-      ctx.fill();
-    });
-
-    // Top Header Pill
-    ctx.fillStyle = 'rgba(245, 158, 11, 0.95)';
-    ctx.beginPath();
-    ctx.roundRect(w / 2 - 140, 36, 280, 38, 19);
-    ctx.fill();
-
-    ctx.fillStyle = '#1a0800';
-    ctx.font = 'bold 18px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText('✨ SHUBH DEEPAWALI 2026 ✨', w / 2, 61);
-
-    // Main Family Text
-    const family = this.familyNameInput ? (this.familyNameInput.value.trim() || 'The Sharma Family') : 'The Sharma Family';
-    ctx.fillStyle = '#fef3c7';
-    ctx.font = 'bold 36px Georgia, serif';
-    ctx.shadowColor = '#000';
-    ctx.shadowBlur = 10;
-    ctx.fillText(`${family}'s Diwali Celebration`, w / 2, h - 75);
-
-    // Call to Action Subtitle
-    ctx.fillStyle = '#fde68a';
-    ctx.font = '500 18px sans-serif';
-    ctx.fillText('🪔 Tap to light the golden Diya & unlock our celebration 🪔', w / 2, h - 38);
-    ctx.restore();
-  }
-
-  downloadHighResMetaImage() {
-    const highResCanvas = document.createElement('canvas');
-    highResCanvas.width = 1200;
-    highResCanvas.height = 630;
-    this.renderMetaCanvas(highResCanvas);
-
-    const link = document.createElement('a');
-    link.download = 'diwali-og-image-1200x630.png';
-    link.href = highResCanvas.toDataURL('image/png');
-    link.click();
-  }
-}
-
-// ==================== 8. DOM INITIALIZATION & EVENTS ====================
-document.addEventListener('DOMContentLoaded', () => {
-  const fwCanvas = document.getElementById('fireworks-canvas');
-  const sparklerCanvas = document.getElementById('sparkler-canvas');
-  const rangoliCanvas = document.getElementById('rangoli-canvas');
-
-  const fireworks = new FireworksEngine(fwCanvas);
-  const sparkler = new SparklerWand(sparklerCanvas);
-  const rangoli = new RangoliStudio(rangoliCanvas);
-  const mithai = new MithaiThali();
-  const customizer = new GreetingCustomizer();
-
-  initPetalShower();
-
-  // Animation Loop
-  function animLoop() {
-    fireworks.updateAndDraw();
-    sparkler.updateAndDraw();
-    requestAnimationFrame(animLoop);
-  }
-  requestAnimationFrame(animLoop);
-
-  // Sound Toggle Button
-  const soundBtn = document.getElementById('sound-btn');
-  const soundIcon = document.getElementById('sound-icon');
-  const soundLabel = document.getElementById('sound-label');
-  if (soundBtn) {
-    soundBtn.addEventListener('click', () => {
-      const isEnabled = sounds.toggle();
-      soundIcon.textContent = isEnabled ? '🔊' : '🔇';
-      soundLabel.textContent = isEnabled ? 'Sound On' : 'Muted';
-      soundBtn.classList.toggle('active', isEnabled);
-    });
-  }
-
-  // Sparkler Wand Mode Toggle
-  const sparklerBtn = document.getElementById('sparkler-mode-btn');
-  if (sparklerBtn) {
-    sparklerBtn.addEventListener('click', () => {
-      const active = sparkler.toggle();
-      sparklerBtn.classList.toggle('active', active);
-    });
-  }
-
-  // Customize Navigation Shortcut
-  const customizeBtn = document.getElementById('customize-btn');
-  if (customizeBtn) {
-    customizeBtn.addEventListener('click', () => {
-      const el = document.getElementById('customizer-hub');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    });
-  }
-
-  // ==================== 9. THE GRAND REVEAL (IGNITE DIYA) ====================
-  const igniteBtn = document.getElementById('ignite-diya-btn') || document.getElementById('reveal-btn');
-  const introScreen = document.getElementById('intro-screen');
-  const mainContent = document.getElementById('main-content');
-
-  function triggerGrandCelebration() {
-    sounds.init();
-    sounds.playDiyaChime();
-    sounds.playTempleBell();
-
-    // Launch intense grand finale firework series
-    for (let i = 0; i < 7; i++) {
-      setTimeout(() => {
-        fireworks.launchRocket(
-          window.innerWidth * (0.15 + i * 0.12),
-          window.innerHeight * (0.15 + Math.random() * 0.3)
-        );
-      }, i * 220);
-    }
-
-    // Dissolve intro
-    setTimeout(() => {
-      introScreen.classList.add('dissolve');
-      mainContent.classList.remove('hidden');
-      document.body.classList.remove('is-intro');
-
-      // Update lit diya count
-      const diyaCount = document.getElementById('diyas-lit-count');
-      if (diyaCount) diyaCount.textContent = '101';
-    }, 900);
-  }
-
-  if (igniteBtn) {
-    igniteBtn.addEventListener('click', triggerGrandCelebration);
-  }
-
-  // Launch fireworks on direct background click
-  window.addEventListener('click', (e) => {
-    // If not clicking inside an interactive card or button
-    if (!e.target.closest('button, input, select, textarea, a, .card-inner, .mithai-tray-card, .rangoli-studio-container')) {
-      fireworks.launchRocket(e.clientX, e.clientY);
-    }
-  });
-
-  // Dock Buttons
-  const launchRocketBtn = document.getElementById('launch-sky-rocket');
-  if (launchRocketBtn) {
-    launchRocketBtn.addEventListener('click', () => {
-      fireworks.launchRocket();
-    });
-  }
-
-  const anarBtn = document.getElementById('light-anar-btn');
-  if (anarBtn) {
-    anarBtn.addEventListener('click', () => {
-      fireworks.sparkAnar();
-    });
-  }
-
-  const chakriBtn = document.getElementById('spin-chakri-btn');
-  if (chakriBtn) {
-    chakriBtn.addEventListener('click', () => {
-      fireworks.spinChakri();
-    });
-  }
-
-  const bellBtn = document.getElementById('play-temple-bell');
-  if (bellBtn) {
-    bellBtn.addEventListener('click', () => {
-      sounds.playTempleBell();
-    });
-  }
-
-  // Rangoli color picker
-  const colorDots = document.querySelectorAll('.color-dot');
-  colorDots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      colorDots.forEach(d => d.classList.remove('active'));
-      dot.classList.add('active');
-      rangoli.currentColor = dot.dataset.color;
-    });
-  });
-
-  const symmetrySelect = document.getElementById('rangoli-symmetry');
-  if (symmetrySelect) {
-    symmetrySelect.addEventListener('change', (e) => {
-      rangoli.symmetry = parseInt(e.target.value, 10);
-    });
-  }
-
-  const clearRangoliBtn = document.getElementById('clear-rangoli-btn');
-  if (clearRangoliBtn) {
-    clearRangoliBtn.addEventListener('click', () => rangoli.drawBackgroundGuide());
-  }
-
-  const presetRangoliBtn = document.getElementById('preset-rangoli-btn');
-  if (presetRangoliBtn) {
-    presetRangoliBtn.addEventListener('click', () => rangoli.drawMagicBlossom());
-  }
-
-  // Jump buttons
-  const jumpRangoli = document.getElementById('jump-to-rangoli');
-  if (jumpRangoli) {
-    jumpRangoli.addEventListener('click', () => {
-      document.getElementById('rangoli-studio').scrollIntoView({ behavior: 'smooth' });
-    });
-  }
-
-  const jumpMithai = document.getElementById('jump-to-mithai');
-  if (jumpMithai) {
-    jumpMithai.addEventListener('click', () => {
-      document.getElementById('mithai-hub').scrollIntoView({ behavior: 'smooth' });
-    });
-  }
-
-  // Luxury Timeline CTA Button Actions
-  const dhanterasCta = document.getElementById('cta-dhanteras-blessing');
-  if (dhanterasCta) {
-    dhanterasCta.addEventListener('click', () => {
-      sounds.playTempleBell();
-      sounds.playDiyaChime();
-      fireworks.sparkAnar(window.innerWidth / 2, window.innerHeight - 50);
-      alert("✨ Shubh Dhanteras! May Goddess Lakshmi bless your home with boundless prosperity, gold, and eternal happiness! 🪙🪔");
-    });
-  }
-
-  const mahaAartiCta = document.getElementById('cta-open-maha-aarti');
-  if (mahaAartiCta) {
-    mahaAartiCta.addEventListener('click', () => {
-      inviteSwitcher.switchInvite(2);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  const sparklerCta = document.getElementById('cta-sparkler-ignite');
-  if (sparklerCta) {
-    sparklerCta.addEventListener('click', () => {
-      const active = sparkler.toggle(true);
-      const sparklerBtn = document.getElementById('sparkler-mode-btn');
-      if (sparklerBtn) sparklerBtn.classList.toggle('active', active);
-      sounds.playSparklerCrackle();
-      alert("✨ Virtual Phuljhadi Activated! Move your mouse or drag your finger across the screen to paint glowing fire trails! 🎆");
-    });
-  }
-
-  // ==================== 10. 3 DIGITAL INVITES SWITCHER & MANAGERS ====================
-  class InviteSwitcher {
-    constructor() {
-      this.menuTrigger = document.getElementById('invite-menu-trigger');
-      this.menuPanel = document.getElementById('invite-dropdown-panel');
-      this.bindEvents();
-    }
-
-    bindEvents() {
-      // Toggle dropdown menu
-      if (this.menuTrigger && this.menuPanel) {
-        this.menuTrigger.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const isHidden = this.menuPanel.classList.toggle('hidden');
-          this.menuTrigger.setAttribute('aria-expanded', !isHidden ? 'true' : 'false');
-        });
-
-        // Close on outside click
-        document.addEventListener('click', (e) => {
-          if (!this.menuPanel.contains(e.target) && !this.menuTrigger.contains(e.target)) {
-            this.menuPanel.classList.add('hidden');
-            this.menuTrigger.setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
-    }
-  }
-
-  const inviteSwitcher = new InviteSwitcher();
-
-  // Royal RSVP Submission & Concierge Actions
-  const confirmRsvpBtn = document.getElementById('confirm-rsvp-btn');
-  if (confirmRsvpBtn) {
-    confirmRsvpBtn.addEventListener('click', () => {
-      const nameInput = document.getElementById('input-guest-name');
-      const guestName = (nameInput && nameInput.value.trim()) || 'Lord & Lady Kapoor';
-      const passName = document.getElementById('pass-guest-name');
-      if (passName) passName.textContent = guestName;
-      const confirmedPass = document.getElementById('rsvp-confirmed-pass');
-      if (confirmedPass) confirmedPass.classList.remove('hidden');
-      sounds.playTempleBell();
-      sounds.playDiyaChime();
-      fireworks.launchRocket();
-      confirmedPass.scrollIntoView({ behavior: 'smooth' });
-    });
-  }
-
-  const calBtn = document.getElementById('calendar-btn');
-  if (calBtn) {
-    calBtn.addEventListener('click', () => {
-      alert("📅 Event added to your calendar: Royal Deepawali Gala • Kartik Amavasya • 7:00 PM at The Grand Palace!");
-    });
-  }
-
-  const dirBtn = document.getElementById('directions-btn');
-  if (dirBtn) {
-    dirBtn.addEventListener('click', () => {
-      alert("📍 Navigating to The Grand Heritage Palace, Umaid Gardens. Valet parking reserved for your vehicle.");
-    });
-  }
-
-  const rooftopRsvp = document.getElementById('rsvp-rooftop-btn');
-  if (rooftopRsvp) {
-    rooftopRsvp.addEventListener('click', () => {
-      sounds.playTempleBell();
-      sounds.playDiyaChime();
-      fireworks.launchRocket();
-      const pass = document.getElementById('rooftop-confirmed-pass');
-      if (pass) {
-        pass.classList.remove('hidden');
-        pass.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        alert("🍸 VIP Terrace Access Pass Confirmed! We look forward to clinking saffron spritzers at Kabir & Ananya's Rooftop Soirée!");
-      }
-    });
-  }
-
-  const corpTableBtn = document.getElementById('reserve-corporate-table-btn');
-  if (corpTableBtn) {
-    corpTableBtn.addEventListener('click', () => {
-      sounds.playTempleBell();
-      sounds.playDiyaChime();
-      fireworks.launchRocket();
-      const pass = document.getElementById('corporate-confirmed-pass');
-      if (pass) {
-        pass.classList.remove('hidden');
-        pass.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        alert("💼 Executive VIP Table Reserved for Vertex Global Annual Deepawali Gala at The Grand Ballroom, Taj Palace.");
-      }
-    });
-  }
-
-  const reserveThaliBtn = document.getElementById('reserve-thali-btn');
-  if (reserveThaliBtn) {
-    reserveThaliBtn.addEventListener('click', () => {
-      sounds.playTempleBell();
-      sounds.playDiyaChime();
-      alert("✨ Festive Mithai selection saved to your Royal Guest Thali! It will be served fresh at your reserved table. 🥮🪔");
-    });
-  }
-
-  // ==================== 11. TEMPLATE 2: ROYAL MAHA AARTI MANAGER ====================
-  class MahaAartiManager {
-    constructor() {
-      this.bells = document.querySelectorAll('.temple-bell-interactive');
-      this.thali = document.getElementById('interactive-aarti-thali');
-      this.grid = document.getElementById('diya-mandala-grid');
-      this.litBadge = document.getElementById('diyas-lit-badge');
-      this.igniteAllBtn = document.getElementById('ignite-all-diyas-btn');
-      this.lotusBtn = document.getElementById('shower-lotus-btn');
-      this.chimesBtn = document.getElementById('ring-temple-chimes-btn');
-      this.diyasCount = 108;
-      this.litCount = 12;
-      this.init();
-    }
-
-    init() {
-      this.renderDiyasGrid();
-      this.bindEvents();
-    }
-
-    bindEvents() {
-      // Bells
-      this.bells.forEach(bell => {
-        bell.addEventListener('click', () => {
-          bell.classList.remove('ringing');
-          void bell.offsetWidth; // force reflow
-          bell.classList.add('ringing');
-          sounds.playTempleBell();
-        });
-      });
-
-      // Thali swirling
-      if (this.thali) {
-        this.thali.addEventListener('click', () => {
-          this.thali.classList.toggle('swirling');
-          sounds.playDiyaChime();
-        });
-      }
-
-      // Ignite All 108
-      if (this.igniteAllBtn) {
-        this.igniteAllBtn.addEventListener('click', () => this.igniteAll());
-      }
-
-      // Lotus Shower
-      if (this.lotusBtn) {
-        this.lotusBtn.addEventListener('click', () => this.showerLotusPetals());
-      }
-
-      // Ring all chimes
-      if (this.chimesBtn) {
-        this.chimesBtn.addEventListener('click', () => {
-          this.bells.forEach((b, i) => {
-            setTimeout(() => {
-              b.classList.remove('ringing');
-              void b.offsetWidth;
-              b.classList.add('ringing');
-              sounds.playTempleBell();
-            }, i * 150);
-          });
-        });
-      }
-    }
-
-    renderDiyasGrid() {
-      if (!this.grid) return;
-      this.grid.innerHTML = '';
-      for (let i = 1; i <= this.diyasCount; i++) {
-        const diya = document.createElement('div');
-        diya.className = 'micro-diya';
-        diya.innerHTML = '🪔';
-        diya.dataset.id = i;
-        if (i <= this.litCount) diya.classList.add('lit');
-
-        diya.addEventListener('click', () => {
-          diya.classList.toggle('lit');
-          sounds.playDiyaChime();
-          this.updateCount();
-        });
-
-        this.grid.appendChild(diya);
-      }
-    }
-
-    igniteAll() {
-      const diyas = this.grid.querySelectorAll('.micro-diya');
-      sounds.playDiyaChime();
-      sounds.playTempleBell();
-      diyas.forEach((d, idx) => {
-        setTimeout(() => {
-          d.classList.add('lit');
-          if (idx % 12 === 0) sounds.playTempleBell();
-          if (idx === diyas.length - 1) this.updateCount();
-        }, idx * 18);
+    // Previous Button
+    if (this.prevBtn) {
+      this.prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.prevConcept();
       });
     }
 
-    updateCount() {
-      const lit = this.grid.querySelectorAll('.micro-diya.lit').length;
-      if (this.litBadge) this.litBadge.textContent = `${lit} / 108 Lit`;
+    // Next Button
+    if (this.nextBtn) {
+      this.nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.nextConcept();
+      });
     }
 
-    showerLotusPetals() {
-      const container = document.getElementById('petals-container');
-      if (!container) return;
-      for (let i = 0; i < 30; i++) {
-        setTimeout(() => {
-          const petal = document.createElement('div');
-          petal.className = 'falling-petal';
-          petal.style.background = 'radial-gradient(circle, #f472b6 20%, #db2777 90%)';
-          petal.style.width = '20px';
-          petal.style.height = '24px';
-          petal.style.left = `${Math.random() * 100}vw`;
-          petal.style.animationDuration = `${5 + Math.random() * 5}s`;
-          container.appendChild(petal);
-          setTimeout(() => petal.remove(), 10000);
-        }, i * 60);
-      }
-      sounds.playDiyaChime();
-    }
-  }
-
-  const aartiManager = new MahaAartiManager();
-
-  // ==================== 12. TEMPLATE 3: MIDNIGHT NEON PATAKHA ====================
-  class NeonPatakhaManager {
-    constructor() {
-      this.rapidBtn = document.getElementById('btn-rapid-barrage');
-      this.anarBtn = document.getElementById('btn-twin-anar');
-      this.chakriBtn = document.getElementById('btn-hyper-chakri');
-      this.lightPaintBtn = document.getElementById('btn-light-paint-auto');
-      this.canvas = document.getElementById('light-writing-canvas');
-      this.ctx = this.canvas ? this.canvas.getContext('2d') : null;
-      this.neonBurstCount = 0;
-      this.bindEvents();
-    }
-
-    bindEvents() {
-      if (this.rapidBtn) {
-        this.rapidBtn.addEventListener('click', () => this.fireRapidBarrage());
-      }
-      if (this.anarBtn) {
-        this.anarBtn.addEventListener('click', () => this.fireTwinAnars());
-      }
-      if (this.chakriBtn) {
-        this.chakriBtn.addEventListener('click', () => this.fireHyperChakris());
-      }
-      if (this.lightPaintBtn) {
-        this.lightPaintBtn.addEventListener('click', () => this.animateSparklerWriting());
-      }
-
-      // Interactive drag on light writing canvas
-      if (this.canvas) {
-        let isDrawing = false;
-        const draw = (e) => {
-          if (!isDrawing) return;
-          const rect = this.canvas.getBoundingClientRect();
-          const x = (e.clientX - rect.left) * (this.canvas.width / rect.width);
-          const y = (e.clientY - rect.top) * (this.canvas.height / rect.height);
-          this.ctx.beginPath();
-          this.ctx.arc(x, y, 4, 0, Math.PI * 2);
-          this.ctx.fillStyle = '#fbbf24';
-          this.ctx.shadowBlur = 15;
-          this.ctx.shadowColor = '#f59e0b';
-          this.ctx.fill();
-          if (Math.random() > 0.7) sounds.playSparklerCrackle();
-        };
-
-        this.canvas.addEventListener('mousedown', () => { isDrawing = true; });
-        this.canvas.addEventListener('mousemove', draw);
-        window.addEventListener('mouseup', () => { isDrawing = false; });
-      }
-    }
-
-    fireRapidBarrage() {
-      const colors = ['#ec4899', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ef4444'];
-      for (let i = 0; i < 10; i++) {
-        setTimeout(() => {
-          const col = colors[i % colors.length];
-          const x = window.innerWidth * (0.15 + (i / 10) * 0.7);
-          const y = window.innerHeight * (0.15 + Math.random() * 0.3);
-          fireworks.launchRocket(x, y, col);
-          this.neonBurstCount++;
-          const countEl = document.getElementById('neon-burst-count');
-          if (countEl) countEl.textContent = `${this.neonBurstCount} 💥`;
-        }, i * 200);
-      }
-    }
-
-    fireTwinAnars() {
-      fireworks.sparkAnar(100, window.innerHeight - 30);
-      fireworks.sparkAnar(window.innerWidth - 100, window.innerHeight - 30);
-      for (let i = 0; i < 6; i++) {
-        setTimeout(() => {
-          fireworks.sparkAnar(100, window.innerHeight - 30);
-          fireworks.sparkAnar(window.innerWidth - 100, window.innerHeight - 30);
-        }, i * 350);
-      }
-    }
-
-    fireHyperChakris() {
-      fireworks.spinChakri(window.innerWidth * 0.35, window.innerHeight * 0.6);
-      fireworks.spinChakri(window.innerWidth * 0.65, window.innerHeight * 0.6);
-    }
-
-    animateSparklerWriting() {
-      if (!this.ctx) return;
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-      const text = "✨ SHUBH DIWALI 2026 ✨";
-      this.ctx.font = 'bold 38px Georgia, serif';
-      this.ctx.fillStyle = '#fbbf24';
-      this.ctx.shadowBlur = 20;
-      this.ctx.shadowColor = '#f59e0b';
-      this.ctx.textAlign = 'center';
-      
-      let step = 0;
-      const interval = setInterval(() => {
-        step++;
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.fillText(text.slice(0, step), this.canvas.width / 2, this.canvas.height / 2 + 12);
-        sounds.playSparklerCrackle();
-        if (step >= text.length) {
-          clearInterval(interval);
-          this.fireRapidBarrage();
+    // Sound Button
+    if (this.soundBtn) {
+      this.soundBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const enabled = this.audio.toggle();
+        if (this.soundIcon) {
+          this.soundIcon.textContent = enabled ? '🔊' : '🔇';
         }
-      }, 90);
-    }
-  }
-
-  const neonManager = new NeonPatakhaManager();
-
-  // ==================== 14. CINEMA REEL ENGINE (4 CONCEPTS VIDEO SHOWCASE) ====================
-  class CinemaReelEngine {
-    constructor() {
-      this.currentIndex = 0;
-      this.totalConcepts = 4;
-      this.durationPerConcept = 10000; // 10s per concept auto-advance
-      this.elapsedTime = 0;
-      this.isPlaying = true;
-      this.timerInterval = null;
-      this.lastTick = Date.now();
-
-      this.scenes = [
-        document.getElementById('scene-0'),
-        document.getElementById('scene-1'),
-        document.getElementById('scene-2'),
-        document.getElementById('scene-3')
-      ];
-
-      this.fills = [
-        document.getElementById('fill-0'),
-        document.getElementById('fill-1'),
-        document.getElementById('fill-2'),
-        document.getElementById('fill-3')
-      ];
-
-      this.segments = document.querySelectorAll('.progress-segment');
-      this.pills = document.querySelectorAll('.concept-pill-btn');
-      this.badgeTitle = document.getElementById('reel-badge-title');
-      this.hudNowPlaying = document.getElementById('hud-now-playing');
-      this.playPauseBtn = document.getElementById('play-pause-btn');
-      this.prevBtn = document.getElementById('prev-btn');
-      this.nextBtn = document.getElementById('next-btn');
-      this.toggleAspectBtn = document.getElementById('toggle-aspect-btn');
-      this.reelViewport = document.getElementById('reel-viewport');
-
-      this.conceptTitles = [
-        "CONCEPT 1 • 90s RETRO",
-        "CONCEPT 2 • 8-BIT PIXEL",
-        "CONCEPT 3 • SOAN PAPDI",
-        "CONCEPT 4 • KINETIC GOLD"
-      ];
-
-      this.hudDescriptions = [
-        "Playing: Concept 1 / 4 • 90s Nostalgia",
-        "Playing: Concept 2 / 4 • 8-Bit Pixel Mohalla",
-        "Playing: Concept 3 / 4 • The Soan Papdi Chronicle",
-        "Playing: Concept 4 / 4 • Kinetic Molten Gold"
-      ];
-
-      this.init();
-    }
-
-    init() {
-      this.bindControls();
-      this.loadConcept(0);
-      this.startLoop();
-    }
-
-    bindControls() {
-      if (this.playPauseBtn) {
-        this.playPauseBtn.addEventListener('click', () => this.togglePlayPause());
-      }
-      if (this.prevBtn) {
-        this.prevBtn.addEventListener('click', () => this.prevConcept());
-      }
-      if (this.nextBtn) {
-        this.nextBtn.addEventListener('click', () => this.nextConcept());
-      }
-
-      this.pills.forEach(pill => {
-        pill.addEventListener('click', () => {
-          const idx = parseInt(pill.dataset.index, 10);
-          this.loadConcept(idx);
-        });
-      });
-
-      this.segments.forEach((seg, idx) => {
-        seg.addEventListener('click', () => this.loadConcept(idx));
-      });
-
-      if (this.toggleAspectBtn && this.reelViewport) {
-        this.toggleAspectBtn.addEventListener('click', () => {
-          const isFs = this.reelViewport.classList.toggle('fullscreen-mode');
-          this.toggleAspectBtn.textContent = isFs ? '📺 Exit Full' : '📱 Reel 9:16';
-        });
-      }
-    }
-
-    startLoop() {
-      if (this.timerInterval) clearInterval(this.timerInterval);
-      this.lastTick = Date.now();
-      this.timerInterval = setInterval(() => {
-        if (!this.isPlaying) return;
-        const now = Date.now();
-        const delta = now - this.lastTick;
-        this.lastTick = now;
-
-        this.elapsedTime += delta;
-        const pct = Math.min(100, (this.elapsedTime / this.durationPerConcept) * 100);
-
-        if (this.fills[this.currentIndex]) {
-          this.fills[this.currentIndex].style.width = `${pct}%`;
+        if (enabled) {
+          this.audio.playSparkleCrackle();
         }
+      });
+    }
 
-        if (this.elapsedTime >= this.durationPerConcept) {
+    // Navigation Pills
+    this.pills.forEach((pill) => {
+      pill.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const idx = parseInt(pill.dataset.index, 10);
+        if (!isNaN(idx)) this.loadConcept(idx);
+      });
+    });
+
+    // Story Progress Segments Click
+    this.segments.forEach((seg, idx) => {
+      seg.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.loadConcept(idx);
+      });
+    });
+
+    // Tap Viewport for Story Style Jump (Left 30% = prev, Right 70% = next)
+    if (this.reelViewport) {
+      this.reelViewport.addEventListener('click', (e) => {
+        // Don't trigger if clicked on controls or header buttons
+        if (e.target.closest('.reel-header-overlay') || e.target.closest('.story-progress-bar')) {
+          return;
+        }
+        const rect = this.reelViewport.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        if (clickX < rect.width * 0.3) {
+          this.prevConcept();
+        } else {
           this.nextConcept();
         }
-      }, 50);
-    }
-
-    loadConcept(index) {
-      this.currentIndex = index;
-      this.elapsedTime = 0;
-      this.lastTick = Date.now();
-
-      // Update Scenes
-      this.scenes.forEach((sc, i) => {
-        if (sc) sc.classList.toggle('active', i === index);
       });
+    }
 
-      // Update Progress Bars
-      this.segments.forEach((seg, i) => {
-        seg.classList.toggle('completed', i < index);
-        if (this.fills[i]) {
-          this.fills[i].style.width = i < index ? '100%' : (i === index ? '0%' : '0%');
-        }
+    // Toggle Aspect Ratio (Reel 9:16 vs Fullscreen)
+    if (this.toggleAspectBtn && this.reelViewport) {
+      this.toggleAspectBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isFs = this.reelViewport.classList.toggle('fullscreen-mode');
+        this.toggleAspectBtn.textContent = isFs ? '📺 Exit Full' : '📱 Reel 9:16';
       });
-
-      // Update Navigation Pills
-      this.pills.forEach((pill, i) => {
-        pill.classList.toggle('active', i === index);
-      });
-
-      // Update Titles
-      if (this.badgeTitle && this.conceptTitles[index]) {
-        this.badgeTitle.textContent = this.conceptTitles[index];
-      }
-      if (this.hudNowPlaying && this.hudDescriptions[index]) {
-        this.hudNowPlaying.textContent = this.hudDescriptions[index];
-      }
-
-      // Trigger Theme-Specific Sound & Fireworks
-      this.triggerConceptAudio(index);
-    }
-
-    triggerConceptAudio(index) {
-      try {
-        if (index === 0) {
-          sounds.playSparklerCrackle();
-        } else if (index === 1) {
-          sounds.playDiyaChime();
-        } else if (index === 2) {
-          sounds.playRocketLaunch();
-        } else if (index === 3) {
-          sounds.playTempleBell();
-          sounds.playDiyaChime();
-        }
-        fireworks.createBurst(window.innerWidth / 2, window.innerHeight * 0.35, '#fbbf24');
-      } catch (e) {
-        // Fallback gracefully
-      }
-    }
-
-    nextConcept() {
-      const nextIdx = (this.currentIndex + 1) % this.totalConcepts;
-      this.loadConcept(nextIdx);
-    }
-
-    prevConcept() {
-      const prevIdx = (this.currentIndex - 1 + this.totalConcepts) % this.totalConcepts;
-      this.loadConcept(prevIdx);
-    }
-
-    togglePlayPause() {
-      this.isPlaying = !this.isPlaying;
-      if (this.playPauseBtn) {
-        this.playPauseBtn.textContent = this.isPlaying ? '⏸ Pause' : '▶ Play';
-      }
-      if (this.isPlaying) {
-        this.lastTick = Date.now();
-      }
     }
   }
 
-  const cinemaReel = new CinemaReelEngine();
+  tick(timestamp) {
+    if (!this.lastTimestamp) this.lastTimestamp = timestamp;
+    const delta = timestamp - this.lastTimestamp;
+    this.lastTimestamp = timestamp;
 
-  // End of Main DOM Initialization
+    if (this.isPlaying) {
+      this.elapsedTime += delta;
+      const progressRatio = Math.min(1, this.elapsedTime / this.durationPerConcept);
+
+      // Smoothly update current progress bar
+      if (this.fills[this.currentIndex]) {
+        this.fills[this.currentIndex].style.width = `${(progressRatio * 100).toFixed(2)}%`;
+      }
+
+      // Automatically transition to next concept when time completes
+      if (this.elapsedTime >= this.durationPerConcept) {
+        this.nextConcept();
+      }
+    }
+
+    requestAnimationFrame((ts) => this.tick(ts));
+  }
+
+  loadConcept(index) {
+    this.currentIndex = index;
+    this.elapsedTime = 0;
+
+    // 1. Update Active Scene Display
+    this.scenes.forEach((scene, i) => {
+      if (!scene) return;
+      if (i === index) {
+        scene.classList.add('active');
+        // Restart scene entrance animations
+        const animElements = scene.querySelectorAll('.animate-in');
+        animElements.forEach(el => {
+          el.style.animation = 'none';
+          void el.offsetHeight; // force reflow
+          el.style.animation = '';
+        });
+      } else {
+        scene.classList.remove('active');
+      }
+    });
+
+    // 2. Update Instagram-Style Progress Segment Fills
+    this.segments.forEach((seg, i) => {
+      seg.classList.toggle('completed', i < index);
+      if (this.fills[i]) {
+        if (i < index) {
+          this.fills[i].style.width = '100%';
+        } else if (i === index) {
+          this.fills[i].style.width = '0%';
+        } else {
+          this.fills[i].style.width = '0%';
+        }
+      }
+    });
+
+    // 3. Update Concept Navigation Pills
+    this.pills.forEach((pill, i) => {
+      pill.classList.toggle('active', i === index);
+    });
+
+    // 4. Update Header Badge and HUD Titles
+    if (this.badgeTitle && this.conceptTitles[index]) {
+      this.badgeTitle.textContent = this.conceptTitles[index];
+    }
+    if (this.hudNowPlaying && this.hudDescriptions[index]) {
+      this.hudNowPlaying.textContent = this.hudDescriptions[index];
+    }
+
+    // 5. Trigger Theme Sound & Synchronized Sparkles
+    this.triggerSceneTheme(index);
+  }
+
+  triggerSceneTheme(index) {
+    try {
+      if (index === 0) {
+        this.audio.play90sRetroChime();
+      } else if (index === 1) {
+        this.audio.play8BitPixelJingle();
+      } else if (index === 2) {
+        this.audio.playComicPop();
+      } else if (index === 3) {
+        this.audio.playSacredGoldBell();
+      }
+
+      // Trigger ambient canvas burst
+      if (this.particles) {
+        const color = this.conceptColors[index] || '#fbbf24';
+        const rect = this.reelViewport ? this.reelViewport.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 0, height: 0 };
+        const burstX = rect.left + rect.width / 2;
+        const burstY = rect.top + rect.height * 0.4;
+        this.particles.createBurst(burstX, burstY, color);
+      }
+    } catch (err) {
+      console.warn("Theme trigger caught:", err);
+    }
+  }
+
+  nextConcept() {
+    const nextIdx = (this.currentIndex + 1) % this.totalConcepts;
+    this.loadConcept(nextIdx);
+  }
+
+  prevConcept() {
+    const prevIdx = (this.currentIndex - 1 + this.totalConcepts) % this.totalConcepts;
+    this.loadConcept(prevIdx);
+  }
+
+  togglePlayPause() {
+    this.isPlaying = !this.isPlaying;
+    if (this.playPauseBtn) {
+      this.playPauseBtn.textContent = this.isPlaying ? '⏸ Pause' : '▶ Play';
+    }
+  }
+}
+
+// ==================== 4. BOOTSTRAP INITIALIZATION ====================
+window.addEventListener('DOMContentLoaded', () => {
+  const audio = new ReelAudioEngine();
+  const particles = new CanvasParticleEngine('fireworks-canvas');
+  window.cinemaReel = new CinemaReelEngine(audio, particles);
 });
-
