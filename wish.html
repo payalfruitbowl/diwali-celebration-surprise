@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   
   <!-- Primary Meta Tags -->
-  <title>A Special Deepawali Surprise For You ✨🪔 | Touch To Open</title>
-  <meta name="title" content="A Special Deepawali Surprise For You ✨🪔 | Touch To Open">
-  <meta name="description" content="Someone sent you an illuminated Deepawali surprise! Touch the sacred Diya to light the golden flame and reveal your festive wish & fortune.">
-  <meta name="theme-color" content="#180308">
+  <title>Diwali Vibe Check 2026 💅🪔 | Bestie Edition</title>
+  <meta name="title" content="Diwali Vibe Check 2026 💅🪔 | Bestie Edition">
+  <meta name="description" content="Open this before someone passes you Soan Papdi 💀 Tap to claim your Diwali Aura Points & personalized blessings!">
+  <meta name="theme-color" content="#0a0a12">
   
   <!-- Open Graph / WhatsApp Preview Banner -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/wish.html">
-  <meta property="og:title" content="✨ You received a magical Diwali surprise! 🪔">
-  <meta property="og:description" content="Touch the sacred Diya to light the divine flame and reveal your personalized Diwali wish & fortune!">
+  <meta property="og:title" content="Bro open your Diwali Vibe Check 💀🪔💅">
+  <meta property="og:description" content="A special Diwali surprise has arrived. Tap to claim +10,000 Aura points and unlock your blessings!">
   <meta property="og:image" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/og-diwali-wish.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -22,46 +22,49 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/wish.html">
-  <meta name="twitter:title" content="✨ You received a magical Diwali surprise! 🪔">
-  <meta name="twitter:description" content="Touch the sacred Diya to light the divine flame and reveal your personalized Diwali wish & fortune!">
+  <meta name="twitter:title" content="Bro open your Diwali Vibe Check 💀🪔💅">
+  <meta name="twitter:description" content="A special Diwali surprise has arrived. Tap to claim +10,000 Aura points and unlock your blessings!">
   <meta name="twitter:image" content="https://payalfruitbowl.github.io/diwali-celebration-surprise/og-diwali-wish.jpg">
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Space Grotesk (Neo-brutalist) & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700;800;900&family=Rozha+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪔</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💅</text></svg>">
 </head>
-<body class="is-intro wish-page-body">
+<body class="is-intro genz-body">
 
-  <!-- Fireworks & Interactive Canvas -->
+  <!-- Canvas for tap fireworks & stickers -->
   <canvas id="fireworks-canvas"></canvas>
   <canvas id="sparkler-canvas"></canvas>
   <div id="petals-container" aria-hidden="true"></div>
   <div id="flash-overlay" class="flash-overlay"></div>
+  <div id="stickers-container" class="stickers-container"></div>
 
-  <!-- Haute Burgundy Header -->
-  <header class="top-nav burgundy-header">
-    <div class="brand-badge">
-      <span class="royal-crest">🪔</span>
-      <div class="brand-text-col">
-        <span class="brand-title">SHUBH DEEPAWALI</span>
-        <span class="brand-sub">Magical Interactive Wish</span>
-      </div>
+  <!-- Gen Z Infinite Marquee Ticker -->
+  <div class="genz-ticker-wrap">
+    <div class="genz-ticker-move">
+      <span>✨ DIWALI VIBE CHECK 2026 • 💅 FIT CHECK: 10/10 • 🚫 NO SOAN PAPDI ALLOWED • ⚡ AURA +10,000 • 💸 SECURE THE BAG • 🪔 LAXMI JI APPROVED • 👑 CERTIFIED PATAKHA • </span>
+      <span>✨ DIWALI VIBE CHECK 2026 • 💅 FIT CHECK: 10/10 • 🚫 NO SOAN PAPDI ALLOWED • ⚡ AURA +10,000 • 💸 SECURE THE BAG • 🪔 LAXMI JI APPROVED • 👑 CERTIFIED PATAKHA • </span>
+    </div>
+  </div>
+
+  <!-- Gen Z Navigation Bar -->
+  <header class="genz-top-nav">
+    <div class="genz-brand">
+      <span class="genz-badge-pill">🪔 VIBE CHECK '26</span>
     </div>
 
-    <div class="nav-actions">
-      <!-- Discreet Invites Switcher -->
+    <div class="genz-nav-actions">
+      <!-- Discreet Switcher -->
       <div class="discreet-invite-menu" id="discreet-invite-dropdown">
-        <button id="invite-menu-trigger" class="discreet-menu-btn" aria-haspopup="true" aria-expanded="false" title="Switch Page">
-          <span class="menu-icon">⚜️</span>
-          <span class="menu-label">Templates</span>
-          <span class="menu-arrow">▾</span>
+        <button id="invite-menu-trigger" class="genz-ghost-btn" aria-haspopup="true" aria-expanded="false" title="Switch Page">
+          <span>⚡ Templates ▾</span>
         </button>
         <div class="discreet-dropdown-panel hidden" id="invite-dropdown-panel" role="menu">
-          <div class="dropdown-header">Switch Template:</div>
+          <div class="dropdown-header">Switch View:</div>
           <a href="index.html" class="dropdown-invite-item" role="menuitem">
             <span class="item-icon">👑</span>
             <div class="item-info">
@@ -84,239 +87,237 @@
             </div>
           </a>
           <a href="wish.html" class="dropdown-invite-item active" role="menuitem">
-            <span class="item-icon">🪔</span>
+            <span class="item-icon">💅</span>
             <div class="item-info">
-              <span class="item-title">Interactive Diwali Wish</span>
-              <span class="item-sub">Magical Greeting & Fortune</span>
+              <span class="item-title">Gen-Z Vibe Check</span>
+              <span class="item-sub">Aura, Memes & Bestie Wishes</span>
             </div>
           </a>
         </div>
       </div>
 
-      <button id="sound-btn" class="nav-btn audio-pill" title="Toggle Sound">
-        <span class="icon" id="sound-icon">🔊</span>
+      <button id="sound-btn" class="genz-sound-btn" title="Toggle Sound">
+        <span id="sound-icon">🔊</span>
       </button>
     </div>
   </header>
 
-  <!-- ==================== 1. THE INTRIGUING DIYA SURPRISE INTRO ==================== -->
-  <section id="intro-screen" class="intro-screen">
-    <div class="intro-overlay"></div>
-    <div class="intro-card wish-surprise-card">
-      <div class="meta-tag-badge">
-        <span class="pulse-dot"></span> <span id="intro-badge-sender">SPECIAL DEEPAWALI SURPRISE</span>
-      </div>
+  <!-- ==================== 1. THE GEN-Z VIBE UNBOXING HOOK ==================== -->
+  <section id="intro-screen" class="intro-screen genz-intro-screen">
+    <div class="genz-intro-card">
+      <div class="genz-sticker top-sticker">🚨 CERTIFIED SURPRISE</div>
       
-      <!-- Greeting Banner Preview -->
-      <div class="family-thumbnail-container" id="intro-thumb-container">
-        <img id="intro-family-img" src="og-diwali-wish.jpg" alt="A Sacred Diwali Blessing">
-        <div class="photo-shimmer"></div>
-        <div class="family-tag" id="intro-sender-tag">✨ A Personal Blessing Enclosed ✨</div>
+      <div class="genz-avatar-holder">
+        <img id="intro-family-img" src="og-diwali-wish.jpg" alt="Diwali Surprise" class="genz-preview-img">
+        <span class="genz-floating-tag" id="intro-sender-tag">✨ Sent by Payal ✨</span>
       </div>
 
-      <div class="intro-text-block">
-        <h2 class="sub-intro" id="intro-sender-headline">You have received a Diwali surprise</h2>
-        <h1 class="main-intro" id="intro-main-hook">Darkness fades where light is born...</h1>
-        <p class="intro-desc" id="intro-desc-text">
-          Touch the sacred Diya below to ignite the golden flame, burst celebratory fireworks, and reveal your personalized Diwali wish.
+      <div class="genz-text-block">
+        <div class="genz-sub-badge" id="intro-badge-sender">⚡ BESTIE VIBE CHECK ENCLOSED ⚡</div>
+        <h1 class="genz-main-title" id="intro-sender-headline">
+          Open before someone passes you Soan Papdi 💀
+        </h1>
+        <p class="genz-desc" id="intro-desc-text">
+          A personalized Diwali blessing has dropped in your DM. Tap the Diya below to unlock +10,000 Aura points and claim your good vibes!
         </p>
       </div>
 
-      <!-- Realistic Golden Diya Touch Trigger -->
-      <div class="diya-igniter-wrapper">
-        <button id="ignite-diya-btn" class="diya-igniter" aria-label="Touch to Light the Sacred Diya">
-          <div class="flame-glow"></div>
-          <div class="flame-flicker"></div>
-          <div class="earthen-lamp">
-            <span class="big-diya-icon">🪔</span>
-          </div>
-          <span class="click-indicator">👆 Tap to Light the Diya & Reveal</span>
+      <!-- Gen-Z Big Bouncy Tap Trigger -->
+      <div class="genz-trigger-box">
+        <button id="ignite-diya-btn" class="genz-action-btn pulse-glow" aria-label="Tap to Slay Diwali">
+          <span class="btn-flame-icon">🪔</span>
+          <span class="btn-bold-label">TAP TO SLAY DIWALI</span>
+          <span class="btn-sub-label">✦ UNLEASH THE VIBES ✦</span>
         </button>
       </div>
 
-      <p class="intro-hint">✦ Touch anywhere to unleash soundscapes & golden light ✦</p>
+      <span class="genz-small-hint">👉 Turn volume up for maximum dopamine 🔊</span>
     </div>
   </section>
 
-  <!-- ==================== 2. MAIN GRAND INTERACTIVE WISH SANCTUARY ==================== -->
-  <main id="main-content" class="main-content hidden">
+  <!-- ==================== 2. MAIN GEN-Z CELEBRATION SANCTUARY ==================== -->
+  <main id="main-content" class="main-content hidden genz-main-wrap">
 
-    <!-- Grand Personal Wish Hero Card -->
-    <section class="wish-hero-section">
-      <div class="festive-crest-ornament">
-        <span class="crest-line"></span>
-        <span class="crest-symbol">ॐ 🪔 ॐ</span>
-        <span class="crest-line"></span>
-      </div>
-
-      <h1 class="wish-personal-headline" id="main-wish-title">
-        Shubh Deepawali
+    <!-- Hero Card: Happy Diwali Bestie -->
+    <section class="genz-hero-card">
+      <div class="genz-sticker-badge">👑 MAIN CHARACTER ENERGY</div>
+      
+      <h1 class="genz-hero-title" id="main-wish-title">
+        HAPPY DIWALI BESTIE! 🪔💅
       </h1>
-      <p class="wish-personal-sub" id="main-wish-subtitle">
-        Wishing You & Your Loved Ones Abundance, Radiant Joy & Divine Grace
+      
+      <p class="genz-hero-subtitle" id="main-wish-subtitle">
+        From Payal with +10,000 Aura Points & Zero Toxic Vibes
       </p>
 
-      <!-- The Grand Heartfelt Blessing Letter -->
-      <div class="blessing-letter-card">
-        <div class="royal-wax-mark">🪔</div>
-        <h2 class="letter-salutation" id="letter-salutation-text">Dear Friend & Family,</h2>
-        <p class="letter-body">
-          May the celestial glow of a thousand golden diyas illuminate your home with boundless prosperity, joyful laughter, and robust good health.
+      <!-- Relatable Bestie Diwali Letter -->
+      <div class="genz-letter-box">
+        <p class="letter-punchline">
+          ✨ <strong>May your eyeliner be sharp, your Diwali fit be a verified 10/10, your relatives mind their own business, and Laxmi Ji credit your bank account with generational wealth no cap.</strong>
         </p>
-        <p class="letter-body">
-          May Lord Ganesha remove every obstacle on your path, and may Goddess Lakshmi fill your treasury with golden opportunities and enduring peace.
+        <p class="letter-punchline">
+          May you win every round of Teen Patti tonight, eat endless Kaju Katli without guilt, and dodge every single Soan Papdi box like a pro.
         </p>
-        
-        <div class="letter-signature-block">
-          <span class="sig-wishes">With warmest festive blessings & prayers,</span>
-          <span class="sig-name" id="letter-sender-name">Your Well-Wisher</span>
-          <span class="sig-date">Deepawali 2026 • Festival of Lights</span>
+        <div class="letter-sig-row">
+          <span class="sig-from">Certified with love by:</span>
+          <span class="sig-name-genz" id="letter-sender-name">Payal</span>
+        </div>
+      </div>
+
+      <!-- Live Aura Points Meter -->
+      <div class="aura-meter-box">
+        <div class="aura-header">
+          <span class="aura-label">YOUR DIWALI AURA POINTS:</span>
+          <span class="aura-score" id="aura-score-counter">+10,000 ⚡</span>
+        </div>
+        <div class="aura-progress-bar">
+          <div class="aura-progress-fill" style="width: 95%;"></div>
+        </div>
+        <div class="sticker-slap-bar">
+          <span class="slap-hint">Slap a sticker on screen:</span>
+          <button class="sticker-chip" data-sticker="💅 10/10 DRIP">💅 10/10 DRIP</button>
+          <button class="sticker-chip" data-sticker="💸 SECURE THE BAG">💸 SECURE THE BAG</button>
+          <button class="sticker-chip" data-sticker="👑 MAIN CHARACTER">👑 MAIN CHARACTER</button>
+          <button class="sticker-chip" data-sticker="🪔 CERTIFIED PATAKHA">🪔 CERTIFIED PATAKHA</button>
         </div>
       </div>
     </section>
 
-    <!-- ==================== 3. INTERACTIVE FORTUNE COOKIE / SHUBH BHAVISHYAVANI ==================== -->
-    <section class="fortune-cookie-section">
-      <div class="fortune-card" id="fortune-card">
-        <div class="card-gold-corner top-left"></div>
-        <div class="card-gold-corner top-right"></div>
-        <div class="card-gold-corner bottom-left"></div>
-        <div class="card-gold-corner bottom-right"></div>
-
-        <span class="fortune-badge">🥠 FESTIVE BLESSING ORACLE</span>
-        <h2 class="fortune-title">Your Deepawali 2026 Fortune</h2>
-        <p class="fortune-hint">Tap the golden coin below to unlock your special cosmic blessing for the upcoming year:</p>
-
-        <div class="fortune-coin-wrapper" id="fortune-coin-trigger">
-          <div class="fortune-coin">
-            <span class="coin-crest">🪙</span>
-          </div>
-          <span class="coin-pulse-text">👉 Tap to Reveal Your Fortune 👈</span>
-        </div>
-
-        <div class="fortune-result-box hidden" id="fortune-result-box">
-          <div class="fortune-stars">✨ 🌟 ✨</div>
-          <p class="fortune-text" id="fortune-text">
-            "Goddess Lakshmi opens doors to unprecedented financial prosperity, golden career breakthroughs, and supreme peace in your home!"
-          </p>
-          <button id="draw-another-fortune-btn" class="secondary-gold-btn mini-btn">
-            <span>🥠 Draw Another Fortune</span>
-          </button>
-        </div>
+    <!-- Interactive Game 1: The Immortal Soan Papdi Passer -->
+    <section class="genz-game-card">
+      <div class="game-badge-header">
+        <span class="game-tag">MINI-GAME</span>
+        <span class="game-status" id="soan-papdi-score">Relieved: 0 Relatives</span>
       </div>
-    </section>
 
-    <!-- ==================== 4. INTERACTIVE 5 DIYAS THALI ==================== -->
-    <section class="interactive-wishing-sanctuary">
-      <div class="wish-activity-card">
-        <div class="activity-badge">Interactive Ritual</div>
-        <h2 class="activity-title">Light the 5 Sacred Diyas of Life</h2>
-        <p class="activity-desc">Tap each brass diya on the thali to ignite its golden flame and unlock its blessing:</p>
-        
-        <div class="five-diyas-thali" id="five-diyas-container">
-          <button class="wish-diya-btn" data-diya="1" title="Light Diya of Hope">
-            <span class="diya-flame">🔥</span>
-            <span class="diya-pot">🪔</span>
-            <span class="diya-label">Hope</span>
-          </button>
-          <button class="wish-diya-btn" data-diya="2" title="Light Diya of Health">
-            <span class="diya-flame">🔥</span>
-            <span class="diya-pot">🪔</span>
-            <span class="diya-label">Health</span>
-          </button>
-          <button class="wish-diya-btn" data-diya="3" title="Light Diya of Wealth">
-            <span class="diya-flame">🔥</span>
-            <span class="diya-pot">🪔</span>
-            <span class="diya-label">Wealth</span>
-          </button>
-          <button class="wish-diya-btn" data-diya="4" title="Light Diya of Peace">
-            <span class="diya-flame">🔥</span>
-            <span class="diya-pot">🪔</span>
-            <span class="diya-label">Peace</span>
-          </button>
-          <button class="wish-diya-btn" data-diya="5" title="Light Diya of Joy">
-            <span class="diya-flame">🔥</span>
-            <span class="diya-pot">🪔</span>
-            <span class="diya-label">Joy</span>
-          </button>
-        </div>
-
-        <div class="diya-progress-pill" id="diya-status-pill">
-          Tap a diya above to begin lighting the sacred thali ✨
-        </div>
-
-        <div class="patakha-playground-hint">
-          🎆 Tip: You can also tap anywhere on the dark sky to burst fireworks! 🎆
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== 5. SEAMLESS "SEND YOUR OWN WISH" ENGINE ==================== -->
-    <section class="send-wish-engine-section" id="send-wish-section">
-      <div class="send-engine-card">
-        <div class="card-gold-corner top-left"></div>
-        <div class="card-gold-corner top-right"></div>
-        <div class="card-gold-corner bottom-left"></div>
-        <div class="card-gold-corner bottom-right"></div>
-
-        <span class="send-crest">💌 🪔 ⚡</span>
-        <h2 class="send-title">Send This Magical Wish to Anyone!</h2>
-        <p class="send-desc">
-          Enter your name below. We will customize this entire magical experience with your name, ready to send instantly via WhatsApp or copy as a personal link:
-        </p>
-
-        <!-- Name Input -->
-        <div class="send-input-row">
-          <input type="text" id="custom-sender-input" class="gold-styled-input" placeholder="Type Your Name (e.g. Payal / Sharma Family)" maxlength="35">
-        </div>
-
-        <!-- Action CTAs -->
-        <div class="send-actions-grid">
-          <!-- WhatsApp Share Button -->
-          <button id="whatsapp-share-btn" class="whatsapp-luxury-btn">
-            <span class="btn-icon">💬</span>
-            <span class="btn-text">Share on WhatsApp</span>
-          </button>
-
-          <!-- Copy Link Button -->
-          <button id="copy-magic-link-btn" class="gold-luxury-cta mini-cta">
-            <span class="cta-crest">📋</span>
-            <span class="cta-text">Copy My Magic Link</span>
-          </button>
-
-          <!-- Live Preview Button -->
-          <button id="preview-my-wish-btn" class="secondary-gold-btn">
-            <span class="btn-icon">👁️</span>
-            <span class="btn-text">Preview My Card</span>
-          </button>
-        </div>
-
-        <!-- Generated URL Display -->
-        <div id="generated-url-box" class="generated-url-box hidden">
-          <span class="url-label">Your Unique Wish Link:</span>
-          <input type="text" id="shareable-url-input" readonly class="shareable-url-field">
-        </div>
-
-        <!-- Toast Feedback -->
-        <div id="wish-toast" class="wish-toast hidden">
-          ✨ Magic Link Copied! Paste it into WhatsApp, Instagram or SMS! 🪔
-        </div>
-      </div>
-    </section>
-
-    <!-- Haute Royal Footer -->
-    <footer class="royal-burgundy-footer">
-      <div class="footer-divider-ornament">
-        <span class="fd-line"></span>
-        <span class="fd-diya">🪔</span>
-        <span class="fd-line"></span>
-      </div>
-      <p class="footer-blessing-quote">
-        "May the light of Diwali fill your life with eternal radiance, harmony, and prosperity."
+      <h2 class="game-title">The Immortal Soan Papdi Yeeter 📦💀</h2>
+      <p class="game-desc">
+        A wild Soan Papdi box has entered your house! Yeet it to Sharma Ji before someone forces you to eat it:
       </p>
-      <p class="footer-royal-copyright">
-        Deepawali 2026 • Curated with Love & Light
+
+      <div class="soan-papdi-stage">
+        <div class="soan-papdi-box-icon" id="soan-papdi-box">
+          <span class="soan-icon">📦</span>
+          <span class="soan-label">CURSED SOAN PAPDI</span>
+        </div>
+      </div>
+
+      <button id="yeet-soan-papdi-btn" class="genz-action-btn yeet-btn">
+        <span>🚀 YEET TO NEXT RELATIVE</span>
+      </button>
+      <p class="soan-toast" id="soan-feedback">Tap button to pass the curse!</p>
+    </section>
+
+    <!-- Interactive Game 2: Burst The Bad Vibes Patakha -->
+    <section class="genz-game-card">
+      <div class="game-badge-header">
+        <span class="game-tag">STRESS BUSTER</span>
+        <span class="game-status">100% Dopamine</span>
+      </div>
+
+      <h2 class="game-title">Burst The Bad Vibes Patakhas 💥</h2>
+      <p class="game-desc">
+        Tap any bad vibe below to blow it to smithereens with festive fireworks:
       </p>
+
+      <div class="bad-vibes-grid" id="bad-vibes-grid">
+        <button class="vibe-patakha-btn" data-vibe="Overthinking at 2 AM">
+          <span class="vibe-icon">🧠💥</span>
+          <span class="vibe-text">Overthinking</span>
+        </button>
+        <button class="vibe-patakha-btn" data-vibe="'Beta Shadi Kab Kar Rahe Ho?'">
+          <span class="vibe-icon">👵💥</span>
+          <span class="vibe-text">Nosy Relatives</span>
+        </button>
+        <button class="vibe-patakha-btn" data-vibe="Empty Bank Account">
+          <span class="vibe-icon">💸💥</span>
+          <span class="vibe-text">Broke Era</span>
+        </button>
+        <button class="vibe-patakha-btn" data-vibe="Monday Morning Alarms">
+          <span class="vibe-icon">⏰💥</span>
+          <span class="vibe-text">Monday Alarms</span>
+        </button>
+      </div>
+      <p class="patakha-toast" id="vibe-toast">Tap a cracker to destroy bad vibes ✨</p>
+    </section>
+
+    <!-- Interactive Game 3: Laxmi Ji Fortune Cookie (Gen Z Edition) -->
+    <section class="genz-game-card">
+      <div class="game-badge-header">
+        <span class="game-tag">ORACLE</span>
+        <span class="game-status">Verified True</span>
+      </div>
+
+      <h2 class="game-title">Laxmi Ji Fortune Cookie 🥠✨</h2>
+      <p class="game-desc">
+        Crack the cookie to see what the universe is manifesting for your 2026:
+      </p>
+
+      <div class="fortune-cookie-holder" id="cookie-click-trigger">
+        <div class="cookie-graphic" id="cookie-graphic">🥠</div>
+        <span class="cookie-tap-prompt">👉 Tap Cookie to Crack Open 👈</span>
+      </div>
+
+      <div class="genz-fortune-result hidden" id="genz-fortune-box">
+        <div class="fortune-flair">✨ 💅 💸 ✨</div>
+        <p class="fortune-msg" id="genz-fortune-text">
+          "Laxmi Ji saw your cart on Myntra and decided to sponsor your entire aesthetic lifestyle this year."
+        </p>
+        <button id="crack-again-btn" class="genz-ghost-btn">
+          <span>🥠 Crack Another Fortune</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== 5. 1-CLICK SEND TO BESTIE ENGINE ==================== -->
+    <section class="genz-send-engine">
+      <div class="send-box-brutalist">
+        <div class="send-header-tag">💌 SEND TO YOUR GANG</div>
+        <h2 class="send-big-title">Send This Vibe Check With YOUR Name!</h2>
+        <p class="send-subtext">
+          Type your name below to instantly personalize this link and blast it to your WhatsApp groups & besties:
+        </p>
+
+        <div class="send-input-wrap">
+          <input type="text" id="custom-sender-input" class="genz-input" placeholder="Your Name / Nickname (e.g. Payal)" maxlength="30">
+        </div>
+
+        <div class="send-buttons-row">
+          <!-- WhatsApp 1-Tap Share -->
+          <button id="whatsapp-share-btn" class="genz-wa-btn">
+            <span class="wa-icon">💬</span>
+            <span class="wa-label">SEND ON WHATSAPP</span>
+          </button>
+
+          <!-- Copy Link -->
+          <button id="copy-magic-link-btn" class="genz-copy-btn">
+            <span class="copy-icon">📋</span>
+            <span class="copy-label">COPY MAGIC LINK</span>
+          </button>
+
+          <!-- Live Preview -->
+          <button id="preview-my-wish-btn" class="genz-preview-btn">
+            <span class="prev-icon">👁️</span>
+            <span class="prev-label">PREVIEW CARD</span>
+          </button>
+        </div>
+
+        <!-- Generated URL Box -->
+        <div id="generated-url-box" class="genz-url-display hidden">
+          <span class="url-hint">Your Custom Link:</span>
+          <input type="text" id="shareable-url-input" readonly class="url-input-field">
+        </div>
+
+        <!-- Toast -->
+        <div id="wish-toast" class="genz-toast hidden">
+          💅 Magic Link Copied! Send it to the group chat now! 🚀
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="genz-footer">
+      <p class="footer-tagline">✨ DIWALI 2026 • 10/10 VIBES ONLY • NO CAP ✨</p>
     </footer>
 
   </main>

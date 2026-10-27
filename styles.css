@@ -4755,6 +4755,831 @@ body.reel-mode-active .main-content {
   animation: fadeIn 0.3s ease;
 }
 
+/* ==========================================================================
+   GEN-Z DIWALI VIBE CHECK & Y2K / NEO-BRUTALIST STYLING (wish.html)
+   ========================================================================== */
+.genz-body {
+  background: #09090f;
+  color: #fff;
+  font-family: 'Space Grotesk', 'Outfit', sans-serif;
+  overflow-x: hidden;
+}
+
+/* 1. Ticker Marquee */
+.genz-ticker-wrap {
+  width: 100%;
+  background: #ccff00;
+  color: #000;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  padding: 8px 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border-bottom: 2px solid #000;
+}
+
+.genz-ticker-move {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marqueeScroll 22s linear infinite;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+/* 2. Top Nav */
+.genz-top-nav {
+  position: fixed;
+  top: 36px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 900;
+  background: rgba(9, 9, 15, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.genz-brand {
+  display: flex;
+  align-items: center;
+}
+
+.genz-badge-pill {
+  background: #ff007f;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  border: 2px solid #fff;
+  box-shadow: 3px 3px 0 #ccff00;
+}
+
+.genz-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.genz-ghost-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 7px 14px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.genz-ghost-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+.genz-sound-btn {
+  background: #ccff00;
+  border: 2px solid #000;
+  color: #000;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #ff007f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3. Intro Screen */
+.genz-intro-screen {
+  padding-top: 80px;
+}
+
+.genz-intro-card {
+  max-width: 520px;
+  width: 100%;
+  background: #12121e;
+  border: 3px solid #fff;
+  border-radius: 24px;
+  padding: 30px 24px;
+  text-align: center;
+  box-shadow: 8px 8px 0px #ff007f;
+  position: relative;
+}
+
+.genz-sticker {
+  display: inline-block;
+  background: #ccff00;
+  color: #000;
+  font-weight: 900;
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border: 2px solid #000;
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 #000;
+  transform: rotate(-3deg);
+  margin-bottom: 16px;
+}
+
+.genz-avatar-holder {
+  width: 100%;
+  height: 190px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid #fff;
+  margin-bottom: 20px;
+}
+
+.genz-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.genz-floating-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid #ccff00;
+  color: #ccff00;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.genz-sub-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #ff007f;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.genz-main-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.genz-desc {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.genz-action-btn {
+  background: linear-gradient(135deg, #ccff00 0%, #a3e635 100%);
+  border: 3px solid #000;
+  color: #000;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 900;
+  padding: 16px 32px;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 6px 6px 0px #ff007f;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: all 0.15s ease;
+}
+
+.genz-action-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px #ff007f;
+}
+
+.genz-action-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #ff007f;
+}
+
+.btn-flame-icon {
+  font-size: 1.6rem;
+}
+
+.btn-bold-label {
+  letter-spacing: 1px;
+}
+
+.btn-sub-label {
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  opacity: 0.8;
+}
+
+.genz-small-hint {
+  display: block;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-top: 16px;
+}
+
+/* 4. Main Celebration Content */
+.genz-main-wrap {
+  padding-top: 110px;
+  padding-bottom: 100px;
+  max-width: 820px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.genz-hero-card {
+  background: #141422;
+  border: 3px solid #fff;
+  border-radius: 24px;
+  padding: 35px 25px;
+  text-align: center;
+  box-shadow: 8px 8px 0px #ccff00;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.genz-sticker-badge {
+  display: inline-block;
+  background: #ff007f;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border: 2px solid #000;
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 #000;
+  transform: rotate(-2deg);
+  margin-bottom: 14px;
+}
+
+.genz-hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+  text-shadow: 3px 3px 0 #ff007f;
+}
+
+.genz-hero-subtitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ccff00;
+  margin-bottom: 25px;
+}
+
+.genz-letter-box {
+  background: #1d1d30;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.letter-punchline {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #f1f5f9;
+  margin-bottom: 14px;
+}
+
+.letter-sig-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 18px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.2);
+  padding-top: 12px;
+}
+
+.sig-from {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.sig-name-genz {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ff007f;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Aura Meter */
+.aura-meter-box {
+  background: #0d0d16;
+  border: 2px solid #ccff00;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: left;
+}
+
+.aura-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.aura-label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #94a3b8;
+}
+
+.aura-score {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #ccff00;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.aura-progress-bar {
+  width: 100%;
+  height: 14px;
+  background: #222238;
+  border-radius: 9999px;
+  border: 2px solid #000;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.aura-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff007f, #ccff00);
+}
+
+.sticker-slap-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.slap-hint {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.sticker-chip {
+  background: #25253d;
+  border: 1px solid #fff;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.sticker-chip:hover {
+  transform: scale(1.08) rotate(-2deg);
+  background: #ff007f;
+}
+
+/* Screen Stickers Container */
+.stickers-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.screen-sticker {
+  position: absolute;
+  background: #ccff00;
+  color: #000;
+  border: 2px solid #000;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 0.95rem;
+  padding: 6px 14px;
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 #000;
+  animation: popSticker 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popSticker {
+  0% { transform: scale(0.2) rotate(10deg); opacity: 0; }
+  80% { transform: scale(1.15) rotate(-4deg); opacity: 1; }
+  100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+}
+
+/* 5. Gen Z Game Cards */
+.genz-game-card {
+  background: #141422;
+  border: 3px solid #fff;
+  border-radius: 20px;
+  padding: 30px 24px;
+  text-align: center;
+  box-shadow: 6px 6px 0px #ff007f;
+  margin-bottom: 35px;
+}
+
+.game-badge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.game-tag {
+  background: #00f0ff;
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 900;
+  padding: 3px 10px;
+  border: 1px solid #000;
+  border-radius: 4px;
+}
+
+.game-status {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ccff00;
+}
+
+.game-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.game-desc {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  max-width: 550px;
+  margin: 0 auto 20px;
+}
+
+/* Soan Papdi Yeeter */
+.soan-papdi-stage {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.soan-papdi-box-icon {
+  background: #fbbf24;
+  border: 3px solid #000;
+  border-radius: 14px;
+  padding: 14px 24px;
+  box-shadow: 5px 5px 0 #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.soan-icon {
+  font-size: 2.2rem;
+}
+
+.soan-label {
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: #000;
+  letter-spacing: 0.5px;
+}
+
+.soan-papdi-box-icon.yeeting {
+  animation: yeetBox 0.7s forwards ease-in-out;
+}
+
+@keyframes yeetBox {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.3) rotate(180deg) translate(150px, -60px); }
+  100% { transform: scale(0) rotate(720deg) translate(400px, -200px); opacity: 0; }
+}
+
+.yeet-btn {
+  background: #ff007f;
+  color: #fff;
+  box-shadow: 5px 5px 0 #ccff00;
+}
+
+.yeet-btn:hover {
+  box-shadow: 7px 7px 0 #ccff00;
+}
+
+.soan-toast, .patakha-toast {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ccff00;
+  margin-top: 14px;
+}
+
+/* Bad Vibes Grid */
+.bad-vibes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.vibe-patakha-btn {
+  background: #1f1f35;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  padding: 14px 10px;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.vibe-patakha-btn:hover {
+  transform: translate(-2px, -2px);
+  background: #ff007f;
+  box-shadow: 6px 6px 0 #ccff00;
+}
+
+.vibe-icon {
+  font-size: 1.6rem;
+}
+
+.vibe-text {
+  font-size: 0.82rem;
+}
+
+/* Fortune Cookie */
+.fortune-cookie-holder {
+  cursor: pointer;
+  margin: 10px auto 16px;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.fortune-cookie-holder:hover {
+  transform: scale(1.1);
+}
+
+.cookie-graphic {
+  font-size: 4rem;
+  filter: drop-shadow(0 4px 15px rgba(255, 204, 0, 0.4));
+  animation: cookieWiggle 2s infinite ease-in-out;
+}
+
+@keyframes cookieWiggle {
+  0% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+  100% { transform: rotate(-5deg); }
+}
+
+.cookie-tap-prompt {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #ccff00;
+  display: block;
+  margin-top: 6px;
+}
+
+.genz-fortune-result {
+  margin-top: 18px;
+  padding: 20px;
+  background: #1d1d30;
+  border: 2px dashed #ccff00;
+  border-radius: 16px;
+  animation: fadeIn 0.3s ease;
+}
+
+.fortune-flair {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.fortune-msg {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+/* 6. Send to Gang Section */
+.genz-send-engine {
+  margin-bottom: 50px;
+}
+
+.send-box-brutalist {
+  background: #141422;
+  border: 3px solid #ccff00;
+  border-radius: 24px;
+  padding: 35px 25px;
+  text-align: center;
+  box-shadow: 8px 8px 0px #000;
+}
+
+.send-header-tag {
+  display: inline-block;
+  background: #ccff00;
+  color: #000;
+  font-size: 0.75rem;
+  font-weight: 900;
+  padding: 4px 14px;
+  border: 2px solid #000;
+  border-radius: 9999px;
+  margin-bottom: 12px;
+}
+
+.send-big-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.send-subtext {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  max-width: 550px;
+  margin: 0 auto 24px;
+}
+
+.send-input-wrap {
+  max-width: 480px;
+  margin: 0 auto 20px;
+}
+
+.genz-input {
+  width: 100%;
+  background: #09090f;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  padding: 14px 20px;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  outline: none;
+  box-shadow: 4px 4px 0px #ff007f;
+  transition: all 0.2s ease;
+}
+
+.genz-input:focus {
+  border-color: #ccff00;
+  box-shadow: 6px 6px 0px #ccff00;
+}
+
+.send-buttons-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.genz-wa-btn {
+  background: #22c55e;
+  border: 2px solid #000;
+  color: #000;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 900;
+  padding: 14px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+}
+
+.genz-wa-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #fff;
+}
+
+.genz-copy-btn {
+  background: #ccff00;
+  border: 2px solid #000;
+  color: #000;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 900;
+  padding: 14px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #ff007f;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+}
+
+.genz-copy-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #ff007f;
+}
+
+.genz-preview-btn {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 14px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #00f0ff;
+  transition: all 0.15s ease;
+}
+
+.genz-preview-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+.genz-url-display {
+  margin-top: 20px;
+  padding: 14px 18px;
+  background: #09090f;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  text-align: left;
+}
+
+.url-hint {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #ccff00;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.url-input-field {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: monospace;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.genz-toast {
+  margin-top: 14px;
+  color: #ccff00;
+  font-weight: 800;
+  font-size: 0.95rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.genz-footer {
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+
 
 
 

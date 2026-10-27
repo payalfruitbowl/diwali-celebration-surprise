@@ -1618,19 +1618,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const neonManager = new NeonPatakhaManager();
 
-  // ==================== 13. INTERACTIVE DIWALI WISH & WHATSAPP ENGINE (wish.html) ====================
+  // ==================== 13. GEN-Z DIWALI VIBE CHECK & WISH MACHINE (wish.html) ====================
   class WishPageManager {
     constructor() {
       this.senderName = '';
+      this.auraPoints = 10000;
+      this.soanPapdiYeets = 0;
       this.fortunes = [
-        "🪙 Goddess Lakshmi is opening golden gates of unexpected wealth, prosperity, and financial freedom for you this year!",
-        "🐘 Lord Ganesha removes every hidden obstacle from your path—expect a monumental breakthrough in your endeavors!",
-        "🌟 A deeply cherished dream and heartfelt prayer you've held will joyously manifest into reality this season.",
-        "🌿 Radiant vitality, peaceful thoughts, and robust good health will protect and nourish your entire family.",
-        "🦚 Your home will overflow with sweet harmony, unconditional love, heartwarming laughter, and festive reunions.",
-        "👑 Auspicious triumph, golden career growth, and immense recognition will crown your dedicated efforts.",
-        "🪔 May the light of a thousand sacred diyas permanently dispel all doubt, bringing supreme inner serenity.",
-        "🕊️ Divine peace will settle in your heart, guiding you into a prosperous and abundantly blessed New Year!"
+        "💸 Laxmi Ji saw your Myntra cart and decided to sponsor your entire aesthetic lifestyle this year.",
+        "💅 Your Diwali photo dump is getting 1,000+ likes and your ex will cry in the club no cap.",
+        "🧠 Your 2 AM overthinking is permanently cancelled. 8-figure bank alerts and peaceful sleep only.",
+        "🧘 You will successfully dodge every single nosy auntie asking about your salary and marriage.",
+        "👑 Massive CEO energy incoming. Your side hustle is secretly turning into a multi-million dollar startup.",
+        "🍕 Zero guilt on sweets. Your metabolism this festive season has been supercharged to 300%."
       ];
       this.fortuneIndex = 0;
       this.init();
@@ -1638,8 +1638,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init() {
       this.parseUrlParameters();
-      this.bindFortuneOracle();
-      this.bindFiveDiyas();
+      this.bindStickerSlapper();
+      this.bindSoanPapdiYeeter();
+      this.bindBadVibesPatakha();
+      this.bindFortuneCookie();
       this.bindSendEngine();
     }
 
@@ -1663,22 +1665,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const clean = name.trim();
 
       const badgeSender = document.getElementById('intro-badge-sender');
-      if (badgeSender) badgeSender.textContent = `🎁 SURPRISE FROM ${clean.toUpperCase()}`;
+      if (badgeSender) badgeSender.textContent = `⚡ ${clean.toUpperCase()}'S DIWALI VIBE CHECK ⚡`;
 
       const senderHeadline = document.getElementById('intro-sender-headline');
-      if (senderHeadline) senderHeadline.textContent = `${clean} has sent you a Diwali Blessing`;
-
-      const mainHook = document.getElementById('intro-main-hook');
-      if (mainHook) mainHook.textContent = `A special spark ignited for you...`;
+      if (senderHeadline) senderHeadline.textContent = `${clean} said: Open before someone passes you Soan Papdi 💀`;
 
       const senderTag = document.getElementById('intro-sender-tag');
-      if (senderTag) senderTag.textContent = `✨ Sent with love by: ${clean} ✨`;
+      if (senderTag) senderTag.textContent = `✨ Dropped by: ${clean} ✨`;
 
       const descText = document.getElementById('intro-desc-text');
-      if (descText) descText.textContent = `Touch the golden Diya below to ignite the flame, reveal ${clean}'s heartfelt message, and unlock your 2026 fortune!`;
+      if (descText) descText.textContent = `Your official Diwali blessing from ${clean} is here. Tap to unlock +10,000 Aura points & claim your desi drip!`;
 
       const wishSubtitle = document.getElementById('main-wish-subtitle');
-      if (wishSubtitle) wishSubtitle.textContent = `From ${clean} & Family with Infinite Love, Light & Prosperity`;
+      if (wishSubtitle) wishSubtitle.textContent = `From ${clean} with +10,000 Aura Points & Zero Toxic Vibes`;
 
       const sigName = document.getElementById('letter-sender-name');
       if (sigName) sigName.textContent = clean;
@@ -1709,13 +1708,111 @@ document.addEventListener('DOMContentLoaded', () => {
       return fullUrl;
     }
 
-    bindFortuneOracle() {
-      const trigger = document.getElementById('fortune-coin-trigger');
-      const drawBtn = document.getElementById('draw-another-fortune-btn');
-      const resultBox = document.getElementById('fortune-result-box');
-      const textEl = document.getElementById('fortune-text');
+    bindStickerSlapper() {
+      const chips = document.querySelectorAll('.sticker-chip');
+      const container = document.getElementById('stickers-container');
+      const scoreEl = document.getElementById('aura-score-counter');
 
-      const revealFortune = () => {
+      chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          const stickerText = chip.dataset.sticker || chip.textContent;
+          sounds.playSparklerCrackle();
+
+          if (container) {
+            const sticker = document.createElement('div');
+            sticker.className = 'screen-sticker';
+            sticker.textContent = stickerText;
+            
+            // Random position on viewport
+            const x = 10 + Math.random() * 70;
+            const y = 20 + Math.random() * 60;
+            sticker.style.left = `${x}vw`;
+            sticker.style.top = `${y}vh`;
+            sticker.style.transform = `rotate(${(Math.random() - 0.5) * 20}deg)`;
+
+            container.appendChild(sticker);
+            setTimeout(() => sticker.remove(), 4000);
+          }
+
+          // Bump aura score
+          this.auraPoints += 1000;
+          if (scoreEl) scoreEl.textContent = `+${this.auraPoints.toLocaleString()} ⚡`;
+          fireworks.createBurst(window.innerWidth * Math.random(), window.innerHeight * 0.4, '#ccff00');
+        });
+      });
+    }
+
+    bindSoanPapdiYeeter() {
+      const box = document.getElementById('soan-papdi-box');
+      const btn = document.getElementById('yeet-soan-papdi-btn');
+      const scoreEl = document.getElementById('soan-papdi-score');
+      const feedback = document.getElementById('soan-feedback');
+
+      const messages = [
+        "Yeeted straight to Sharma Ji's drawing room! 🚀",
+        "Sharma Ji panicked and passed it to his boss! 💀",
+        "The box is currently on a train to Kanpur! 🚂",
+        "Immortal sugar cube cycle continued successfully! 📦",
+        "Auntie received the exact box she gifted in 2021! 🏆"
+      ];
+
+      if (btn && box) {
+        btn.addEventListener('click', () => {
+          sounds.playRocketLaunch();
+          sounds.playFireworkBurst();
+
+          box.classList.add('yeeting');
+          this.soanPapdiYeets++;
+
+          if (scoreEl) scoreEl.textContent = `Relieved: ${this.soanPapdiYeets} Relatives 💀`;
+          if (feedback) {
+            feedback.textContent = messages[this.soanPapdiYeets % messages.length];
+          }
+
+          setTimeout(() => {
+            box.classList.remove('yeeting');
+          }, 850);
+        });
+      }
+    }
+
+    bindBadVibesPatakha() {
+      const btns = document.querySelectorAll('.vibe-patakha-btn');
+      const toast = document.getElementById('vibe-toast');
+
+      const roasts = {
+        'Overthinking at 2 AM': '✨ Overthinking demolished! 8 hours of peaceful uninterrupted sleep granted.',
+        "'Beta Shadi Kab Kar Rahe Ho?'": '✨ Nosy aunties silenced! Auntie suddenly started talking about weather.',
+        'Empty Bank Account': '✨ Broke era officially cancelled! 8-figure bank alerts incoming.',
+        'Monday Morning Alarms': '✨ Alarm destroyed! Long Diwali holiday mode permanently enabled.'
+      };
+
+      btns.forEach(b => {
+        b.addEventListener('click', (e) => {
+          sounds.playFireworkBurst();
+          sounds.playSparklerCrackle();
+
+          const vibe = b.dataset.vibe;
+          if (toast && roasts[vibe]) {
+            toast.textContent = roasts[vibe];
+          }
+
+          const rect = b.getBoundingClientRect();
+          fireworks.createBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, '#ff007f');
+
+          b.style.transform = 'scale(0.95)';
+          setTimeout(() => b.style.transform = '', 150);
+        });
+      });
+    }
+
+    bindFortuneCookie() {
+      const trigger = document.getElementById('cookie-click-trigger');
+      const drawBtn = document.getElementById('crack-again-btn');
+      const resultBox = document.getElementById('genz-fortune-box');
+      const textEl = document.getElementById('genz-fortune-text');
+
+      const crackCookie = () => {
         sounds.playDiyaChime();
         sounds.playTempleBell();
 
@@ -1727,53 +1824,11 @@ document.addEventListener('DOMContentLoaded', () => {
           resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
-        // Mini confetti burst
-        fireworks.createBurst(window.innerWidth / 2, window.innerHeight * 0.45, '#fbbf24');
+        fireworks.createBurst(window.innerWidth / 2, window.innerHeight * 0.45, '#ccff00');
       };
 
-      if (trigger) trigger.addEventListener('click', revealFortune);
-      if (drawBtn) drawBtn.addEventListener('click', revealFortune);
-    }
-
-    bindFiveDiyas() {
-      const diyas = document.querySelectorAll('.wish-diya-btn');
-      const pill = document.getElementById('diya-status-pill');
-
-      const diyaBlessings = {
-        '1': '✨ Hope Ignited: May optimism and bright new horizons guide your steps!',
-        '2': '🌿 Health Ignited: May robust wellness, vitality and peace bless your home!',
-        '3': '🪙 Wealth Ignited: May Goddess Lakshmi shower golden abundance and prosperity!',
-        '4': '🕊️ Peace Ignited: May serene tranquility, understanding and love surround you!',
-        '5': '🪔 Joy Ignited: May celebration, laughter and sweetness never cease!'
-      };
-
-      diyas.forEach(btn => {
-        btn.addEventListener('click', () => {
-          btn.classList.toggle('lit');
-          sounds.playDiyaChime();
-
-          const id = btn.dataset.diya;
-          const isLit = btn.classList.contains('lit');
-
-          if (isLit && diyaBlessings[id] && pill) {
-            pill.textContent = diyaBlessings[id];
-          }
-
-          const litCount = document.querySelectorAll('.wish-diya-btn.lit').length;
-          if (litCount === diyas.length) {
-            if (pill) {
-              pill.textContent = '⚜️ All 5 Sacred Diyas Illuminated! May the Divine Light protect your family 🪔';
-            }
-            sounds.playTempleBell();
-            fireworks.sparkAnar(window.innerWidth / 2, window.innerHeight - 30);
-            for (let i = 0; i < 6; i++) {
-              setTimeout(() => {
-                fireworks.launchRocket(window.innerWidth * (0.15 + i * 0.14), window.innerHeight * 0.2);
-              }, i * 220);
-            }
-          }
-        });
-      });
+      if (trigger) trigger.addEventListener('click', crackCookie);
+      if (drawBtn) drawBtn.addEventListener('click', crackCookie);
     }
 
     bindSendEngine() {
@@ -1792,9 +1847,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // WhatsApp Share
       if (whatsappBtn) {
         whatsappBtn.addEventListener('click', () => {
-          const name = (input && input.value.trim()) || 'A Friend';
+          const name = (input && input.value.trim()) || 'Your Bestie';
           const shareUrl = this.updateGeneratedUrl(name);
-          const messageText = `🪔✨ *Happy Deepawali!* I sent you a magical interactive Diwali surprise. Touch the golden diya to open your surprise & unlock your fortune:\n\n${shareUrl}`;
+          const messageText = `Bro open this before someone hands you Soan Papdi 💀🪔\n\nYour official Diwali Vibe Check from *${name}* is here! Tap to unlock +10,000 Aura points:\n${shareUrl}`;
 
           const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(messageText)}`;
           window.open(whatsappUrl, '_blank');
@@ -1805,7 +1860,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Copy Magic Link
       if (copyBtn) {
         copyBtn.addEventListener('click', () => {
-          const name = (input && input.value.trim()) || 'Your Friend';
+          const name = (input && input.value.trim()) || 'Your Bestie';
           const shareUrl = this.updateGeneratedUrl(name);
 
           if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1825,18 +1880,16 @@ document.addEventListener('DOMContentLoaded', () => {
       // Live Preview Button
       if (previewBtn) {
         previewBtn.addEventListener('click', () => {
-          const name = (input && input.value.trim()) || 'Payal & Family';
+          const name = (input && input.value.trim()) || 'Payal';
           this.applySenderName(name);
 
-          // Update browser history
           const newUrl = this.updateGeneratedUrl(name);
           window.history.replaceState({ path: newUrl }, '', newUrl);
 
           sounds.playTempleBell();
           sounds.playDiyaChime();
-          fireworks.createBurst(window.innerWidth / 2, window.innerHeight * 0.3, '#f59e0b');
+          fireworks.createBurst(window.innerWidth / 2, window.innerHeight * 0.3, '#ff007f');
 
-          // Smooth scroll to top of card
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       }
